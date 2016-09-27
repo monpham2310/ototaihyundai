@@ -1,0 +1,225 @@
+<div ng-controller="userCtrl">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Danh sách thành viên</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="">
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#myModal" ng-click="event.add()">Thêm mới thành viên</button>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <div id="editable_length" class="dataTables_length">
+                                    <label>
+                                        <select class="form-control input-sm" aria-controls="editable" name="editable_length" ng-model="numberPage">
+                                            <option value="5">5</option>
+                                            <option value="10">10</option>
+                                            <option value="15">15</option>
+                                            <option value="20">20</option>
+                                        </select>
+                                    </label>
+                                    dòng trên mỗi trang
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <input type="text" placeholder="Tìm kiếm" class="input-sm form-control" ng-model="searchText" /> <span class="input-group-btn">
+                                    <button type="button" class="btn btn-sm btn-primary"><i class="fa fa-search"></i></button> </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>                                        
+                                        <th class="center">Avatar</th>
+                                        <th class="center">Tên</th>
+                                        <th class="center">Email</th>
+                                        <th class="center">Vai trò</th>
+                                        <th class="center">Xuất hiện liên hệ</th>
+                                        <th class="center">Trạng thái</th>
+                                        <th class="center">Chức năng</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr dir-paginate="item in $root.usersList | filter:searchText | itemsPerPage: numberPage" pagination-id="filterUser">
+                                        <td class="center">
+                                            <img class="img-circle" ng-src="{{item.Avatar}}" width="50" height="50" />
+                                        </td>
+                                        <td class="center" ng-bind="item.UserName"></td> 
+                                        <td class="center" ng-bind="item.Email"></td>                                        
+                                        <td class="center" ng-bind="item.Permission"></td>
+                                        <td class="center">
+                                            <span ng-if="item.IsContact === '1'">Liên hệ</span>
+                                            <span ng-if="item.IsContact === '0'">Không</span>
+                                        </td>                                        
+                                        <td class="center">
+                                            <i class="fa fa-check text-navy" ng-if="item.Status === '1'"></i>
+                                            <i class="fa fa-times text-navy" ng-if="item.Status === '0'"></i>
+                                        </td>
+                                        <td class="center">
+                                            <button class="btn btn-info padding-2" data-toggle="modal" data-target="#myModal" ng-click="event.edit(item)" ng-if="$root.user.Level === 'Admin' || item.UserID === $root.user.IdUser">
+                                                <span class="fa fa-edit"></span>
+                                            </button>
+                                            <button class="btn btn-danger padding-2" data-toggle="modal" data-target="#delAlert" ng-click="event.getItem(item)" ng-if="$root.user.Level === 'Admin' && item.UserID !== $root.user.IdUser">
+                                                <span class="fa fa-trash"></span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>                            
+                        </div>
+                        <div class="row line-top">                        
+                            <dir-pagination-controls class="right" pagination-id="filterUser" max-size="numOfPage" boundary-links="true"></dir-pagination-controls>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>        
+    </div>
+    <div id="myModal" class="modal inmodal in" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content animated bounceIn">
+                <form role="form" name=Form ng-submit="event.submitForm()" novalidate>
+                    <fieldset>
+                        <div class="modal-header">
+                            <i class="fa fa-user modal-icon"></i>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title" ng-bind="label.title"></h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group center">
+                                <label>Avatar</label>
+                                <div class="padding-formcontrol">
+                                    <img class="img-circle margin-bottom-icon" id="img" ng-src="{{selectedUser.Avatar}}" width=130 height=130 />
+                                </div>
+                                <div class="input-group">
+                                    <input id="txt_url" class="form-control" placeholder="Đường dẫn ảnh" name="avatar" type="text" ng-model="selectedUser.Avatar" disabled />
+                                    <span class="input-group-btn">
+                                        <button id="btnselectImage" class="btn btn-default btn-browser" type="button" ng-click="event.browserImg()">
+                                           <span class="fa fa-folder"></span>
+                                    </button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-class="{ 'has-error' : Form.username.$invalid && Form.username.$touched && Form.username.$error.required }">
+                                <label>Tên<span class="text-danger">&nbsp;(*)</span></label>
+                                <input class="form-control" placeholder="Họ tên" name="username" type="text" ng-model="selectedUser.UserName"  required>
+                                <p class="text-danger" ng-show="Form.username.$invalid && Form.username.$touched && Form.username.$error.required">Vui lòng nhập tên.</p>
+                            </div>                            
+                            <div class="form-group" ng-class="{ 'has-error' : Form.phone.$invalid }">
+                                <label>Điện thoại</label>
+                                <input class="form-control" placeholder="Số điện thoại" name="phone" type="tel" ng-model="selectedUser.Phone" >
+                            </div>
+                            <div class="form-group" ng-class="{ 'has-error' : Form.phone.$invalid }">
+                                <label>Facebook</label>
+                                <input class="form-control" placeholder="Facebook" name="phone" type="tel" ng-model="selectedUser.Facebook" >
+                            </div>
+                            <div class="form-group" ng-class="{ 'has-error' : Form.phone.$invalid }">
+                                <label>Google+</label>
+                                <input class="form-control" placeholder="Google+" name="phone" type="tel" ng-model="selectedUser.Google" >
+                            </div>
+                            <div class="form-group" ng-class="{ 'has-error' : Form.phone.$invalid }">
+                                <label>Youtube</label>
+                                <input class="form-control" placeholder="Youtube" name="phone" type="tel" ng-model="selectedUser.Youtube" >
+                            </div>
+                            <div class="form-group" ng-class="{ 'has-error' : Form.phone.$invalid }">
+                                <label>Twitter</label>
+                                <input class="form-control" placeholder="Twitter" name="phone" type="tel" ng-model="selectedUser.Twitter" >
+                            </div>
+                            <div class="form-group" ng-class="{ 'has-error' : Form.email.$invalid && Form.email.$touched && Form.email.$error.required }">
+                                <label>Email<span class="text-danger">&nbsp;(*)</span></label>
+                                <input class="form-control" placeholder="Email" name="email" type="email" ng-model="selectedUser.Email" ng-blur="event.checkExists()"  required>
+                                <p class="text-danger" ng-show="Form.email.$invalid && Form.email.$touched && Form.email.$error.required">Vui lòng nhập email.</p>
+                                <p class="text-danger" ng-if="checkExistsEmail">Email này đã tòn tại.</p>
+                            </div> 
+                            <div ng-if="isUpdate === true">
+                                <div class="form-group ">
+                                    <label>Thay mật khẩu mới</label>
+                                    <input class="form-control" placeholder="Your password" name="changePassword" type="password" ng-model="selectedUser.Password" ng-minlength="5">                                    
+                                    <p ng-show="Form.changePassword.$error.minlength" class="text-danger">Mật khẩu phải ít nhất 5 ký tự.</p>
+                                </div>                                
+                            </div>                           
+                            <div class="form-group " ng-class="{'has-error': Form.permission.$invalid && Form.permission.$touched && Form.permission.$error.required}">
+                                <label>Vai trò<span class="text-danger">&nbsp;(*)</span></label>
+                                <div class="selectContainer">
+                                    <select class="form-control" id="permission" name="permission" ng-model="selectedUser.Permission"  required>
+                                        <option style="display:none" value="">--Chọn vai trò--</option>
+                                        <option ng-repeat="item in permissions track by $index" value="{{item.LevelName}}">{{item.LevelName}}</option>
+                                    </select>
+                                </div>
+                                <p class="text-danger" ng-show="Form.permission.$invalid && Form.permission.$touched && Form.permission.$error.required">Vui lòng không để trống phần này.</p>
+                            </div>
+                            <div class="form-group">
+                                <label>Xuất hiện liên hệ</label>
+                                <div class="selectContainer">
+                                    <select class="form-control" id="permission" name="isContact" ng-model="selectedUser.IsContact">
+                                        <option style="display:none" value="">--Chọn xuất hiện--</option>
+                                        <option value="0">Trống</option>
+                                        <option value="1">Liên hệ</option>
+                                    </select>
+                                </div>
+                                <p class="text-danger" ng-show="Form.permission.$invalid && Form.permission.$touched && Form.permission.$error.required">Vui lòng không để trống phần này.</p>
+                            </div>
+                            <div ng-if="isUpdate === false">
+                                <div class="form-group " ng-class="{'has-error': Form.password.$error.minlength && Form.password.$error.required}">
+                                    <label>Mật khẩu<span class="text-danger">&nbsp;(*)</span></label>
+                                    <input class="form-control" placeholder="Your password" name="password" type="password" value="" ng-model="selectedUser.Password" ng-minlength="5" required>
+                                    <p ng-show="Form.password.$error.minlength" class="text-danger">Mật khẩu phải ít nhất 5 ký tự.</p>
+                                </div>
+                                <div class="form-group " ng-class="{'has-error': Form.confirmPassword.$error.minlength && Form.password.$error.required}">
+                                    <label>Xác nhận mật khẩu<span class="text-danger">&nbsp;(*)</span></label>
+                                    <input class="form-control" placeholder="Xác nhận mật khẩu" name="confirmPassword" type="password" value="" ng-model="selectedUser.ConfirmPassword" ng-minlength="5" required>
+                                    <p ng-show="Form.confirmPassword.$error.minlength" class="text-danger">Mật khẩu phải ít nhất 5 ký tự.</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <label>Trạng thái&nbsp;</label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="onoffswitch">
+                                            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" ng-model="selectedUser.Status" ng-true-value="'1'" ng-false-value="'0'" />
+                                            <label class="onoffswitch-label" for="myonoffswitch">
+                                                <span class="onoffswitch-inner"></span>
+                                                <span class="onoffswitch-switch"></span>
+                                            </label>
+                                        </div>
+                                    </div>          
+                                </div>                
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <p class="{{notice.class}}" ng-bind="notice.message"></p>
+                            <button ng-if="!checkExistsEmail" id="btnSubmit" type="submit" class="btn btn-primary" ng-disabled="Form.$invalid">Lưu</button>
+                            <button ng-if="checkExistsEmail" id="btnSubmit" type="submit" class="btn btn-primary" disabled>Lưu</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal bs-modal-sm" id="delAlert" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content animated lightSpeedIn">
+                <div class="modal-header panel-heading">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Xóa thành viên</h4>
+                </div>
+                <div class="modal-body">
+                    Bạn có chắc chắn muốn xóa thành viên này?
+                </div>
+                <div class="modal-footer">                    
+                    <button type="button" class="btn btn-danger" ng-click="event.del()">Có</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Không</button>                    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>

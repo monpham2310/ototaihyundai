@@ -1,0 +1,212 @@
+<div ng-controller="categoryCtrl">    
+    <div class="row">
+        <div class="col-md-4">
+            <div class="wrapper wrapper-content animated fadeInLeft">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Thêm danh mục</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="panel-body">
+                            <form role="form" name="addForm" ng-submit="event.submitForm(false)" novalidate>
+                                <fieldset>
+                                    <div class="form-group" ng-class="{'has-error': addForm.Name.$invalid && addForm.Name.$touched && addForm.Name.$error.required}">
+                                        <label>Tên<span class="text-danger">&nbsp;(*)</span></label>
+                                        <input class="form-control" placeholder="Tên danh mục" name="Name" type="text" ng-model="newCategory.CatName" required ng-blur="event.getAliasForCate(false)" />
+                                        <p ng-show="addForm.Name.$invalid && addForm.Name.$touched && addForm.Name.$error.required" class="text-danger">Vui lòng nhập tên.</p>
+                                    </div>                                    
+                                    <div class="form-group" ng-class="{'has-error': addForm.Link.$invalid && addForm.Link.$touched && addForm.Link.$error.required}">
+                                        <label>Đường dẫn<span class="text-danger">&nbsp;(*)</span></label>
+                                        <input class="form-control" placeholder="Đường dẫn danh mục" name="Link" type="text" ng-model="newCategory.CatMeta" required />
+                                        <p ng-show="addForm.Link.$invalid && addForm.Link.$touched && addForm.Link.$error.required" class="text-danger">Vui lòng chọn đường dẫn.</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Danh mục cha</label>
+                                        <div class="selectContainer width">
+                                            <select class="form-control ui search dropdown" name="CatParent" ng-model="newCategory.CatParent" autofocus>
+                                                <option style="display:none" value="">--Chọn danh mục--</option>
+                                                <option value="0">Trống</option>
+                                                <option ng-repeat="item in $root.categories track by $index" value="{{item.CatID}}">{{item.CatName}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Mô tả</label>
+                                        <textarea class="form-control" placeholder="Mô tả danh mục" name="des" type="text" ng-model="newCategory.CatDescribes"></textarea>
+                                    </div>
+                                    <div class="form-group" ng-class="{'has-error': addForm.Temp.$invalid && addForm.Temp.$touched && addForm.Temp.$error.required}">
+                                        <label>Kiểu hiển thị<span class="text-danger">&nbsp;(*)</span></label>
+                                        <div class="selectContainer width">
+                                            <select class="form-control ui search dropdown" name="Temp" ng-model="newCategory.TempId" required>
+                                                <option style="display:none" value="">--Chọn kiểu hiển thị--</option>
+                                                <option ng-repeat="item in $root.templates track by $index" value="{{item.TempID}}" ng-if="item.Status !== '0' && item.Type === 'category'">{{item.TempName}}</option>
+                                            </select>
+                                        </div>
+                                        <p ng-show="addForm.Temp.$invalid && addForm.Temp.$touched && addForm.Temp.$error.required" class="text-danger">Vui lòng chọn kiểu hiển thị.</p>
+                                    </div>
+                                    <div class="modal-footer no-border">
+                                        <button type="submit" class="btn btn-primary" ng-disabled="addForm.$invalid">Thêm Danh mục</button>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="row wrapper wrapper-content animated fadeInRight">
+                <div class="col-lg-12">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>Danh sách danh mục</h5>
+                        </div>
+                        <div class="ibox-content">
+                            <div class="row">
+                                <div class="col-sm-5">
+                                    <div id="editable_length" class="dataTables_length">
+                                        <label>
+                                            <select class="form-control input-sm" aria-controls="editable" name="editable_length" ng-model="numberPage">
+                                                <option value="5">5</option>
+                                                <option value="10">10</option>
+                                                <option value="15">15</option>
+                                                <option value="20">20</option>
+                                            </select>
+                                        </label>
+                                        dòng trên mỗi trang
+                                    </div>
+                                </div>                                
+                                <div class="col-sm-7">
+                                    <div class="input-group">
+                                        <input type="text" placeholder="Tìm kiếm" class="input-sm form-control" ng-model="searchText" /> <span class="input-group-btn">
+                                    <button type="button" class="btn btn-sm btn-primary"><i class="fa fa-search"></i></button> </span></div>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th class="center">Tên</th>
+                                            <th class="center">Đường dẫn</th>                                            
+                                            <th class="center">Cha</th> 
+                                            <th class="center">Chức năng</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr dir-paginate="item in $root.categories | filter:searchText | itemsPerPage: numberPage" pagination-id="filterCate">
+                                            <td class="center" ng-bind="item.CatName"></td>
+                                            <td class="center" ng-bind="item.CatMeta"></td>     
+                                            <td class="center" ng-bind="item.ParentName"></td>
+                                            <td class="center">
+                                                <button class="btn btn-info fa fa-edit padding-2" data-toggle="modal" data-target="#myModal" ng-click="event.edit(item)"></button>
+                                                <button class="btn btn-danger fa fa-trash padding-2" data-toggle="modal" data-target="#delAlert" ng-click="event.getItem(item)"></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="row line-top">
+                                <dir-pagination-controls class="right" pagination-id="filterCate" max-size="numOfPage" boundary-links="true"></dir-pagination-controls>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="myModal" class="modal inmodal in" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content animated bounceIn">
+                <form role="form" name="Form" ng-submit="event.submitForm(true)" novalidate>
+                    <fieldset>
+                        <div class="modal-header">
+                            <i class="fa fa-list-alt modal-icon"></i>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title">Sửa danh mục</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group" ng-class="{'has-error': Form.Name.$invalid && Form.Name.$touched && Form.Name.$error.required}">
+                                <label>Tên<span class="text-danger">&nbsp;(*)</span></label>
+                                <input class="form-control" placeholder="Tên danh mục" name="Name" type="text" ng-model="selectedCate.CatName" autofocus required ng-blur="event.getAliasForCate(true)" />
+                                <p ng-show="Form.Name.$invalid && Form.Name.$touched && Form.Name.$error.required" class="text-danger">Vui lòng nhập tên danh mục.</p>
+                            </div>                            
+                            <div class="form-group" ng-class="{'has-error': Form.Link.$invalid && Form.Link.$touched && Form.Link.$error.required}">
+                                <label>Đường dẫn<span class="text-danger">&nbsp;(*)</span></label>
+                                <input class="form-control" placeholder="Đường dẫn danh mục" name="Link" type="text" ng-model="selectedCate.CatMeta" autofocus required />
+                                <p ng-show="Form.Link.$invalid && Form.Link.$touched && Form.Link.$error.required" class="text-danger">Vui lòng nhập đường dẫn.</p>
+                            </div>
+                            <div class="form-group">
+                                <label>Danh mục cha</label>
+                                <div class="selectContainer width">
+                                    <select class="form-control ui search dropdown" name="CatParent" ng-model="selectedCate.CatParent" autofocus>
+                                        <option style="display:none" value="">--Chọn danh mục--</option>
+                                        <option value="0">Trống</option>
+                                        <option ng-repeat="item in $root.categories track by $index" value="{{item.CatID}}" ng-if="selectedCate.CatID !== item.CatID && selectedCate.CatID !== item.CatParent">{{item.CatName}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Mô tả</label>
+                                <textarea class="form-control" placeholder="Mô tả danh mục" name="des" type="text" ng-model="selectedCate.CatDescribes" autofocus></textarea>
+                            </div>
+                            <div class="form-group" ng-class="{'has-error': Form.Temp.$invalid && Form.Temp.$touched && Form.Temp.$error.required}">
+                                <label>Kiểu hiển thị<span class="text-danger">&nbsp;(*)</span></label>
+                                <div class="selectContainer width">
+                                    <select class="form-control ui search dropdown" name="Temp" ng-model="selectedCate.TempId" autofocus required>
+                                        <option style="display:none" value="">--Chọn kiểu hiển thị--</option>
+                                        <option ng-repeat="item in $root.templates track by $index" value="{{item.TempID}}" ng-if="item.Status !== '0' && item.Type === 'category'">{{item.TempName}}</option>
+                                    </select>
+                                </div>
+                                <p ng-show="Form.Temp.$invalid && Form.Temp.$touched && Form.Temp.$error.required" class="text-danger">Vui lòng chọn kiểu hiển thị.</p>
+                            </div>
+<!--
+                            <div class="row form-group">
+                                <div class="col-sm-7">
+                                    <label>Trạng thái</label>
+                                </div>
+                                <div class="col-sm-5">
+                                    <div class="onoffswitch">
+                                        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="onoffswitchUpdate" ng-model="selectedCate.Status" ng-true-value="'1'" ng-false-value="'0'" />
+                                        <label class="onoffswitch-label" for="onoffswitchUpdate">
+                                            <span class="onoffswitch-inner"></span>
+                                            <span class="onoffswitch-switch"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+-->
+                        </div>
+                        <div class="modal-footer no-border">
+                            <p class="{{notice.class}}" ng-bind="notice.message"></p>                            
+                            <button type="submit" class="btn btn-primary" ng-disabled="Form.$invalid">Lưu</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal bs-modal-sm" id="delAlert" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content animated lightSpeedIn">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Xóa Danh mục</h4>
+                </div>
+                <div class="modal-body">
+                    Bạn có chắc chắn muốn xóa?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" ng-click="event.del()">Yes</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

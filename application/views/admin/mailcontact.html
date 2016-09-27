@@ -1,0 +1,139 @@
+<div class="wrapper wrapper-content animated fadeIn" ng-controller="mailcontactCtrl">    
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Danh sách thư liên hệ</h5>
+                </div>
+                <div class="ibox-content">                    
+                    <div class="row">
+                        <div class="col-sm-7">
+                            <div id="editable_length" class="dataTables_length">
+                                <label>
+                                    <select class="form-control input-sm" aria-controls="editable" name="editable_length" ng-model="numberPage">
+                                        <option value="5">5</option>
+                                        <option value="10">10</option>
+                                        <option value="15">15</option>
+                                        <option value="20">20</option>
+                                    </select>
+                                </label>
+                                dòng trên mỗi trang
+                            </div>
+                        </div>
+                        <div class="col-sm-5">
+                            <div class="input-group">
+                                <input type="text" placeholder="Tìm kiếm" class="input-sm form-control" ng-model="searchText" /> <span class="input-group-btn">
+                                    <button type="button" class="btn btn-sm btn-primary"><i class="fa fa-search"></i></button> </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th class="center"></th>
+                                    <th class="center">Tên</th>
+                                    <th class="center">Email</th>
+                                    <th class="center">Điện thoại</th>                                    
+                                    <th class="center">Tiêu đề</th>
+                                    <th class="center">Ngày gửi</th>
+                                    <th class="center">Chức năng</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr dir-paginate="item in $root.mailList | filter:searchText | itemsPerPage: numberPage" pagination-id="filterService">
+                                    <td class="center">
+                                        <img class="img-circle" src="assets/includes/upload/images/users/noimage.jpg" width="50" height="50" />
+                                    </td>
+                                    <td class="center" ng-bind="item.Name"></td>
+                                    <td class="center" ng-bind="item.Email"></td>
+                                    <td class="center" ng-bind="item.Phone"></td>
+                                    <td class="center" ng-bind="item.Subject"></td>
+                                    <td class="center" ng-bind="item.DateSent"></td>
+                                    <td class="center">
+                                        <button class="btn btn-info padding-2" ng-click="event.view(item)">
+                                            <span class="fa fa-eye"></span>
+                                        </button> 
+                                        <button class="btn btn-danger padding-2" data-toggle="modal" data-target="#delAlert" ng-click="event.getItem(item)">
+                                            <span class="fa fa-trash"></span>
+                                        </button>                                       
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row line-top">
+                        <dir-pagination-controls class="right" pagination-id="filterService" max-size="numOfPage" boundary-links="true"></dir-pagination-controls>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="myModal" class="modal inmodal in" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content animated bounceIn">
+                <form role="form" name="Form" ng-submit="event.submitForm()" novalidate>
+                    <fieldset>
+                        <div class="modal-header">
+                            <i class="fa fa-thumbs-up modal-icon"></i>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title" ng-bind="label.title"></h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group center">
+                                <label>Ảnh</label>
+                                <div class="padding-formcontrol">
+                                    <img class="img-circle margin-bottom-icon" id="img" src="assets/includes/upload/images/users/noimage.jpg" width=130 height=130 />
+                                </div>                                                                
+                            </div>
+                            <div class="form-group">
+                                <label>Tên</label>
+                                <span name="txtName" type="text" ng-bind="$root.selectedMail.Name"></span>         
+                            </div>                                                     
+                            <div class="form-group">
+                                <label>Email</label>
+                                <span name="txtEmail" type="text" ng-bind="$root.selectedMail.Email"></span>           
+                            </div>
+                            <div class="form-group">
+                                <label>Điện thoại</label>
+                                <span name="txtPhone" type="text" ng-bind="$root.selectedMail.Phone"></span>           
+                            </div>
+                            <div class="form-group">
+                                <label>Ngày gửi</label>
+                                <span name="txtDate" type="text" ng-bind="$root.selectedMail.DateSent"></span>           
+                            </div>
+                            <div class="form-group">
+                                <label>Tiêu đề</label>
+                                <span name="txtTitle" type="text" ng-bind="$root.selectedMail.Subject"></span>           
+                            </div>
+                            <div class="form-group">
+                                <label>Nội dung</label>
+                                <span name="txtContent" type="text" ng-bind="$root.selectedMail.Content"></span>           
+                            </div> 
+                        </div>
+                        <div class="modal-footer">                            
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal bs-modal-sm" id="delAlert" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content animated lightSpeedIn">
+                <div class="modal-header panel-heading">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Xóa thư</h4>
+                </div>
+                <div class="modal-body">
+                    Bạn có chắc chắn muốn xóa thư này?
+                </div>
+                <div class="modal-footer">                    
+                    <button type="button" class="btn btn-danger" ng-click="event.del()">Có</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Không</button>                    
+                </div>
+            </div>
+        </div>
+    </div>    
+</div>

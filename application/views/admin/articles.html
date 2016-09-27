@@ -1,0 +1,94 @@
+<div ng-controller="articleCtrl">    
+    <div class="row wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Danh sách bài viết</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="">
+                            <button class="btn btn-primary" ng-click="event.add()">Thêm mới</button>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-7">
+                                <div id="editable_length" class="dataTables_length">
+                                    <label>
+                                        <select class="form-control input-sm" aria-controls="editable" name="editable_length" ng-model="numberPage">
+                                            <option value="5">5</option>
+                                            <option value="10">10</option>
+                                            <option value="15">15</option>
+                                            <option value="20">20</option>
+                                        </select>
+                                    </label>
+                                    dòng trên mỗi trang
+                                </div>
+                            </div>                            
+                            <div class="col-sm-5">
+                                <div class="input-group">
+                                    <input type="text" placeholder="Tìm kiếm" class="input-sm form-control" ng-model="searchText" /> <span class="input-group-btn">
+                                    <button type="button" class="btn btn-sm btn-primary"><i class="fa fa-search"></i></button> </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>                                        
+                                        <th class="center">Tiêu đề</th>
+                                        <th class="center">Media</th>
+                                        <th class="center">Danh mục</th>
+                                        <th class="center">Tác giả</th>
+                                        <th class="center">Ngày tạo</th>
+                                        <th class="center">Ngôn ngữ</th>
+                                        <th class="center">Lượt xem</th>                                        
+                                        <th class="center">Chức năng</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr dir-paginate="item in articles | filter:searchText | itemsPerPage: numberPage" pagination-id="filterArt">
+                                        <td class="center" ng-bind="item.ArtName"></td>
+                                        <td class="center">
+                                            <img class="img-responsive grid-item" ng-src="{{item.Image}}" ng-if="item.Image !== ''" />
+                                            <div ng-bind-html="$root.trustAsHtml(item.Video)"></div>
+                                        </td>                                        
+                                        <td class="center" ng-bind="item.CatName"></td>
+                                        <td class="center" ng-bind="item.UserName"></td>
+                                        <td class="center" ng-bind="item.DateCreated"></td>
+                                        <td class="center" ng-bind="item.ArtLang"></td>                                          
+                                        <td class="center" ng-bind="item.ViewCount"></td>
+                                        <td class="center">
+                                            <a class="btn btn-info fa fa-edit" ng-click="event.edit(item)"></a>
+                                            <button class="btn btn-danger fa fa-trash padding" ng-click="event.getItem(item)" data-toggle="modal" data-target="#delAlert"></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>                            
+                        </div>
+                        <div class="row line-top">                            
+                            <dir-pagination-controls class="right" pagination-id="filterArt" max-size="numOfPage" boundary-links="true"></dir-pagination-controls>                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>        
+    </div>   
+    <div class="modal bs-modal-sm" id="delAlert" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content animated lightSpeedIn">
+                <div class="modal-header panel-heading">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Xóa bài viết</h4>
+                </div>
+                <div class="modal-body">
+                    Bạn có chắc chắn muốn xóa?
+                </div>
+                <div class="modal-footer">                    
+                    <button type="button" class="btn btn-danger" ng-click="event.del()">Có</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Không</button>                    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>

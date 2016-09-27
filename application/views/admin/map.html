@@ -1,0 +1,129 @@
+<div class="wrapper wrapper-content animated fadeIn" ng-controller="mapCtrl">
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>Danh sách</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <p>
+                        Hiển thị danh sách địa chỉ và vị trí bản đồ.
+                    </p>
+                    <div class="nestable dd" id="nestable">
+                        <ol class="dd-list">
+                            <li class="dd-item" data-id="item.MapID" ng-repeat="item in $root.mapList track by $index">
+                                <span id="bt-{{item.MapID}}" class="collapse-button right span-caret-widget" type="button" ng-click="event.slide(item)">
+                                    <i class="fa fa-caret-down icon-1px"></i>
+                                </span>
+                                <div class="dd-handle dd-handle-height"><span ng-bind="item.Title"></span></div>
+                                <form id="form-{{item.MapID}}" class="panel panel-default panel-body margin-bottom-0 none-display" name="frmMapList" role="form" ng-submit="event.updateForm(item)">            
+                                    <div class="form-group" ng-class="{ 'has-error' : frmMapList.txtAddress.$invalid && frmMapList.txtAddress.$touched && frmMapList.txtAddress.$error.required }">
+                                        <label>Địa chỉ&nbsp;<span class="text-danger">(*)</span></label>
+                                        <input class="form-control" type="text" name="txtAddress" placeholder="Nhập địa chỉ" ng-model="item.Address" ng-blur="event.getCoordinate(true)" required />
+                                        <p class="text-danger" ng-show="frmMapList.txtAddress.$invalid && frmMapList.txtAddress.$touched && frmMapList.txtAddress.$error.required">Vui lòng nhập địa chỉ.</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Số điện thoại</label>
+                                        <input class="form-control" type="text" name="txtPhone" placeholder="Số điện thoại" ng-model="item.Phone" />       
+                                    </div>  
+                                    <div class="form-group" ng-class="{ 'has-error' : frmMapList.txtLat.$invalid && frmMapList.txtLat.$touched && frmMapList.txtLat.$error.required }">
+                                        <label>Vĩ độ&nbsp;<span class="text-danger">(*)</span></label>
+                                        <input id="lat-{{item.MapID}}" class="form-control" type="text" name="txtLat" placeholder="Kinh độ" ng-model="item.Lattitude" required />
+                                        <p class="text-danger" ng-show="frmMapList.txtLat.$invalid && frmMapList.txtLat.$touched && frmMapList.txtLat.$error.required">Vui lòng không để trống phần này.</p>
+                                    </div>  
+                                    <div class="form-group" ng-class="{ 'has-error' : frmMapList.txtLng.$invalid && frmMapList.txtLng.$touched && frmMapList.txtLng.$error.required }">
+                                        <label>Kinh độ&nbsp;<span class="text-danger">(*)</span></label>
+                                        <input id="lng-{{item.MapID}}" class="form-control" type="text" name="txtLng" placeholder="Vĩ độ" ng-model="item.Longitude" required />
+                                        <p class="text-danger" ng-show="frmMapList.txtLng.$invalid && frmMapList.txtLng.$touched && frmMapList.txtLng.$error.required">Vui lòng không để trống phần này.</p>
+                                    </div>  
+                                    <div class="modal-footer no-border margin-bottom-0">
+                                        <button type="submit" class="btn btn-primary fa fa-save"></button>
+                                        <button type="button" class="btn btn-danger fa fa-trash" ng-click="event.delete(item)"></button>
+                                    </div> 
+                                </form>
+                            </li>                            
+                        </ol>
+                        <div class="modal-footer no-border">                                                            
+                            <button type="button" class="btn btn-primary right" data-toggle="modal" data-target="#myModal">Thêm mới</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8">
+           <div class="ibox">
+                <div class="ibox-title">
+                    <h5>Bản đồ</h5>                    
+                </div>
+                <div class="ibox-content">                    
+                    <ng-map id="mymap" center="[{{$root.coordinate.lat}}, {{$root.coordinate.lng}}]" zoom="8">
+                        <marker ng-repeat="marker in $root.mapList track by $index" position="{{marker.Lattitude}}, {{marker.Longitude}}"></marker>
+                    </ng-map>
+                </div>
+            </div>            
+        </div>
+    </div>
+    <div id="myModal" class="modal inmodal in" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content animated bounceIn">
+                <form role="form" name="Form" ng-submit="event.submitForm()" novalidate>
+                    <fieldset>
+                        <div class="modal-header">
+                            <i class="fa fa-map-marker modal-icon"></i>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title">Thêm mới vị trí</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group" ng-class="{ 'has-error' : Form.txtAddress.$invalid && Form.txtAddress.$touched && Form.txtAddress.$error.required }">
+                                <label>Địa chỉ&nbsp;<span class="text-danger">(*)</span></label>
+                                <input class="form-control" type="text" name="txtAddress" placeholder="Nhập địa chỉ" ng-model="newMap.Address" ng-blur="event.getCoordinate(false)" required />
+                                <p class="text-danger" ng-show="Form.txtAddress.$invalid && Form.txtAddress.$touched && Form.txtAddress.$error.required">Vui lòng nhập địa chỉ.</p>
+                            </div>  
+                            <div class="form-group">
+                                <label>Số điện thoại</label>
+                                <input class="form-control" type="text" name="txtPhone" placeholder="Số điện thoại" ng-model="newMap.Phone" />           
+                            </div> 
+                            <div class="form-group" ng-class="{ 'has-error' : Form.txtLat.$invalid && Form.txtLat.$touched && Form.txtLat.$error.required }">
+                                <label>Vĩ độ&nbsp;<span class="text-danger">(*)</span></label>
+                                <input class="form-control" type="text" name="txtLat" placeholder="Kinh độ" ng-model="newMap.Lattitude" required />
+                                <p class="text-danger" ng-show="Form.txtLat.$invalid && Form.txtLat.$touched && Form.txtLat.$error.required">Vui lòng không để trống phần này.</p>
+                            </div>  
+                            <div class="form-group" ng-class="{ 'has-error' : Form.txtLng.$invalid && Form.txtLng.$touched && Form.txtLng.$error.required }">
+                                <label>Kinh độ&nbsp;<span class="text-danger">(*)</span></label>
+                                <input class="form-control" type="text" name="txtLng" placeholder="Vĩ độ" ng-model="newMap.Longitude" required />
+                                <p class="text-danger" ng-show="Form.txtLng.$invalid && Form.txtLng.$touched && Form.txtLng.$error.required">Vui lòng không để trống phần này.</p>
+                            </div>                              
+                        </div>
+                        <div class="modal-footer no-border">
+                            <p class="{{notice.class}}" ng-bind="notice.message"></p>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                            <button type="submit" class="btn btn-primary" ng-disabled="Form.$invalid">Thêm</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal bs-modal-sm" id="delAlert" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content animated lightSpeedIn">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Xóa map</h4>
+                </div>
+                <div class="modal-body">
+                    Bạn có chắc chắn muốn xóa?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" ng-click="event.delMap()">Yes</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

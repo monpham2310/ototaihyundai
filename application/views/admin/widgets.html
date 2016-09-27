@@ -1,0 +1,438 @@
+<div ng-controller="widgetCtrl">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-md-4">                
+            </div>
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4">
+                <button type="button" class="btn btn-primary right" ng-click="event.save()">Cập nhật vị trí</button>            
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="ibox">
+                    <div class="ibox-title padding-top-5">
+                        <h5 class="margin-title-widget">Widgets chưa có vị trí</h5>
+                        <div class="ibox-tools">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#widgetModal" ng-click="event.add()">Thêm widget</button>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="dd nestable" id="nestableWidget">
+                            <div class="dd-empty" ng-if="$root.listWidgets.noArea.length === 0"></div>
+                            <ol class="dd-list" ng-if="$root.listWidgets.noArea.length > 0">                                
+                                <li class="dd-item" data-id="{{item.ID}}" data-area="noArea" ng-repeat="item in $root.listWidgets.noArea track by $index" ng-if="item.Area === 'noArea'">
+                                    <span id="bt-{{item.ID}}" class="collapse-button right span-caret-widget" type="button" ng-click="event.collapse(item.ID)">
+                                    <i class="fa fa-caret-down icon-1px"></i>
+                                </span>
+                                    <div class="dd-handle dd-handle-height">
+                                        <span ng-bind="item.Title"></span>
+                                    </div>
+                                    <form id="form-{{item.ID}}" class="panel panel-default panel-body margin-bottom-0 none-display" name="frmWidget{{item.ID}}" role="form" ng-submit="event.updateForm(item, true)" novalidate>
+                                        <div class="form-group" ng-class="{ 'has-error' : frmWidget{{item.ID}}.txtTitle.$invalid && frmWidget{{item.ID}}.txtTitle.$touched && frmWidget{{item.ID}}.txtTitle.$error.required }">
+                                            <label>Tiêu đề&nbsp;<span class="text-danger">(*)</span></label>
+                                            <input class="form-control" type="text" name="txtTitle" placeholder="Nhập tiêu đề" ng-model="item.Title" required />
+                                            <p class="text-danger" ng-show="frmWidget{{item.ID}}.txtTitle.$invalid && frmWidget{{item.ID}}.txtTitle.$touched && frmWidget{{item.ID}}.txtTitle.$error.required">Vui lòng nhập tiêu đề.</p>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Mô tả</label>
+                                            <textarea class="form-control" placeholder="Nhập mô tả" rows="3" ng-model="item.Describes">
+                                            </textarea>
+                                        </div>
+                                        <div class="form-group" ng-class="{'has-error': frmWidget{{item.ID}}.category.$invalid && frmWidget{{item.ID}}.category.$touched && frmWidget{{item.ID}}.category.$error.required }">
+                                            <label>Danh mục hiển thị<span class="text-danger">&nbsp;(*)</span></label>
+                                            <div class="selectContainer width">
+                                                <select id="cbcategory" class="form-control ui search dropdown" name="category" ng-model="item.CateID" required>
+                                                    <option ng-repeat="cate in $root.categories track by $index"  value="{{cate.CatID}}">{{cate.CatName}}</option>
+                                                </select>
+                                            </div>
+                                            <p ng-show="frmWidget{{item.ID}}.category.$invalid && frmWidget{{item.ID}}.category.$touched && frmWidget{{item.ID}}.category.$error.required" class="text-danger">Vui lòng danh mục hiển thị.</p>
+                                        </div>                                        
+                                        <div class="form-group border-top">
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <div class="onoffswitch">
+                                                        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="ckb-{{item.ID}}" ng-model="item.Status" ng-true-value="'1'" ng-false-value="'0'" />
+                                                        <label class="onoffswitch-label" for="ckb-{{item.ID}}">
+                                                            <span class="onoffswitch-inner"></span>
+                                                            <span class="onoffswitch-switch"></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">                                                    
+                                                    <button type="button" class="btn btn-danger fa fa-trash right" ng-click="event.delete(item)"></button>
+                                                    <button type="submit" class="btn btn-primary fa fa-save right"></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="ibox">
+                            <div class="ibox-title">
+                                <h5>Thanh Headerbar</h5>
+                                <div class="ibox-tools">
+                                    <a class="collapse-link">
+                                        <i class="fa fa-chevron-down"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="ibox-content none-display">
+                                <form class="margin-bottom-0" name="frmHeader" role="form" ng-submit="event.updateHeader()" novalidate>
+                                    <div class="form-group">
+                                        <label>Logo</label>
+                                        <img id="img" class="img-responsive" ng-src="{{$root.widgets.header.Logo}}" alt="Banner">
+                                        <div class="modal-footer no-border">
+                                            <button type="button" class="btn btn-primary" ng-click="event.browserImg()">Duyệt ảnh</button>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Banner</label>
+                                        <img id="img-banner" class="img-thumbnail" ng-src="{{$root.widgets.header.Banner}}" alt="Banner">
+                                        <div class="modal-footer no-border">
+                                            <button type="button" class="btn btn-primary" ng-click="event.browserImgBanner()">Duyệt ảnh</button>
+                                        </div>
+                                    </div> 
+                                    <div class="modal-footer no-border">
+                                        <button type="submit" class="btn btn-primary right" ng-disabled="frmHeader.$invalid">Lưu</button>
+                                    </div>                                   
+                                </form>                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="ibox">
+                            <div class="ibox-title">
+                                <h5>Thông tin liên hệ</h5>
+                                <div class="ibox-tools">
+                                    <a class="collapse-link">
+                                        <i class="fa fa-chevron-down"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="ibox-content none-display">
+                                <form class="margin-bottom-0" name="frmFooterOne" role="form" ng-submit="event.updateInform()" novalidate>
+                                    <div class="form-group" ng-class="{'has-error': frmFooterOne.txtName.$invalid && frmFooterOne.txtName.$touched && frmFooterOne.txtName.$error.required}">
+                                        <label>Tên <span class="text-danger">(*)</span></label>
+                                        <input class="form-control" type="text" name="txtName" placeholder="Type name" ng-model="$root.widgets.information.Name" required />
+                                        <p ng-show="frmFooterOne.txtName.$invalid && frmFooterOne.txtName.$touched && frmFooterOne.txtName.$error.required">Vui lòng nhập tên.</p>
+                                    </div>
+                                    <div class="form-group" ng-class="{ 'has-error' : frmFooterOne.txtEmail.$invalid && !frmFooterOne.txtEmail.$pristine }">
+                                        <label>Email</label>
+                                        <input class="form-control" type="email" name="txtEmail" placeholder="Email" ng-model="$root.widgets.information.Email" />
+                                        <p ng-show="frmFooterOne.txtEmail.$invalid && !frmFooterOne.txtEmail.$pristine">Email không hợp lệ.</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Điện thoại</label>
+                                        <input class="form-control" type="tel" name="txtPhone" placeholder="Số điện thoại" ng-model="$root.widgets.information.Phone" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Fan page</label>
+                                        <input class="form-control" type="text" name="txtFace" placeholder="Facebook" ng-model="$root.widgets.information.Facebook" />
+                                        <div class="fb-page" data-href="https://www.facebook.com/profile.php?id=100013160436586" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-height="250">
+                                            <div class="fb-xfbml-parse-ignore">
+                                                <blockquote cite="{{$root.widgets.information.Facebook}}">
+                                                    <a ng-href="{{$root.widgets.information.Facebook}}"></a>
+                                                </blockquote>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer no-border">
+                                        <button type="submit" class="btn btn-primary right" ng-disabled="frmFooterOne.$invalid">Lưu</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="ibox">
+                            <div class="ibox-title">
+                                <h5>Body</h5>
+                                <div class="ibox-tools">
+                                    <a class="collapse-link">
+                                        <i class="fa fa-chevron-up"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <div class="dd nestable" id="nestableBody">
+                                    <div class="dd-empty" ng-if="$root.listWidgets.body.length === 0"></div>
+                                    <ol class="dd-list" ng-if="$root.listWidgets.body.length > 0">
+                                        <li class="dd-item" data-id="{{item.ID}}" data-area="body" ng-repeat="item in $root.listWidgets.body track by $index" ng-if="item.Area === 'body'">
+                                            <span id="bt-{{item.ID}}" class="collapse-button right span-caret-widget" type="button" ng-click="event.collapse(item.ID)">
+                                            <i class="fa fa-caret-down icon-1px"></i>
+                                        </span>
+                                            <div class="dd-handle dd-handle-height">
+                                                <span ng-bind="item.Title"></span>
+                                            </div>
+                                            <form id="form-{{item.ID}}" class="panel panel-default panel-body margin-bottom-0 none-display" name="frmWidget{{item.ID}}" role="form" ng-submit="event.updateForm(item, true)" novalidate>
+                                                <div class="form-group" ng-class="{ 'has-error' : frmWidget{{item.ID}}.txtTitle.$invalid && frmWidget{{item.ID}}.txtTitle.$touched && frmWidget{{item.ID}}.txtTitle.$error.required }">
+                                                    <label>Tiêu đề&nbsp;<span class="text-danger">(*)</span></label>
+                                                    <input class="form-control" type="text" name="txtTitle" placeholder="Nhập tiêu đề" ng-model="item.Title" required />
+                                                    <p class="text-danger" ng-show="frmWidget{{item.ID}}.txtTitle.$invalid && frmWidget{{item.ID}}.txtTitle.$touched && frmWidget{{item.ID}}.txtTitle.$error.required">Vui lòng nhập tiêu đề.</p>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Mô tả</label>
+                                                    <textarea class="form-control" placeholder="Nhập mô tả" rows="3" ng-model="item.Describes">
+                                                    </textarea>
+                                                </div>
+                                                <div class="form-group" ng-class="{'has-error': frmWidget{{item.ID}}.category.$invalid && frmWidget{{item.ID}}.category.$touched && frmWidget{{item.ID}}.category.$error.required }">
+                                                    <label>Danh mục hiển thị<span class="text-danger">&nbsp;(*)</span></label>
+                                                    <div class="selectContainer width">
+                                                        <select id="cbcategory" class="form-control ui search dropdown" name="category" ng-model="item.CateID" required>
+                                                            <option ng-repeat="cate in $root.categories track by $index"  value="{{cate.CatID}}">{{cate.CatName}}</option>
+                                                        </select>
+                                                    </div>
+                                                    <p ng-show="frmWidget{{item.ID}}.category.$invalid && frmWidget{{item.ID}}.category.$touched && frmWidget{{item.ID}}.category.$error.required" class="text-danger">Vui lòng danh mục hiển thị.</p>
+                                                </div>                                                
+                                                <div class="form-group border-top">
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <div class="onoffswitch">
+                                                                <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="ckb-{{item.ID}}" ng-model="item.Status" ng-true-value="'1'" ng-false-value="'0'" />
+                                                                <label class="onoffswitch-label" for="ckb-{{item.ID}}">
+                                                                    <span class="onoffswitch-inner"></span>
+                                                                    <span class="onoffswitch-switch"></span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <button type="button" class="btn btn-danger fa fa-trash right" ng-click="event.delete(item)"></button>
+                                                            <button type="submit" class="btn btn-primary fa fa-save right"></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="ibox">
+                            <div class="ibox-title">
+                                <h5>Sidebar</h5>
+                                <div class="ibox-tools">
+                                    <a class="collapse-link">
+                                        <i class="fa fa-chevron-up"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <div class="dd nestable" id="nestableSidebar">
+                                    <div class="dd-empty" ng-if="$root.listWidgets.sidebar.length === 0"></div>
+                                    <ol class="dd-list" ng-if="$root.listWidgets.sidebar.length > 0">
+                                        <li class="dd-item" data-id="{{item.ID}}" data-area="sidebar" ng-repeat="item in $root.listWidgets.sidebar track by $index" ng-if="item.Area === 'sidebar'">
+                                            <span id="bt-{{item.ID}}" class="collapse-button right span-caret-widget" type="button" ng-click="event.collapse(item.ID)">
+                                            <i class="fa fa-caret-down icon-1px"></i>
+                                        </span>
+                                            <div class="dd-handle dd-handle-height">
+                                                <span ng-bind="item.Title"></span>
+                                            </div>
+                                            <form id="form-{{item.ID}}" class="panel panel-default panel-body margin-bottom-0 none-display" name="frmWidget{{item.ID}}" role="form" ng-submit="event.updateForm(item, true)" novalidate>
+                                                <div class="form-group" ng-class="{ 'has-error' : frmWidget{{item.ID}}.txtTitle.$invalid && frmWidget{{item.ID}}.txtTitle.$touched && frmWidget{{item.ID}}.txtTitle.$error.required }">
+                                                    <label>Tiêu đề&nbsp;<span class="text-danger">(*)</span></label>
+                                                    <input class="form-control" type="text" name="txtTitle" placeholder="Nhập tiêu đề" ng-model="item.Title" required />
+                                                    <p class="text-danger" ng-show="frmWidget{{item.ID}}.txtTitle.$invalid && frmWidget{{item.ID}}.txtTitle.$touched && frmWidget{{item.ID}}.txtTitle.$error.required">Vui lòng nhập tiêu đề.</p>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Mô tả</label>
+                                                    <textarea class="form-control" placeholder="Nhập mô tả" rows="3" ng-model="item.Describes">
+                                                    </textarea>
+                                                </div>
+                                                <div class="form-group" ng-class="{'has-error': frmWidget{{item.ID}}.category.$invalid && frmWidget{{item.ID}}.category.$touched && frmWidget{{item.ID}}.category.$error.required }">
+                                                    <label>Danh mục hiển thị<span class="text-danger">&nbsp;(*)</span></label>
+                                                    <div class="selectContainer width">
+                                                        <select id="cbcategory" class="form-control ui search dropdown" name="category" ng-model="item.CateID" required>
+                                                            <option ng-repeat="cate in $root.categories track by $index"  value="{{cate.CatID}}">{{cate.CatName}}</option>
+                                                        </select>
+                                                    </div>
+                                                    <p ng-show="frmWidget{{item.ID}}.category.$invalid && frmWidget{{item.ID}}.category.$touched && frmWidget{{item.ID}}.category.$error.required" class="text-danger">Vui lòng danh mục hiển thị.</p>
+                                                </div>                                                
+                                                <div class="form-group border-top">
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <div class="onoffswitch">
+                                                                <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="ckb-{{item.ID}}" ng-model="item.Status" ng-true-value="'1'" ng-false-value="'0'" />
+                                                                <label class="onoffswitch-label" for="ckb-{{item.ID}}">
+                                                                    <span class="onoffswitch-inner"></span>
+                                                                    <span class="onoffswitch-switch"></span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <button type="button" class="btn btn-danger fa fa-trash right" ng-click="event.delete(item)"></button>
+                                                            <button type="submit" class="btn btn-primary fa fa-save right"></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="ibox">
+                            <div class="ibox-title">
+                                <h5>Footer</h5>
+                                <div class="ibox-tools">
+                                    <a class="collapse-link">
+                                        <i class="fa fa-chevron-up"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <div class="dd nestable" id="nestableFooter">
+                                    <div class="dd-empty" ng-if="$root.listWidgets.footer.length === 0"></div>
+                                    <ol class="dd-list" ng-if="$root.listWidgets.footer.length > 0">
+                                        <li class="dd-item" data-id="{{item.ID}}" data-area="footer" ng-repeat="item in $root.listWidgets.footer track by $index" ng-if="item.Area === 'footer'">
+                                            <span id="bt-{{item.ID}}" class="collapse-button right span-caret-widget" type="button" ng-click="event.collapse(item.ID)">
+                                            <i class="fa fa-caret-down icon-1px"></i>
+                                        </span>
+                                            <div class="dd-handle dd-handle-height">
+                                                <span ng-bind="item.Title"></span>
+                                            </div>
+                                            <form id="form-{{item.ID}}" class="panel panel-default panel-body margin-bottom-0 none-display" name="frmWidget{{item.ID}}" role="form" ng-submit="event.updateForm(item, true)" novalidate>
+                                                <div class="form-group" ng-class="{ 'has-error' : frmWidget{{item.ID}}.txtTitle.$invalid && frmWidget{{item.ID}}.txtTitle.$touched && frmWidget{{item.ID}}.txtTitle.$error.required }">
+                                                    <label>Tiêu đề&nbsp;<span class="text-danger">(*)</span></label>
+                                                    <input class="form-control" type="text" name="txtTitle" placeholder="Nhập tiêu đề" ng-model="item.Title" required />
+                                                    <p class="text-danger" ng-show="frmWidget{{item.ID}}.txtTitle.$invalid && frmWidget{{item.ID}}.txtTitle.$touched && frmWidget{{item.ID}}.txtTitle.$error.required">Vui lòng nhập tiêu đề.</p>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Mô tả</label>
+                                                    <textarea class="form-control" placeholder="Nhập mô tả" rows="3" ng-model="item.Describes">
+                                                    </textarea>
+                                                </div>
+                                                <div class="form-group" ng-class="{'has-error': frmWidget{{item.ID}}.category.$invalid && frmWidget{{item.ID}}.category.$touched && frmWidget{{item.ID}}.category.$error.required }">
+                                                    <label>Danh mục hiển thị<span class="text-danger">&nbsp;(*)</span></label>
+                                                    <div class="selectContainer width">
+                                                        <select id="cbcategory" class="form-control ui search dropdown" name="category" ng-model="item.CateID" required>
+                                                            <option ng-repeat="cate in $root.categories track by $index" value="{{cate.CatID}}">{{cate.CatName}}</option>
+                                                        </select>
+                                                    </div>
+                                                    <p ng-show="frmWidget{{item.ID}}.category.$invalid && frmWidget{{item.ID}}.category.$touched && frmWidget{{item.ID}}.category.$error.required" class="text-danger">Vui lòng danh mục hiển thị.</p>
+                                                </div>                                                
+                                                <div class="form-group border-top">
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <div class="onoffswitch">
+                                                                <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="ckb-{{item.ID}}" ng-model="item.Status" ng-true-value="'1'" ng-false-value="'0'" />
+                                                                <label class="onoffswitch-label" for="ckb-{{item.ID}}">
+                                                                    <span class="onoffswitch-inner"></span>
+                                                                    <span class="onoffswitch-switch"></span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <button type="button" class="btn btn-danger fa fa-trash right" ng-click="event.delete(item)"></button>
+                                                            <button type="submit" class="btn btn-primary fa fa-save right"></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="widgetModal" class="modal inmodal in" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content animated bounceIn">
+                <form role="form" name="Form" ng-submit="event.updateForm({}, false)" novalidate>
+                    <fieldset>
+                        <div class="modal-header">
+                            <i class="fa fa-flask modal-icon"></i>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title">Thêm widget</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group" ng-class="{ 'has-error' : Form.txtTitle.$invalid && Form.txtTitle.$touched && Form.txtTitle.$error.required }">
+                                <label>Tiêu đề&nbsp;<span class="text-danger">(*)</span></label>
+                                <input class="form-control" type="text" name="txtTitle" placeholder="Nhập tiêu đề" ng-model="newWidget.Title" required />
+                                <p class="text-danger" ng-show="Form.txtTitle.$invalid && Form.txtTitle.$touched && Form.txtTitle.$error.required">Vui lòng nhập tiêu đề.</p>
+                            </div>
+                            <div class="form-group">
+                                <label>Mô tả</label>
+                                <textarea class="form-control" placeholder="Nhập mô tả" rows="3" ng-model="newWidget.Describes">
+                                </textarea>
+                            </div>
+                            <div class="form-group" ng-class="{'has-error': Form.category.$invalid && Form.category.$touched && Form.category.$error.required }">
+                                <label>Danh mục hiển thị<span class="text-danger">&nbsp;(*)</span></label>
+                                <div class="selectContainer width">
+                                    <select id="cbcategory" class="form-control ui search dropdown" name="category" ng-model="newWidget.CateID" required>
+                                        <option style="display:none" value="">--Chọn danh mục--</option>
+                                        <option ng-repeat="cate in $root.categories track by $index"  value="{{cate.CatID}}">{{cate.CatName}}</option>
+                                    </select>
+                                </div>
+                                <p ng-show="Form.category.$invalid && Form.category.$touched && Form.category.$error.required" class="text-danger">Vui lòng danh mục hiển thị.</p>
+                            </div>
+                            <div class="form-group">
+                                <label>Vị trí</label>
+                                <div class="selectContainer width">
+                                    <select class="form-control ui search dropdown" name="category" ng-model="newWidget.Area">
+                                        <option style="display:none" value="">--Chọn vị trí--</option>
+                                        <option ng-repeat="area in areas track by $index"  value="{{area.value}}">{{area.text}}</option>
+                                    </select>
+                                </div>                                
+                            </div>                            
+                            <div class="form-group row">
+                                <div class="col-sm-4">
+                                    <label>Trạng thái</label>
+                                </div>
+                                <div class="col-sm-8">
+                                    <div class="onoffswitch">
+                                        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="ckbAddWidget" ng-model="newWidget.Status" ng-true-value="'1'" ng-false-value="'0'" />
+                                        <label class="onoffswitch-label" for="ckbAddWidget">
+                                            <span class="onoffswitch-inner"></span>
+                                            <span class="onoffswitch-switch"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer no-border">
+                            <p class="{{notice.class}}" ng-bind="notice.message"></p>
+                            <button type="submit" class="btn btn-primary" ng-disabled="Form.$invalid">Lưu</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal bs-modal-sm" id="delAlert" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content animated lightSpeedIn">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Xóa widget</h4>
+                </div>
+                <div class="modal-body">
+                    Bạn có chắc chắn muốn xóa?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" ng-click="event.delWidget()">Yes</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,258 @@
+<div ng-controller="navigateCtrl">
+    <div class="wrapper wrapper-content animated fadeInRight">        
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="ibox ">
+                    <div class="ibox-title">
+                        <h5>Sắp xếp Menu</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div id="nestable-menu">
+                                    <button type="button" class="btn btn-white btn-sm" ng-click="event.expandAll()">Mở rộng</button>
+                                    <button type="button" class="btn btn-white btn-sm" ng-click="event.collapseAll()">Thu gọn</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="dd margin-left-34px ng-scope" id="nestable" compile-html="$root.navigates">
+                            </div>
+                        </div>
+                        <div class="modal-footer no-border">
+                            <button type="button" class="btn btn-primary right" ng-click="event.saveChange()">Cập nhật vị trí</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="ibox">
+                    <div class="ibox-title">
+                        <h5>Danh mục bài viết</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-down"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content none-display">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" placeholder="Search" class="input-sm form-control" ng-model="searchCate" />
+                                <span class="input-group-btn">
+                            <button type="button" class="btn btn-sm btn-primary"><i class="fa fa-search"></i></button> </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox" dir-paginate="cate in artCategories | filter: searchCate | itemsPerPage: 5" pagination-id="catePagination">
+                                <label>
+                                    <input type="checkbox" checklist-model="selected.cates" name="cates" checklist-value="cate">{{cate.CatName}}
+                                </label>
+                            </div>
+                        </div>
+                        <div class="modal-footer no-border">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <button type="button" class="btn btn-primary left" ng-click="event.addNavigatesList(selected.cates,'category')">Thêm</button>
+                                </div>
+                                <div class="col-sm-8">
+                                    <dir-pagination-controls class="right" pagination-id="catePagination" max-size="3"></dir-pagination-controls>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ibox">
+                    <div class="ibox-title">
+                        <h5>Bài viết</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-down"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content none-display">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" placeholder="Search" class="input-sm form-control" ng-model="searchArt" />
+                                <span class="input-group-btn">
+                            <button type="button" class="btn btn-sm btn-primary"><i class="fa fa-search"></i></button> </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox" dir-paginate="item in listArticles | filter: searchArt | itemsPerPage: 5" pagination-id="artPagination" ng-if="item.Status !== '0'">
+                                <label>
+                                    <input type="checkbox" name="cates" checklist-model="selected.articles" checklist-value="item"> {{item.ArtName}}
+                                </label>
+                            </div>
+                        </div>
+                        <div class="modal-footer no-border">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <button type="button" class="btn btn-primary left" ng-click="event.addNavigatesList(selected.articles,'article')">Thêm</button>
+                                </div>
+                                <div class="col-sm-8">
+                                    <dir-pagination-controls class="right" pagination-id="artPagination" max-size="3"></dir-pagination-controls>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ibox">
+                    <div class="ibox-title">
+                        <h5>Danh mục sản phẩm</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-down"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content none-display">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" placeholder="Search" class="input-sm form-control" ng-model="searchProCate" />
+                                <span class="input-group-btn">
+                            <button type="button" class="btn btn-sm btn-primary"><i class="fa fa-search"></i></button> </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox" dir-paginate="proCate in proCategories | filter: searchProCate | itemsPerPage: 5" pagination-id="cateProPagination">
+                                <label>
+                                    <input type="checkbox" checklist-model="selected.proCates" name="cates" checklist-value="proCate">{{proCate.CatName}}
+                                </label>
+                            </div>
+                        </div>
+                        <div class="modal-footer no-border">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <button type="button" class="btn btn-primary left" ng-click="event.addNavigatesList(selected.proCates,'category')">Thêm</button>
+                                </div>
+                                <div class="col-sm-8">
+                                    <dir-pagination-controls class="right" pagination-id="cateProPagination" max-size="3"></dir-pagination-controls>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ibox">
+                    <div class="ibox-title">
+                        <h5>Sản phẩm</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-down"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content none-display">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" placeholder="Search" class="input-sm form-control" ng-model="searchPro" />
+                                <span class="input-group-btn">
+                            <button type="button" class="btn btn-sm btn-primary"><i class="fa fa-search"></i></button> </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox" dir-paginate="item in listProducts | filter: searchPro | itemsPerPage: 5" pagination-id="proPagination" ng-if="item.Status !== '0'">
+                                <label>
+                                    <input type="checkbox" name="cates" checklist-model="selected.products" checklist-value="item"> {{item.ArtName}}
+                                </label>
+                            </div>
+                        </div>
+                        <div class="modal-footer no-border">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <button type="button" class="btn btn-primary left" ng-click="event.addNavigatesList(selected.products,'article')">Thêm</button>
+                                </div>
+                                <div class="col-sm-8">
+                                    <dir-pagination-controls class="right" pagination-id="proPagination" max-size="3"></dir-pagination-controls>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ibox">
+                    <div class="ibox-title">
+                        <h5>Liên kết trang</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-down"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content none-display">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" placeholder="Search" class="input-sm form-control" ng-model="searchPage" />
+                                <span class="input-group-btn">
+                                <button type="button" class="btn btn-sm btn-primary"><i class="fa fa-search"></i></button> </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox" dir-paginate="item in listPages | filter: searchPage | itemsPerPage: 5" pagination-id="pagePagination" ng-if="item.Status !== '0'">
+                                <label>
+                                    <input type="checkbox" name="pages" checklist-model="selected.pages" checklist-value="item"> {{item.TempName}}
+                                </label>
+                            </div>
+                        </div>
+                        <div class="modal-footer no-border">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <button type="button" class="btn btn-primary left" ng-click="event.addNavigatesList(selected.pages,'page')">Thêm</button>
+                                </div>
+                                <div class="col-sm-8">
+                                    <dir-pagination-controls class="right" pagination-id="pagePagination" max-size="3"></dir-pagination-controls>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ibox border-bottom">
+                    <div class="ibox-title">
+                        <h5>Menu tùy chỉnh</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-down"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content none-display">
+                        <form role="form" name="addForm" ng-submit="event.submitForm()" novalidate>
+                            <fieldset>
+                                <div class="form-group" ng-class="{'has-error': addForm.Name.$invalid && addForm.Name.$touched && addForm.Name.$error.required}">
+                                    <label>Tiêu đề<span class="text-danger">&nbsp;(*)</span></label>
+                                    <input class="form-control" placeholder="Tiêu đề" name="Name" type="text" ng-model="newNavigate.NavName" required />
+                                    <p ng-show="addForm.Name.$invalid && addForm.Name.$touched && addForm.Name.$error.required" class="text-danger">Vui lòng nhập tiêu đề.</p>
+                                </div>
+                                <div class="form-group" ng-class="{'has-error': addForm.Link.$invalid && addForm.Link.$touched && addForm.Link.$error.required}">
+                                    <label>Đường dẫn<span class="text-danger">&nbsp;(*)</span></label>
+                                    <input class="form-control" placeholder="Url" name="Đường dẫn" type="text" ng-model="newNavigate.NavMeta" required />
+                                    <p ng-show="addForm.Link.$invalid && addForm.Link.$touched && addForm.Link.$error.required" class="text-danger">Vui lòng nhập đường dẫn.</p>
+                                </div>                                                                
+                                <div class="modal-footer no-border">
+                                    <button type="submit" class="btn btn-primary left" ng-disabled="addForm.$invalid">Thêm</button>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal bs-modal-sm" id="delAlert" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content animated lightSpeedIn">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Xóa menu</h4>
+                </div>
+                <div class="modal-body">
+                    Bạn có chắc chắn muốn xóa?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" ng-click="event.delMenu()">Yes</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

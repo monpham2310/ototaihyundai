@@ -1,0 +1,203 @@
+<div ng-controller="templateCtrl">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="wrapper wrapper-content animated fadeInLeft">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>Add Template</h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="panel-body">
+                            <form role="form" name="addForm" ng-submit="event.submitForm(false)" novalidate>
+                                <fieldset>                                    
+                                    <div class="form-group" ng-class="{'has-error': addForm.Name.$invalid && addForm.Name.$touched && addForm.Name.$error.required}">
+                                        <label>Name<span class="text-danger">&nbsp;(*)</span></label>
+                                        <input class="form-control" placeholder="Name" name="Name" type="text" ng-model="newTemp.TempName"  required />
+                                        <p ng-show="addForm.Name.$invalid && addForm.Name.$touched && addForm.Name.$error.required" class="text-danger">Please type name.</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Filename</label>
+                                        <input class="form-control" placeholder="Filename" name="filename" type="text" ng-model="newTemp.Filename"  />                                        
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Type</label>
+                                        <input class="form-control" placeholder="Type" name="type" type="text" ng-model="newTemp.Type"  />                                        
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Meta</label>
+                                        <input class="form-control" placeholder="Meta/Url" name="meta" type="text" ng-model="newTemp.Meta"  />                                        
+                                    </div>                                    
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-sm-2">
+                                                <label>Status&nbsp;</label>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <div class="onoffswitch">
+                                                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" ng-model="newTemp.Status" ng-true-value="'1'" ng-false-value="'0'" />
+                                                    <label class="onoffswitch-label" for="myonoffswitch">
+                                                        <span class="onoffswitch-inner"></span>
+                                                        <span class="onoffswitch-switch"></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer no-border">
+                                        <button type="submit" class="btn btn-primary" ng-disabled="addForm.$invalid">Add Template</button>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-title">
+                                <h5>Template list</h5>
+                            </div>
+                            <div class="ibox-content">
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                        <div id="editable_length" class="dataTables_length">
+                                            <label>
+                                                <select class="form-control input-sm" aria-controls="editable" name="editable_length" ng-model="numberPage">
+                                                    <option value="5">5</option>
+                                                    <option value="10">10</option>
+                                                    <option value="15">15</option>
+                                                    <option value="20">20</option>
+                                                </select>
+                                            </label>
+                                            records per page
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="input-group">
+                                            <input type="text" placeholder="Search" class="input-sm form-control" ng-model="searchText" /> <span class="input-group-btn">
+                                    <button type="button" class="btn btn-sm btn-primary"><i class="fa fa-search"></i></button> </span></div>
+                                    </div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th class="center">Name</th>                                                
+                                                <th class="center">Filename</th>
+                                                <th class="center">Type</th>
+                                                <th class="center">Meta/Url</th>                                                
+                                                <th class="center">Status</th>
+                                                <th class="center">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr dir-paginate="item in $root.templates | filter:searchText | itemsPerPage: numberPage" pagination-id="filterTemp">
+                                                <td class="center" ng-bind="item.TempName"></td>                         
+                                                <td class="center" ng-bind="item.Filename"></td>
+                                                <td class="center" ng-bind="item.Type"></td>
+                                                <td class="center" ng-bind="item.Meta"></td>                     
+                                                <td class="center">
+                                                    <i class="fa fa-check text-navy" ng-if="item.Status === '1'"></i>
+                                                    <i class="fa fa-times text-navy" ng-if="item.Status === '0'"></i>
+                                                </td>
+                                                <td class="center">
+                                                    <button class="btn btn-info fa fa-edit padding-2" data-toggle="modal" data-target="#myModal" ng-click="event.edit(item)"></button>
+                                                    <button class="btn btn-danger fa fa-trash padding-2" data-toggle="modal" data-target="#delAlert" ng-click="event.getItem(item)"></button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="row line-top">                                    
+                                    <dir-pagination-controls class="right" pagination-id="filterTemp" max-size="numOfPage" boundary-links="true"></dir-pagination-controls>                                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="myModal" class="modal inmodal in" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content animated bounceIn">
+                <form role="form" name="Form" ng-submit="event.submitForm(true)" novalidate>
+                    <fieldset>
+                        <div class="modal-header">
+                            <i class="fa fa-clipboard modal-icon"></i>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title">Edit Template</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group" ng-class="{'has-error': Form.Name.$invalid && Form.Name.$touched && Form.Name.$error.required}">
+                                <label>Name<span class="text-danger">&nbsp;(*)</span></label>
+                                <input class="form-control" placeholder="Name" name="Name" type="text" ng-model="selectedTemp.TempName" autofocus required />
+                                <p ng-show="Form.Name.$invalid && Form.Name.$touched && Form.Name.$error.required" class="text-danger">Please type name.</p>
+                            </div>
+                            <div class="form-group">
+                                <label>Filename</label>
+                                <input class="form-control" placeholder="Filename" name="filename" type="text" ng-model="selectedTemp.Filename" autofocus />                                        
+                            </div>
+                            <div class="form-group">
+                                <label>Type</label>
+                                <input class="form-control" placeholder="Type" name="type" type="text" ng-model="selectedTemp.Type" />
+                            </div>
+                            <div class="form-group">
+                                <label>Meta</label>
+                                <input class="form-control" placeholder="Meta/Url" name="meta" type="text" ng-model="selectedTemp.Meta"  />                                        
+                            </div>                            
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-2">
+                                        <label>Status&nbsp;</label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <div class="onoffswitch">
+                                            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="onoffswitch" ng-model="selectedTemp.Status" ng-true-value="'1'" ng-false-value="'0'" />
+                                            <label class="onoffswitch-label" for="onoffswitch">
+                                                <span class="onoffswitch-inner"></span>
+                                                <span class="onoffswitch-switch"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer no-border">
+                            <p class="{{notice.class}}" ng-bind="notice.message"></p>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary" ng-disabled="Form.$invalid">Save</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal bs-modal-sm" id="delAlert" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content animated lightSpeedIn">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Delete Template</h4>
+                </div>
+                <div class="modal-body">
+                    Are you sure?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" ng-click="event.del()">Yes</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

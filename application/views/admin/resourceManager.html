@@ -1,0 +1,227 @@
+<div class="wrapper wrapper-content animated fadeIn" ng-controller="resourceManagerCtrl">    
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <div class="file-manager">
+                        <h5>Loại:</h5>
+                        <a id="type-{{item.TypeID}}" href="#" class="file-control active" ng-repeat="item in $root.resourceType track by $index" ng-click="event.selectResType(item.TypeID)" ng-if="$index === 0">
+                            {{item.TypeName}}
+                        </a>
+                        <a id="type-{{item.TypeID}}" href="#" class="file-control" ng-repeat="item in $root.resourceType track by $index" ng-click="event.selectResType(item.TypeID)" ng-if="$index > 0">
+                            {{item.TypeName}}
+                        </a>
+                        <div class="hr-line-dashed"></div>
+                        <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#catModal" ng-click="event.addCat()">Thêm danh mục</button>
+                        <div class="hr-line-dashed"></div>
+                        <h5>Danh mục</h5>
+                        <ul class="folder-list" style="padding: 0">
+                            <li ng-repeat="item in $root.resourceCate track by $index" ng-if="$index === 0">
+                                <span class="right" ng-click="event.getCatItem(item)"><i class="fa fa-times"></i></span>
+                                <span class="right" ng-click="event.editCat(item)"><i class="fa fa-edit"></i></span>        
+                                <a id="cat-{{item.ID}}" class="resCate" id="cate-{{item.ID}}" href="#" ng-click="event.selectResCate(item.ID)">
+                                    <i class="fa fa-folder"></i>{{item.Name}}
+                                </a>                                
+                            </li>
+                            <li ng-repeat="item in $root.resourceCate track by $index" ng-if="$index > 0">
+                                <span class="right" ng-click="event.getCatItem(item)"><i class="fa fa-times"></i></span>
+                                <span class="right" ng-click="event.editCat(item)"><i class="fa fa-edit"></i></span>
+                                <a id="cat-{{item.ID}}" id="cate-{{item.ID}}" href="#" ng-click="event.selectResCate(item.ID)">
+                                    <i class="fa fa-folder"></i>{{item.Name}}
+                                </a>                                
+                            </li>
+                        </ul>                        
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-9 animated fadeInRight">
+            <div class="row margin-bottom-btn">
+                <div class="col-sm-3">
+                    <button class="btn btn-primary btn-block" data-toggle="modal" data-target="#resModal" ng-click="event.add()">Thêm tài nguyên</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div id="box-{{item.ResID}}" class="file-box" dir-paginate="item in $root.resources | itemsPerPage: 12" pagination-id="filterResource" ng-mouseenter="event.hover(item.ResID)">
+                        <div class="file">
+                            <a href="#">
+                                <span class="corner"></span>
+                                <div class="icon thumb-nail">
+                                    <i class="fa fa-file icon-thumbnail" ng-if="resType === '3'"></i>
+                                    <img class="img-responsive img-thumbnail" ng-src="{{item.Image}}" alt="{{item.ResName}}" ng-if="resType === '1'" />
+                                    <div ng-bind-html="trustAsHtml(item.Frame)" ng-if="resType === '2'"></div>
+                                </div>
+                                <div class="file-name">
+                                    <span class="btn btn-danger right padding-btn" data-toggle="modal" data-target="#delAlert"><i class="fa fa-trash" ng-click="event.getItem(item)"></i></span>
+                                    <strong ng-click="event.edit(item)">{{item.ResName}}</strong>
+                                    <br/>
+                                    <small>Danh mục: {{item.Name}}</small>                                    
+                                </div>
+                            </a>
+                        </div>
+                    </div>                    
+                </div>
+                <dir-pagination-controls pagination-id="filterResource" max-size="6" boundary-links="true"></dir-pagination-controls>
+            </div>
+        </div>
+    </div>
+    <div id="catModal" class="modal inmodal in" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content animated bounceIn">
+                <form role="form" name="catForm" ng-submit="event.submitCatForm()" novalidate>
+                    <fieldset>
+                        <div class="modal-header">
+                            <i class="fa fa-folder-o modal-icon"></i>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title" ng-bind="label.title"></h4>
+                        </div>
+                        <div class="modal-body">                            
+                            <div class="form-group" ng-class="{'has-error': catForm.txtTitle.$invalid && catForm.txtTitle.$touched && catForm.txtTitle.$error.required }">
+                                <label>Tiêu đề<span class="text-danger">&nbsp;(*)</span></label>
+                                <input class="form-control" placeholder="Tiêu đề" name="txtTitle" type="text" ng-model="selectedCat.Name" required />   
+                                <p ng-show="catForm.txtTitle.$invalid && catForm.txtTitle.$touched && catForm.txtTitle.$error.required" class="text-danger">Vui lòng nhập tên.</p>          
+                            </div>
+                            <div class="form-group" ng-class="{'has-error': catForm.restype.$invalid && catForm.restype.$touched && catForm.restype.$error.required}">
+                                <label>Loại<span class="text-danger">&nbsp;(*)</span></label>
+                                <select class="form-control dropdown" name="restype" ng-model="selectedCat.Type" required>
+                                    <option ng-repeat="item in $root.resourceType track by $index" value="{{item.TypeID}}">
+                                    {{item.TypeName}}
+                                    </option>
+                                </select>  
+                                <p ng-show="catForm.restype.$invalid && catForm.restype.$touched && catForm.restype.$error.required" class="text-danger">Vui lòng chọn loại.</p>       
+                            </div>                                                          
+                        </div>
+                        <div class="modal-footer">
+                            <p class="{{notice.class}}" ng-bind="notice.message"></p>
+                            <button id="btnSubmitCat" type="submit" class="btn btn-primary" ng-disabled="catForm.$invalid">Lưu</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="resModal" class="modal inmodal in" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content animated bounceIn">
+                <form role="form" name="Form" ng-submit="event.submitForm()" novalidate>
+                    <fieldset>
+                        <div class="modal-header">
+                            <i class="fa fa-folder-o modal-icon"></i>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title" ng-bind="label.title"></h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group" ng-if="resType === '1'">
+                                <label>Ảnh</label>
+                                <div class="padding-formcontrol">
+                                    <img class="img-responsive slide-img" id="resImg" ng-src="{{selectedRes.Image}}" />
+                                </div>
+                                <div class="input-group">
+                                    <input id="img_url" class="form-control" placeholder="Đường dẫn ảnh" name="image" type="text" ng-model="selectedRes.Image" disabled />
+                                    <span class="input-group-btn">
+                                        <button id="btnselectImage" class="btn btn-default btn-browser" type="button" ng-click="event.browserImg()">
+                                           <span class="fa fa-folder"></span>
+                                    </button>
+                                    </span>
+                                </div>                                
+                            </div>
+                            <div class="form-group" ng-if="resType === '2'">
+                                <label>Video youtube</label>
+                                <div class="padding-formcontrol">
+                                    <div ng-bind-html="trustAsHtml(selectedRes.Frame)"></div>
+                                </div>                                
+                                <textarea id="txt_url" class="form-control" placeholder="Frame video" name="video" type="text" ng-model="selectedRes.Frame" rows="3"></textarea>       
+                            </div>
+                            <div class="form-group" ng-if="resType === '3'">
+                                <label>Tập tin</label>
+                                <div class="input-group">
+                                    <input id="file_url" class="form-control" placeholder="Đường dẫn tập tin" name="file" type="text" ng-model="selectedRes.File" />
+                                    <span class="input-group-btn">
+                                        <button id="btnselectImage" class="btn btn-default btn-browser" type="button" ng-click="event.browserFile()">
+                                           <span class="fa fa-folder"></span>
+                                    </button>
+                                    </span>
+                                </div> 
+                            </div>
+                            <div class="form-group" ng-class="{'has-error': Form.txtTitle.$invalid && Form.txtTitle.$touched && Form.txtTitle.$error.required }">
+                                <label>Tiêu đề<span class="text-danger">&nbsp;(*)</span></label>
+                                <input class="form-control" placeholder="Tiêu đề" name="txtTitle" type="text" ng-model="selectedRes.ResName" required />   
+                                <p ng-show="Form.txtTitle.$invalid && Form.txtTitle.$touched && Form.txtTitle.$error.required" class="text-danger">Vui lòng nhập tên.</p>          
+                            </div>
+                            <div class="form-group">
+                                <label>Mô tả ngắn</label>
+                                <textarea class="form-control" rows="5" placeholder="Mô tả" name="txtDes" ng-model="selectedRes.Describes"></textarea>                                            
+                            </div>
+                            <div class="form-group" ng-class="{'has-error': Form.cate.$invalid && Form.cate.$touched && Form.cate.$error.required }">
+                                <label>Danh mục<span class="text-danger">&nbsp;(*)</span></label>
+                                <select class="form-control ui search dropdown" name="cate" ng-model="selectedRes.ResCate" required>
+                                    <option style="display:none" value="">--Chọn danh mục--</option>
+                                    <option ng-repeat="item in $root.resourceCate track by $index" value="{{item.ID}}">{{item.Name}}</option>
+                                </select>
+                                <p ng-show="Form.cate.$invalid && Form.cate.$touched && Form.cate.$error.required" class="text-danger">Vui lòng chọn danh mục.</p>                                
+                            </div>
+                            <div class="form-group">
+                                <label>Liên kết danh mục sản phẩm</label>
+                                <select class="form-control ui search dropdown" name="cateLink" ng-model="selectedRes.CateLink">
+                                    <option style="display:none" value="">--Chọn danh mục sản phẩm--</option>
+                                    <option value="0">Trống</option>
+                                    <option ng-repeat="item in $root.categories track by $index" value="{{item.CatID}}">{{item.CatName}}</option>
+                                </select>                               
+                            </div>  
+                            <div class="form-group">
+                                <label>Liên kết sản phẩm</label>
+                                <select class="form-control ui search dropdown" name="proLink" ng-model="selectedRes.ProLink">
+                                    <option style="display:none" value="">--Chọn sản phẩm--</option>
+                                    <option value="0">Trống</option>
+                                    <option ng-repeat="item in $root.articles track by $index" ng-if="item.Status !== '0'" value="{{item.ArtID}}">{{item.ArtName}}</option>
+                                </select>                                  
+                            </div>                                                                              
+                        </div>
+                        <div class="modal-footer">
+                            <p class="{{notice.class}}" ng-bind="notice.message"></p>
+                            <button id="btnSubmit" type="submit" class="btn btn-primary" ng-disabled="Form.$invalid">Lưu</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal bs-modal-sm" id="delCatAlert" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content animated lightSpeedIn">
+                <div class="modal-header panel-heading">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Xóa danh mục</h4>
+                </div>
+                <div class="modal-body">
+                    Bạn có chắc chắn muốn xóa danh mục này?
+                </div>
+                <div class="modal-footer">                    
+                    <button type="button" class="btn btn-danger" ng-click="event.delCat()">Có</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Không</button>                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal bs-modal-sm" id="delAlert" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content animated lightSpeedIn">
+                <div class="modal-header panel-heading">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Xóa tài nguyên</h4>
+                </div>
+                <div class="modal-body">
+                    Bạn có chắc chắn muốn xóa tài nguyên này?
+                </div>
+                <div class="modal-footer">                    
+                    <button type="button" class="btn btn-danger" ng-click="event.del()">Có</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Không</button>                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
