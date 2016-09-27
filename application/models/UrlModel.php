@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('');
-class UrlModel extends CI_Model{
+class Urlmodel extends CI_Model{
  
     public function __construct(){
         $this->load->database();

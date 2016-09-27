@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('');
 
-class ClientModel extends CI_Model {
+class Clientmodel extends CI_Model {
     
     public function __construct(){
         parent::__construct();

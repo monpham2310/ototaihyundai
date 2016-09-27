@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('');
 
-class ArticleModel extends CI_Model {
+class Articlemodel extends CI_Model {
     public function __construct(){
         parent::__construct();
         $this->load->database();        

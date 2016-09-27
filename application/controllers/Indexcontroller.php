@@ -7,8 +7,8 @@ class Indexcontroller extends CI_Controller {
         parent::__construct();
         $this->load->helper('url');  
         $this->load->library('phpsession');
-        $this->load->model('TemplateModel');
-        $this->load->model('UrlModel');
+        $this->load->model('Templatemodel');
+        $this->load->model('Urlmodel');
     }
         
     public function index(){           
@@ -26,7 +26,7 @@ class Indexcontroller extends CI_Controller {
             
     public function loadTemplate(){
         $meta = $this->input->get('meta');        
-        $filename = $this->TemplateModel->getTemplateOfView($meta);              
+        $filename = $this->Templatemodel->getTemplateOfView($meta);              
         if($filename !== null){
             $view = 'client/'.$filename->Filename;
             if($view !== 'client/')
@@ -37,7 +37,7 @@ class Indexcontroller extends CI_Controller {
             }
         }
         else{
-            $filename = $this->TemplateModel->getTempOfView($meta);
+            $filename = $this->Templatemodel->getTempOfView($meta);
             if($filename !== null){
                 $view = 'client/'.$filename->Filename;
                 if($view !== 'client/')
@@ -48,7 +48,7 @@ class Indexcontroller extends CI_Controller {
                 }
             }
             else{
-                $filename = $this->TemplateModel->getTempOfViewExtend($meta);
+                $filename = $this->Templatemodel->getTempOfViewExtend($meta);
                 if($filename !== null){
                     $view = 'client/'.$filename->Filename;
                     if($view !== 'client/')
@@ -67,14 +67,14 @@ class Indexcontroller extends CI_Controller {
     }
     
     public function sitemap(){ 
-        $data['urlsList'] = $this->UrlModel->getURLS();
+        $data['urlsList'] = $this->Urlmodel->getURLS();
         $this->load->view('sitemap_view.php',$data);
     }
     
     public function search(){
         $request = $this->input->post('data');
         $text = $request['search'];
-        $result = $this->TemplateModel->search($text);
+        $result = $this->Templatemodel->search($text);
         $json = '';
         $json = json_encode($result);
         echo $json;

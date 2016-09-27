@@ -8,12 +8,12 @@ class Mailcontactcontroller extends CI_Controller {
         $this->load->helper('url');
         //$this->load->library('session');
         $this->load->library('phpsession');
-        $this->load->model('MailContactModel');
+        $this->load->model('Mailcontactmodel');
     }
                     
     public function getMailList(){
         $request = $this->input->post('data');        
-        $result = $this->MailContactModel->getMailList();                
+        $result = $this->Mailcontactmodel->getMailList();                
         $json = json_encode($result);                            
         echo $json;
     }
@@ -26,7 +26,7 @@ class Mailcontactcontroller extends CI_Controller {
         $content = $request['Content'];
         $date = $request['DateSent'];
         $phone = $request['Phone'];                
-        $result = $this->MailContactModel->addMail($name, $email, $sub, $content, $date, $phone);            
+        $result = $this->Mailcontactmodel->addMail($name, $email, $sub, $content, $date, $phone);            
         $json = json_encode($result);
         echo $json;            
     }
@@ -34,7 +34,7 @@ class Mailcontactcontroller extends CI_Controller {
     public function deleteMail(){
         $request = $this->input->post('data');
         $Id = $request['ID'];
-        $result = $this->MailContactModel->deleteMail($Id);
+        $result = $this->Mailcontactmodel->deleteMail($Id);
         $json = json_encode($result);
         echo $json;                    
     }

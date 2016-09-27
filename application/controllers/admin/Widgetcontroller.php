@@ -8,24 +8,24 @@ class Widgetcontroller extends CI_Controller {
         $this->load->helper('url');
         //$this->load->library('session');
         $this->load->library('phpsession');        
-        $this->load->model('WidgetModel');
+        $this->load->model('Widgetmodel');
     }
     
     public function getAllWidgets(){
         $request = $this->input->post('data');
-        $result = $this->WidgetModel->getAllWidgets($request);
+        $result = $this->Widgetmodel->getAllWidgets($request);
         echo json_encode($result);
     }
     
     public function getInformation(){
         $request = $this->input->post('data');        
         $type = $request['type'];
-        $result = $this->WidgetModel->getInformation($type);
+        $result = $this->Widgetmodel->getInformation($type);
         echo json_encode($result);        
     }
     
     public function getHeader(){
-        $result = $this->WidgetModel->getHeader();
+        $result = $this->Widgetmodel->getHeader();
         echo json_encode($result);        
     }
     
@@ -33,7 +33,7 @@ class Widgetcontroller extends CI_Controller {
         $request = $this->input->post('data');
         $session = $this->phpsession->get(null, 'ototaihyundai_user');        
         if($session !== null){
-            $result = $this->WidgetModel->updateHeader($request);
+            $result = $this->Widgetmodel->updateHeader($request);
             echo json_encode($result);
         }
         else{
@@ -48,7 +48,7 @@ class Widgetcontroller extends CI_Controller {
         $request = $this->input->post('data');
         $session = $this->phpsession->get(null, 'ototaihyundai_user');        
         if($session !== null){
-            $result = $this->WidgetModel->updateInformation($request);
+            $result = $this->Widgetmodel->updateInformation($request);
             echo json_encode($result);
         }
         else{
@@ -64,7 +64,7 @@ class Widgetcontroller extends CI_Controller {
         $session = $this->phpsession->get(null, 'ototaihyundai_user');
         if($session !== null){
             for($i = 0; $i < count($request); $i++){
-                $this->WidgetModel->updatePosition($request[$i], $i + 1);
+                $this->Widgetmodel->updatePosition($request[$i], $i + 1);
             }
             echo json_encode(true);
         }
@@ -80,7 +80,7 @@ class Widgetcontroller extends CI_Controller {
         $request = $this->input->post('data');                
         $session = $this->phpsession->get(null, 'ototaihyundai_user');        
         if($session !== null){                      
-            $result = $this->WidgetModel->updateWidget($request);
+            $result = $this->Widgetmodel->updateWidget($request);
             echo json_encode($result);
         }
         else{
@@ -96,7 +96,7 @@ class Widgetcontroller extends CI_Controller {
         $request = $this->input->post('data');                
         $session = $this->phpsession->get(null, 'ototaihyundai_user');        
         if($session !== null){                      
-            $result = $this->WidgetModel->addWidget($request);
+            $result = $this->Widgetmodel->addWidget($request);
             echo json_encode($result);
         }
         else{
@@ -113,7 +113,7 @@ class Widgetcontroller extends CI_Controller {
         $id = $request['ID'];
         $session = $this->phpsession->get(null, 'ototaihyundai_user');        
         if($session !== null){                      
-            $result = $this->WidgetModel->delWidget($id);
+            $result = $this->Widgetmodel->delWidget($id);
             echo json_encode($result);
         }
         else{

@@ -8,13 +8,13 @@ class Servicecontroller extends CI_Controller {
         $this->load->helper('url');
         //$this->load->library('session');
         $this->load->library('phpsession');
-        $this->load->model('ServiceModel');
+        $this->load->model('Servicemodel');
     }
                     
     public function getServices(){
         $request = $this->input->post('data');
         $type = $request['type'];
-        $result = $this->ServiceModel->getAllServices($type);                
+        $result = $this->Servicemodel->getAllServices($type);                
         $json = json_encode($result);                            
         echo $json;
     }
@@ -25,7 +25,7 @@ class Servicecontroller extends CI_Controller {
         //$session = $this->session->has_userdata('remember_me');        
         $session = $this->phpsession->get(null, 'ototaihyundai_user');
         if($session !== null){
-            $result = $this->ServiceModel->updateService($request);            
+            $result = $this->Servicemodel->updateService($request);            
             $json = json_encode($result);
             echo $json;    
         }
@@ -44,7 +44,7 @@ class Servicecontroller extends CI_Controller {
         //$session = $this->session->has_userdata('remember_me');   
         $session = $this->phpsession->get(null, 'ototaihyundai_user');
         if($session !== null){
-            $result = $this->ServiceModel->addService($request);            
+            $result = $this->Servicemodel->addService($request);            
             $json = json_encode($result);
             echo $json;    
         }
@@ -64,7 +64,7 @@ class Servicecontroller extends CI_Controller {
         //$session = $this->session->has_userdata('remember_me');
         $session = $this->phpsession->get(null, 'ototaihyundai_user');
         if($session !== null){
-            $result = $this->ServiceModel->deleteService($Id);
+            $result = $this->Servicemodel->deleteService($Id);
             $json = json_encode($result);
             echo $json;
         }

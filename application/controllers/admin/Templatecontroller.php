@@ -7,18 +7,18 @@ class Templatecontroller extends CI_Controller {
         parent::__construct();
         $this->load->helper('url');  
         $this->load->library('phpsession');
-        $this->load->model('TemplateModel');        
+        $this->load->model('Templatemodel');        
     }
         
     public function getAllTemplates(){                
-        $result = $this->TemplateModel->getTemplates();        
+        $result = $this->Templatemodel->getTemplates();        
         $json = json_encode($result);
         echo $json;
     }
     
     public function getPages(){
         $request = $this->input->post('data');
-        $result = $this->TemplateModel->getPages($request);
+        $result = $this->Templatemodel->getPages($request);
         echo json_encode($result);
     }
     
@@ -27,7 +27,7 @@ class Templatecontroller extends CI_Controller {
                                  
         $session = $this->phpsession->get(null, 'ototaihyundai_user');
         if($session !== null){
-            $result = $this->TemplateModel->updateTemplate($request);            
+            $result = $this->Templatemodel->updateTemplate($request);            
             $json = json_encode($result);
             echo $json;    
         }
@@ -45,7 +45,7 @@ class Templatecontroller extends CI_Controller {
                         
         $session = $this->phpsession->get(null, 'ototaihyundai_user');
         if($session !== null){
-            $result = $this->TemplateModel->addTemplate($request);            
+            $result = $this->Templatemodel->addTemplate($request);            
             $json = json_encode($result);
             echo $json;    
         }
@@ -64,7 +64,7 @@ class Templatecontroller extends CI_Controller {
         
         $session = $this->phpsession->get(null, 'ototaihyundai_user');
         if($session !== null){
-            $result = $this->TemplateModel->deleteTemplate($id);
+            $result = $this->Templatemodel->deleteTemplate($id);
             $json = json_encode($result);
             echo $json;
         }

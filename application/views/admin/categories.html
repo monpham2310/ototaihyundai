@@ -15,6 +15,20 @@
                         <div class="panel-body">
                             <form role="form" name="addForm" ng-submit="event.submitForm(false)" novalidate>
                                 <fieldset>
+                                    <div class="form-group">
+                                        <label>Ảnh</label>
+                                        <div class="padding-formcontrol margin-bottom-icon">
+                                            <img class="img-circle" id="img" ng-src="{{newCategory.CatImg}}" width=100 height=100 />
+                                        </div>
+                                        <div class="input-group">
+                                            <input id="txt_url" class="form-control width" placeholder="Đường dẫn ảnh..." name="Icon" type="text" ng-model="newCategory.CatImg" disabled />
+                                            <span class="input-group-btn">
+                                            <button id="btnselectImage" type="button" class="btn btn-default btn-browser" ng-click="event.browserImg()">
+                                                <span class="fa fa-folder"></span>
+                                            </button>
+                                            </span>
+                                        </div>
+                                    </div>
                                     <div class="form-group" ng-class="{'has-error': addForm.Name.$invalid && addForm.Name.$touched && addForm.Name.$error.required}">
                                         <label>Tên<span class="text-danger">&nbsp;(*)</span></label>
                                         <input class="form-control" placeholder="Tên danh mục" name="Name" type="text" ng-model="newCategory.CatName" required ng-blur="event.getAliasForCate(false)" />
@@ -91,6 +105,7 @@
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
+                                            <th class="center">Ảnh</th>
                                             <th class="center">Tên</th>
                                             <th class="center">Đường dẫn</th>                                            
                                             <th class="center">Cha</th> 
@@ -99,6 +114,9 @@
                                     </thead>
                                     <tbody>
                                         <tr dir-paginate="item in $root.categories | filter:searchText | itemsPerPage: numberPage" pagination-id="filterCate">
+                                            <td class="center">
+                                                <img class="img-circle" ng-src="{{item.CatImg}}" width="50" height="50" alt />
+                                            </td>
                                             <td class="center" ng-bind="item.CatName"></td>
                                             <td class="center" ng-bind="item.CatMeta"></td>     
                                             <td class="center" ng-bind="item.ParentName"></td>
@@ -130,6 +148,20 @@
                             <h4 class="modal-title">Sửa danh mục</h4>
                         </div>
                         <div class="modal-body">
+                            <div class="form-group">
+                                <label>Ảnh</label>
+                                <div class="padding-formcontrol margin-bottom-icon">
+                                    <img class="img-circle" id="imgEdit" ng-src="{{selectedCate.CatImg}}" width=100 height=100 />
+                                </div>
+                                <div class="input-group">
+                                    <input id="txt_editUrl" class="form-control width" placeholder="Đường dẫn ảnh..." name="Icon" type="text" ng-model="selectedCate.CatImg" disabled />
+                                    <span class="input-group-btn">
+                                    <button id="btnselectImage" type="button" class="btn btn-default btn-browser" ng-click="event.browserEditImg()">
+                                        <span class="fa fa-folder"></span>
+                                    </button>
+                                    </span>
+                                </div>
+                            </div>
                             <div class="form-group" ng-class="{'has-error': Form.Name.$invalid && Form.Name.$touched && Form.Name.$error.required}">
                                 <label>Tên<span class="text-danger">&nbsp;(*)</span></label>
                                 <input class="form-control" placeholder="Tên danh mục" name="Name" type="text" ng-model="selectedCate.CatName" autofocus required ng-blur="event.getAliasForCate(true)" />
@@ -164,22 +196,6 @@
                                 </div>
                                 <p ng-show="Form.Temp.$invalid && Form.Temp.$touched && Form.Temp.$error.required" class="text-danger">Vui lòng chọn kiểu hiển thị.</p>
                             </div>
-<!--
-                            <div class="row form-group">
-                                <div class="col-sm-7">
-                                    <label>Trạng thái</label>
-                                </div>
-                                <div class="col-sm-5">
-                                    <div class="onoffswitch">
-                                        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="onoffswitchUpdate" ng-model="selectedCate.Status" ng-true-value="'1'" ng-false-value="'0'" />
-                                        <label class="onoffswitch-label" for="onoffswitchUpdate">
-                                            <span class="onoffswitch-inner"></span>
-                                            <span class="onoffswitch-switch"></span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
--->
                         </div>
                         <div class="modal-footer no-border">
                             <p class="{{notice.class}}" ng-bind="notice.message"></p>                            

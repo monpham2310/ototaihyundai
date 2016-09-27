@@ -5,12 +5,12 @@ class Mapcontroller extends CI_Controller {
     public function __construct(){
         parent::__construct();
         $this->load->helper('url');
-        $this->load->model('MapModel');
+        $this->load->model('Mapmodel');
         $this->load->library('phpsession');
     }
     
     public function getMapList(){
-        $result = $this->MapModel->getMapList();
+        $result = $this->Mapmodel->getMapList();
         $json = json_encode($result);
         echo $json;
     }
@@ -19,7 +19,7 @@ class Mapcontroller extends CI_Controller {
         $request = $this->input->post('data');        
         $session = $this->phpsession->get(null, 'ototaihyundai_user');
         if($session !== null){
-            $result = $this->MapModel->updateMarker($request);
+            $result = $this->Mapmodel->updateMarker($request);
             $json = json_encode($result);
             echo $json;
         }
@@ -36,7 +36,7 @@ class Mapcontroller extends CI_Controller {
         $request = $this->input->post('data');                
         $session = $this->phpsession->get(null, 'ototaihyundai_user');
         if($session !== null){
-            $result = $this->MapModel->addNewMarker($request);
+            $result = $this->Mapmodel->addNewMarker($request);
             $json = json_encode($result);
             echo $json;
         }
@@ -54,7 +54,7 @@ class Mapcontroller extends CI_Controller {
         $id = $request['MapID'];        
         $session = $this->phpsession->get(null, 'ototaihyundai_user');
         if($session !== null){
-            $result = $this->MapModel->deleteMarker($id);
+            $result = $this->Mapmodel->deleteMarker($id);
             $json = json_encode($result);
             echo $json;
         }

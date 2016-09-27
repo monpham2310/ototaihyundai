@@ -7,7 +7,7 @@ class Usercontroller extends CI_Controller {
         parent::__construct();
         $this->load->helper('url');        
         $this->load->library('phpsession');
-        $this->load->model('UserModel');
+        $this->load->model('Usermodel');
     }
             
     public function actionLogin(){
@@ -16,7 +16,7 @@ class Usercontroller extends CI_Controller {
         $password = $request['password'];  
         $rememberMe = $request['isRemember'];
                            
-        $result = $this->UserModel->loginAccount($email, $password);   
+        $result = $this->Usermodel->loginAccount($email, $password);   
                     
         if($result === null){
             $error = array(
@@ -77,7 +77,7 @@ class Usercontroller extends CI_Controller {
     public function loadUsers(){
         $request = $this->input->post('data');
         $type = isset($request['type'])? $request['type'] : '';
-        $result = $this->UserModel->getAllUsers($type);
+        $result = $this->Usermodel->getAllUsers($type);
         $json = '';        
         $json = json_encode($result);            
                 
@@ -90,7 +90,7 @@ class Usercontroller extends CI_Controller {
         $session = $this->phpsession->get(null, 'ototaihyundai_user');
         if($session !== null){
             $result = array();
-            $result = $this->UserModel->updateUser($request);  
+            $result = $this->Usermodel->updateUser($request);  
             
             $userCurr = $session['IdUser'];
             if($request['UserID'] === $userCurr){
@@ -125,7 +125,7 @@ class Usercontroller extends CI_Controller {
             
         $session = $this->phpsession->get(null, 'ototaihyundai_user');
         if($session !== null){
-            $result = $this->UserModel->addUser($request);            
+            $result = $this->Usermodel->addUser($request);            
             $json = json_encode($result);
             echo $json;    
         }
@@ -144,7 +144,7 @@ class Usercontroller extends CI_Controller {
                 
         $session = $this->phpsession->get(null, 'ototaihyundai_user');
         if($session !== null){
-            $result = $this->UserModel->deleteUser($userId);
+            $result = $this->Usermodel->deleteUser($userId);
             $json = json_encode($result);
             echo $json;
         }
@@ -161,7 +161,7 @@ class Usercontroller extends CI_Controller {
         $request = $this->input->post('data');
         $email = $request['email'];
         $json = '';
-        $result = $this->UserModel->checkEmail($email);
+        $result = $this->Usermodel->checkEmail($email);
         $json = json_encode($result);
         echo $json;
     }

@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class ResourceCateModel extends CI_Model {
+class Resourcecatemodel extends CI_Model {
     public function __construct(){
         parent::__construct();
         $this->load->database();        

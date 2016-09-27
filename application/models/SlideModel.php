@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('');
 
-class SlideModel extends CI_Model {
+class Slidemodel extends CI_Model {
     
     public function __construct(){
         parent::__construct();

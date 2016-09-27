@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('');
 
-class MailContactModel extends CI_Model {
+class Mailcontactmodel extends CI_Model {
     
     public function __construct(){
         parent::__construct();

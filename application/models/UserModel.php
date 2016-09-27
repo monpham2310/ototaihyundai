@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('');
 
-class UserModel extends CI_Model {
+class Usermodel extends CI_Model {
     
     public function __construct(){
         parent::__construct();

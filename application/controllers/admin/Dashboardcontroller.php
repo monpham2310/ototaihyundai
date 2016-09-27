@@ -6,13 +6,13 @@ class Dashboardcontroller extends CI_Controller {
     public function __construct(){
         parent::__construct();
         $this->load->helper('url');
-        $this->load->model('DashboardModel');        
+        $this->load->model('Dashboardmodel');        
     }
                     
     public function dashboardStatistic(){   
         $request = $this->input->post('data');
         $user = $request['UserId'];
-        $result = $this->DashboardModel->dashboardStatistic($user);
+        $result = $this->Dashboardmodel->dashboardStatistic($user);
         $json = '';
         if($result === null){
             $error = array(

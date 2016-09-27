@@ -8,13 +8,13 @@ class Slidecontroller extends CI_Controller {
         $this->load->helper('url');
         //$this->load->library('session');
         $this->load->library('phpsession');
-        $this->load->model('SlideModel');
+        $this->load->model('Slidemodel');
     }
                     
     public function getSlides(){
         $request = $this->input->post('data');
         $type = $request['type'];
-        $result = $this->SlideModel->getAllSlides($type);                
+        $result = $this->Slidemodel->getAllSlides($type);                
         $json = json_encode($result);                            
         echo $json;
     }
@@ -33,7 +33,7 @@ class Slidecontroller extends CI_Controller {
         //$session = $this->session->has_userdata('remember_me');        
         $session = $this->phpsession->get(null, 'ototaihyundai_user');
         if($session !== null){
-            $result = $this->SlideModel->updateSlide($data);            
+            $result = $this->Slidemodel->updateSlide($data);            
             $json = json_encode($result);
             echo $json;    
         }
@@ -59,7 +59,7 @@ class Slidecontroller extends CI_Controller {
         //$session = $this->session->has_userdata('remember_me');   
         $session = $this->phpsession->get(null, 'ototaihyundai_user');
         if($session !== null){
-            $result = $this->SlideModel->addSlide($data);            
+            $result = $this->Slidemodel->addSlide($data);            
             $json = json_encode($result);
             echo $json;    
         }
@@ -79,7 +79,7 @@ class Slidecontroller extends CI_Controller {
         //$session = $this->session->has_userdata('remember_me');
         $session = $this->phpsession->get(null, 'ototaihyundai_user');
         if($session !== null){
-            $result = $this->SlideModel->deleteSlide($Id);
+            $result = $this->Slidemodel->deleteSlide($Id);
             $json = json_encode($result);
             echo $json;
         }
@@ -95,7 +95,7 @@ class Slidecontroller extends CI_Controller {
     public function changeSlidePosition(){
         $request = $this->input->post('data');        
         for($i = 0; $i < count($request); $i++){
-            $this->SlideModel->changeSlidePosition($request[$i]['id'], $request[$i]['pos']);
+            $this->Slidemodel->changeSlidePosition($request[$i]['id'], $request[$i]['pos']);
         }        
     }
     

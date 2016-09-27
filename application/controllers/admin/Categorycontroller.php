@@ -8,14 +8,13 @@ class Categorycontroller extends CI_Controller {
         $this->load->helper('url');
         //$this->load->library('session');
         $this->load->library('phpsession');
-        $this->load->model('CategoryModel');
-        $this->load->model('ArticleModel');
+        $this->load->model('Categorymodel');        
     }
         
     public function loadAllCategories(){
         $request = $this->input->post('data');
         $type = $request['type'];        
-        $result = $this->CategoryModel->getAllCategories($type, 0);                
+        $result = $this->Categorymodel->getAllCategories($type, 0);                
         $json = json_encode($result);                    
         
         echo $json;
@@ -25,7 +24,7 @@ class Categorycontroller extends CI_Controller {
         $request = $this->input->post('data');
         $type = $request['type'];
         $dataType = isset($request['dataType'])? $request['dataType'] : 0;
-        $result = $this->CategoryModel->getCategories($type, $dataType);          
+        $result = $this->Categorymodel->getCategories($type, $dataType);          
         $json = json_encode($result);                            
         echo $json;        
     }
@@ -34,7 +33,7 @@ class Categorycontroller extends CI_Controller {
         $request = $this->input->post('data');
         $type = $request['type'];
         $dataType = isset($request['dataType'])? $request['dataType'] : 0;
-        $result = $this->CategoryModel->getCategories($type, $dataType);          
+        $result = $this->Categorymodel->getCategories($type, $dataType);          
         $json = json_encode($result);                            
         echo $json;
     }
@@ -44,7 +43,7 @@ class Categorycontroller extends CI_Controller {
         
         $session = $this->phpsession->get(null, 'ototaihyundai_user');
         if($session !== null){
-            $result = $this->CategoryModel->updateCategory($request);
+            $result = $this->Categorymodel->updateCategory($request);
             $json = json_encode($result);
             echo $json;    
         }
@@ -61,7 +60,7 @@ class Categorycontroller extends CI_Controller {
         $request = $this->input->post('data');                       
         $session = $this->phpsession->get(null, 'ototaihyundai_user');
         if($session != null){
-            $result = $this->CategoryModel->addCategory($request);    
+            $result = $this->Categorymodel->addCategory($request);    
             $json = json_encode($result);
             echo $json;    
         }
@@ -81,7 +80,7 @@ class Categorycontroller extends CI_Controller {
         //$session = $this->session->has_userdata('remember_me');
         $session = $this->phpsession->get(null, 'ototaihyundai_user');
         if($session !== null){
-            $result = $this->CategoryModel->deleteCategory($cateId);
+            $result = $this->Categorymodel->deleteCategory($cateId);
             $json = json_encode($result);
             echo $json;
         }
@@ -128,7 +127,7 @@ class Categorycontroller extends CI_Controller {
     }
     
     public function getNestableCate($type){
-        $result = $this->CategoryModel->getAllCategories('client', $type);
+        $result = $this->Categorymodel->getAllCategories('client', $type);
         echo $this->showNestableCate($result);
     }
     
@@ -136,7 +135,7 @@ class Categorycontroller extends CI_Controller {
         $request = $this->input->post('data');
         $meta = $request['meta'];
         $json = '';
-        $result = $this->CategoryModel->getSiteMap($meta);
+        $result = $this->Categorymodel->getSiteMap($meta);
         $json = json_encode($result);
         echo $json;
     }

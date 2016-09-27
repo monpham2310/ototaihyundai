@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('');
 
-class CategoryModel extends CI_Model {
+class Categorymodel extends CI_Model {
     
     public function __construct(){
         parent::__construct();
@@ -12,12 +12,12 @@ class CategoryModel extends CI_Model {
         $result = array();        
         switch ($type){
             case 'admin':
-                $result = $this->db->query('select CatID,CatName,CatMeta,CatDescribes,TempId,(select CatName from categories where CatID = a.CatParent) as ParentName,Type,CatParent
+                $result = $this->db->query('select CatID,CatName,CatMeta,CatDescribes,TempId,(select CatName from categories where CatID = a.CatParent) as ParentName,Type,CatParent,CatImg
                 from categories a                                               
                 order by CatID desc;');                                
                 break;
             default:
-                $result = $this->db->query('select CatID,CatName,CatMeta,CatDescribes,TempId,Type,CatParent
+                $result = $this->db->query('select CatID,CatName,CatMeta,CatDescribes,TempId,Type,CatParent,CatImg
                                             from categories
                                             where Type = '.$dataType.'
                                             order by CatID desc;');
@@ -35,13 +35,13 @@ class CategoryModel extends CI_Model {
         $result = array();        
         switch ($type){
             case 'admin':                
-                $result = $this->db->query('select CatID,CatName,CatMeta,CatDescribes,TempId,(select CatName from categories where CatID = a.CatParent) as ParentName,Type,CatParent
+                $result = $this->db->query('select CatID,CatName,CatMeta,CatDescribes,TempId,(select CatName from categories where CatID = a.CatParent) as ParentName,Type,CatParent,CatImg
                 from categories a   
                 where Type = '.$dataType.'
                 order by CatID desc;');                        
                 break;
             default:
-                $result = $this->db->query('select CatID,CatName,CatMeta,CatDescribes,TempId,Type,CatParent
+                $result = $this->db->query('select CatID,CatName,CatMeta,CatDescribes,TempId,Type,CatParent,CatImg
                                             from categories                                            
                                             order by CatID desc;');
                 break;
@@ -100,6 +100,7 @@ class CategoryModel extends CI_Model {
                                             where CatID = (select CatParent from categories where CatMeta = "'.$meta.'")) as ParentName,(select CatMeta 
                                             from categories 
                                             where CatID = (select CatParent from categories where CatMeta = "'.$meta.'")) as ParentMeta
+                                            ,CatImg
                                     from categories 
                                     where CatMeta = "'.$meta.'";');
         $category = $result->result_array();

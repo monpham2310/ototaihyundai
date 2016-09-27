@@ -6,17 +6,17 @@ class Visitorcontroller extends CI_Controller {
     public function __construct(){
         parent::__construct();
         $this->load->helper('url');
-        $this->load->model('VisitorModel');
+        $this->load->model('Visitormodel');
     }
             
     public function addNew(){        
         $ip = '';
         $ip = $this->input->ip_address();                
-        $this->VisitorModel->addNew($ip);
+        $this->Visitormodel->addNew($ip);
     }
     
     public function getVisitorList(){
-        $result = $this->VisitorModel->getVisitorList();
+        $result = $this->Visitormodel->getVisitorList();
         $json = '';
         if($result === null){
             $error = array(
@@ -32,7 +32,7 @@ class Visitorcontroller extends CI_Controller {
     }
     
     public function visitorStatistic(){
-        $result = $this->VisitorModel->visitorStatistic();
+        $result = $this->Visitormodel->visitorStatistic();
         $json = '';
         if($result === null){
             $error = array(

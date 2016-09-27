@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('');
 
-class MapModel extends CI_Model {
+class Mapmodel extends CI_Model {
     
     public function __construct(){
         parent::__construct();

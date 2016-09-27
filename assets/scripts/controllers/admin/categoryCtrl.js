@@ -140,6 +140,28 @@ angular.module('ototaihyundaiApp').controller('categoryCtrl', function($scope, $
                     $scope.newCategory.CatMeta = cateAlias;          
                 }
             }
+        },
+        browserImg: function(){
+            CKFinder.popup({
+                chooseFiles: true,  
+                selectActionFunction: function(url){
+                    var newUrl = baseService.getImageUrl(url);
+                    $('#img').attr('src',url);
+                    $('#txt_url').val(newUrl);
+                    $scope.newCategory.CatImg = newUrl;
+                }
+            });
+        },
+        browserEditImg: function(){
+            CKFinder.popup({
+                chooseFiles: true,  
+                selectActionFunction: function(url){
+                    var newUrl = baseService.getImageUrl(url);
+                    $('#imgEdit').attr('src',url);
+                    $('#txt_editUrl').val(newUrl);
+                    $scope.selectedCate.CatImg = newUrl;
+                }
+            });
         }
     };
 });

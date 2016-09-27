@@ -8,13 +8,13 @@ class Clientcontroller extends CI_Controller {
         $this->load->helper('url');
         //$this->load->library('session');
         $this->load->library('phpsession');
-        $this->load->model('ClientModel');
+        $this->load->model('Clientmodel');
     }
                     
     public function getClients(){
         $request = $this->input->post('data');
         $type = $request['type'];
-        $result = $this->ClientModel->getAllClients($type);                
+        $result = $this->Clientmodel->getAllClients($type);                
         $json = json_encode($result);                            
         echo $json;
     }
@@ -25,7 +25,7 @@ class Clientcontroller extends CI_Controller {
         //$session = $this->session->has_userdata('remember_me');        
         $session = $this->phpsession->get(null, 'ototaihyundai_user');
         if($session !== null){
-            $result = $this->ClientModel->updateClient($request);            
+            $result = $this->Clientmodel->updateClient($request);            
             $json = json_encode($result);
             echo $json;    
         }
@@ -44,7 +44,7 @@ class Clientcontroller extends CI_Controller {
         //$session = $this->session->has_userdata('remember_me');   
         $session = $this->phpsession->get(null, 'ototaihyundai_user');
         if($session !== null){
-            $result = $this->ClientModel->addClient($request);            
+            $result = $this->Clientmodel->addClient($request);            
             $json = json_encode($result);
             echo $json;    
         }
@@ -64,7 +64,7 @@ class Clientcontroller extends CI_Controller {
         //$session = $this->session->has_userdata('remember_me');
         $session = $this->phpsession->get(null, 'ototaihyundai_user');
         if($session !== null){
-            $result = $this->ClientModel->deleteClient($Id);
+            $result = $this->Clientmodel->deleteClient($Id);
             $json = json_encode($result);
             echo $json;
         }

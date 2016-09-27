@@ -8,7 +8,7 @@ class Navigatecontroller extends CI_Controller {
         $this->load->helper('url');
         //$this->load->library('session');
         $this->load->library('phpsession');
-        $this->load->model('NavigateModel');
+        $this->load->model('Navigatemodel');
     }
     
     
@@ -129,7 +129,7 @@ class Navigatecontroller extends CI_Controller {
     public function getNavigates(){
         $request = $this->input->post('data');
         $type = $request['type'];
-        $query = $this->NavigateModel->getNavigates($type);
+        $query = $this->Navigatemodel->getNavigates($type);
         if($type === 'admin')
             echo $this->showMenuNested($query);
         else{
@@ -146,19 +146,19 @@ class Navigatecontroller extends CI_Controller {
         if($session !== null){
             if($type === 'category'){
                 for($i = 0; $i < count($request); $i++){
-                    $this->NavigateModel->addNavigate($request[$i]['CatName'], $request[$i]['CatMeta']);
+                    $this->Navigatemodel->addNavigate($request[$i]['CatName'], $request[$i]['CatMeta']);
                 }
                 echo $json;
             }
             else if($type === 'article'){
                 for($i = 0; $i < count($request); $i++){
-                    $this->NavigateModel->addNavigate($request[$i]['ArtName'], $request[$i]['ArtMeta']);
+                    $this->Navigatemodel->addNavigate($request[$i]['ArtName'], $request[$i]['ArtMeta']);
                 } 
                 echo $json;
             }
             else{
                 for($i = 0; $i < count($request); $i++){
-                    $this->NavigateModel->addNavigate($request[$i]['TempName'], $request[$i]['Meta'], $request[$i]['TempID']);
+                    $this->Navigatemodel->addNavigate($request[$i]['TempName'], $request[$i]['Meta'], $request[$i]['TempID']);
                 } 
                 echo $json;
             }
@@ -182,7 +182,7 @@ class Navigatecontroller extends CI_Controller {
         //$session = $this->session->has_userdata('remember_me');        
         $session = $this->phpsession->get(null, 'ototaihyundai_user');
         if($session !== null){
-            $result = $this->NavigateModel->addNavigate($name, $meta, $temp, $type);
+            $result = $this->Navigatemodel->addNavigate($name, $meta, $temp, $type);
             $json = json_encode($result);
             echo $json;
         }
@@ -199,7 +199,7 @@ class Navigatecontroller extends CI_Controller {
         $request = $this->input->post('data');
         $session = $this->phpsession->get(null, 'ototaihyundai_user');
         if($session !== null){
-            $result = $this->NavigateModel->updateNavigate($request);
+            $result = $this->Navigatemodel->updateNavigate($request);
             $json = json_encode($result);
             echo $json;
         }
@@ -219,7 +219,7 @@ class Navigatecontroller extends CI_Controller {
         $pos = $request['Position'];
         $session = $this->phpsession->get(null, 'ototaihyundai_user');
         if($session !== null){
-            $result = $this->NavigateModel->deleteNavigate($id, $parent, $pos);
+            $result = $this->Navigatemodel->deleteNavigate($id, $parent, $pos);
             $json = json_encode($result);
             echo $json;
         }
@@ -243,11 +243,11 @@ class Navigatecontroller extends CI_Controller {
         $list_tmp = array();
         for($i = 0; $i < count($list); $i++){            
             if (isset($list[$i]['children'])) {
-                $this->NavigateModel->updatePosition($list[$i]['id'], $i+1, $parent);
+                $this->Navigatemodel->updatePosition($list[$i]['id'], $i+1, $parent);
                 $this->saveNewPosition($list[$i]['children'], $list[$i]['id']);
             }
             else{
-                $this->NavigateModel->updatePosition($list[$i]['id'], $i+1, $parent);
+                $this->Navigatemodel->updatePosition($list[$i]['id'], $i+1, $parent);
             }
         }        
     }

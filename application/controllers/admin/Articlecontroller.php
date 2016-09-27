@@ -8,13 +8,13 @@ class Articlecontroller extends CI_Controller {
         $this->load->helper('url');
         //$this->load->library('session');
         $this->load->library('phpsession');        
-        $this->load->model('ArticleModel');
+        $this->load->model('Articlemodel');
     }
          
     public function loadAllArticles(){
         $request = $this->input->post('data');
         $type = $request['type'];        
-        $result = $this->ArticleModel->getAllArticles($type);        
+        $result = $this->Articlemodel->getAllArticles($type);        
         $json = json_encode($result);            
                
         echo $json;
@@ -24,7 +24,7 @@ class Articlecontroller extends CI_Controller {
         $request = $this->input->post('data');
         $type = $request['type'];
         $dataType = $request['dataType'];
-        $result = $this->ArticleModel->getArticles($type, $dataType);        
+        $result = $this->Articlemodel->getArticles($type, $dataType);        
         $json = json_encode($result);             
                
         echo $json;
@@ -36,7 +36,7 @@ class Articlecontroller extends CI_Controller {
         //$session = $this->session->has_userdata('remember_me');        
         $session = $this->phpsession->get(null, 'ototaihyundai_user');
         if($session !== null){            
-            $result = $this->ArticleModel->updateArticle($request);
+            $result = $this->Articlemodel->updateArticle($request);
             $json = json_encode($result);
             echo $json;    
         }
@@ -50,13 +50,13 @@ class Articlecontroller extends CI_Controller {
     }
     
     public function newProduct(){
-        $result = $this->ArticleModel->getNewArtOrPro(2);
+        $result = $this->Articlemodel->getNewArtOrPro(2);
         $json = json_encode($result);
         echo $json;
     }
     
     public function newArticle(){
-        $result = $this->ArticleModel->getNewArtOrPro(1);
+        $result = $this->Articlemodel->getNewArtOrPro(1);
         $json = json_encode($result);
         echo $json;
     }
@@ -67,7 +67,7 @@ class Articlecontroller extends CI_Controller {
         //$session = $this->session->has_userdata('remember_me');        
         $session = $this->phpsession->get(null, 'ototaihyundai_user');
         if($session !== null){
-            $result = $this->ArticleModel->addArticle($request);
+            $result = $this->Articlemodel->addArticle($request);
             $json = json_encode($result);
             echo $json;    
         }
@@ -88,7 +88,7 @@ class Articlecontroller extends CI_Controller {
         //$session = $this->session->has_userdata('remember_me');
         $session = $this->phpsession->get(null, 'ototaihyundai_user');
         if($session !== null){
-            $result = $this->ArticleModel->deleteArticle($Id, $user);
+            $result = $this->Articlemodel->deleteArticle($Id, $user);
             $json = json_encode($result);
             echo $json;
         }
@@ -102,7 +102,7 @@ class Articlecontroller extends CI_Controller {
     }        
        
     public function editArticle($artId){
-        $result = $this->ArticleModel->editArticle($artId);
+        $result = $this->Articlemodel->editArticle($artId);
         $json = json_encode($result);
         echo $json;
     }
@@ -110,13 +110,13 @@ class Articlecontroller extends CI_Controller {
     public function viewArtOrPro(){
         $request = $this->input->post('data');
         $meta = $request['meta'];
-        $result = $this->ArticleModel->getArtOrPro($meta);
+        $result = $this->Articlemodel->getArtOrPro($meta);
         $json = json_encode($result);
         echo $json;
     }
             
     public function getFeaturedPro($type){
-        $result = $this->ArticleModel->getFeaturedPro($type);
+        $result = $this->Articlemodel->getFeaturedPro($type);
         $json = json_encode($result);
         echo $json;
     }

@@ -5,22 +5,22 @@ class Resourcecontroller extends CI_Controller {
         parent::__construct();
         $this->load->helper('url');
         $this->load->library('phpsession');
-        $this->load->model('ResourceModel');
-        $this->load->model('ResourceCateModel');
-        $this->load->model('ResourceTypeModel');
+        $this->load->model('Resourcemodel');
+        $this->load->model('Resourcecatemodel');
+        $this->load->model('Resourcetypemodel');
     }
     
     public function getResourceCate(){
         $request = $this->input->post('data');
         $type = $request['type'];
         $resType = $request['resourceType'];
-        $result = $this->ResourceCateModel->getResourceCate($type, $resType);
+        $result = $this->Resourcecatemodel->getResourceCate($type, $resType);
         $json = json_encode($result);
         echo $json;
     }
     
     public function getResourceType(){
-        $result = $this->ResourceTypeModel->getResourceType();
+        $result = $this->Resourcetypemodel->getResourceType();
         $json = json_encode($result);
         echo $json;
     }
@@ -29,7 +29,7 @@ class Resourcecontroller extends CI_Controller {
         $request = $this->input->post('data');
         $type = $request['type'];
         $resCate = isset($request['resourceCate'])? $request['resourceCate'] : 0;
-        $result = $this->ResourceModel->getResources($type, $resCate);         
+        $result = $this->Resourcemodel->getResources($type, $resCate);         
         $json = json_encode($result);
         echo $json;
     }
@@ -49,7 +49,7 @@ class Resourcecontroller extends CI_Controller {
         
         $session = $this->phpsession->get(null, 'ototaihyundai_user');
         if($session !== null){
-            $result = $this->ResourceModel->addResource($data);
+            $result = $this->Resourcemodel->addResource($data);
             $json = json_encode($result);
             echo $json;
         }
@@ -78,7 +78,7 @@ class Resourcecontroller extends CI_Controller {
         
         $session = $this->phpsession->get(null, 'ototaihyundai_user');
         if($session !== null){
-            $result = $this->ResourceModel->updateResource($data);
+            $result = $this->Resourcemodel->updateResource($data);
             $json = json_encode($result);
             echo $json;
         }
@@ -96,7 +96,7 @@ class Resourcecontroller extends CI_Controller {
         $resId = $request['ResID'];
         $session = $this->phpsession->get(null, 'ototaihyundai_user');
         if($session !== null){
-            $result = $this->ResourceModel->delResource($resId);
+            $result = $this->Resourcemodel->delResource($resId);
             $json = json_encode($result);
             echo $json;
         }
@@ -114,7 +114,7 @@ class Resourcecontroller extends CI_Controller {
                 
         $session = $this->phpsession->get(null, 'ototaihyundai_user');
         if($session !== null){
-            $result = $this->ResourceCateModel->addResourceCat($request);
+            $result = $this->Resourcecatemodel->addResourceCat($request);
             $json = json_encode($result);
             echo $json;
         }
@@ -132,7 +132,7 @@ class Resourcecontroller extends CI_Controller {
                 
         $session = $this->phpsession->get(null, 'ototaihyundai_user');
         if($session !== null){
-            $result = $this->ResourceCateModel->updateResourceCat($request);
+            $result = $this->Resourcecatemodel->updateResourceCat($request);
             $json = json_encode($result);
             echo $json;
         }
@@ -150,7 +150,7 @@ class Resourcecontroller extends CI_Controller {
         $Id = $request['ID'];
         $session = $this->phpsession->get(null, 'ototaihyundai_user');
         if($session !== null){
-            $result = $this->ResourceCateModel->delResourceCat($Id);
+            $result = $this->Resourcecatemodel->delResourceCat($Id);
             $json = json_encode($result);
             echo $json;
         }
