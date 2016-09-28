@@ -16,7 +16,8 @@
                         </div>
                         <div class="form-group">
                             <label>Mô tả ngắn</label>
-                            <textarea class="form-control" rows="5" placeholder="Tóm tắt/Mô tả" name="Des" type="text" ng-model="selectedArt.ArtDescribes"></textarea>                            
+                      <!--      <textarea class="form-control" rows="5" placeholder="Tóm tắt/Mô tả" name="Des" type="text" ng-model="selectedArt.ArtDescribes"></textarea>       -->   
+                            <div ckeditor="options2" ng-model="selectedArt.ArtDescribes" name="proDes"></div>
                         </div>                        
                         <div class="form-group">
                             <label>Nội dung</label>
