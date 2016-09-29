@@ -21,6 +21,7 @@ angular.module('ototaihyundaiApp').controller('loginCtrl', function($scope, $roo
                         $window.location.href = response.link;                        
                     }
                 }, function(err){
+                    baseService.showToast('Đăng nhập thất bại!', 'danger');
                     console.log(err);
                 }); 
             }

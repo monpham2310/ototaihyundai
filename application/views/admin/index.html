@@ -112,7 +112,7 @@
                             <span class="nav-label" ng-bind="item.text"></span>
                         </a>
                     </li>
-                    <li ng-if="$root.user.Email === 'monpham2310@gmail.com'">
+                    <li ng-if="$root.user.Level === 'Admin'">
                         <a ng-href="{{funcOfAdmin.link}}">
                             <i ng-class="funcOfAdmin.class"></i>
                             <span class="nav-label" ng-bind="funcOfAdmin.text"></span>
