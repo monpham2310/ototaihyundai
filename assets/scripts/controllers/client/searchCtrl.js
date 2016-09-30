@@ -1,4 +1,4 @@
-angular.module('ototaihyundaiApp').controller('searchCtrl', function($scope, $rootScope, $location, $translate, $sce, baseService){
+angular.module('ototaihyundaiApp').controller('searchCtrl', function($scope, $rootScope, $location, $sce, baseService){
     $scope.numPerPage = 10;
     $scope.numOfPage = 5;        
     $scope.trustAsHtml = $sce.trustAsHtml;    

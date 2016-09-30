@@ -1,4 +1,4 @@
-angular.module('ototaihyundaiApp').controller('indexCtrl', function($scope, $sce, $rootScope, $window, $location, $translate, baseService){
+angular.module('ototaihyundaiApp').controller('indexCtrl', function($scope, $sce, $rootScope, $window, $location, baseService){
     $rootScope.pageTitle = baseService.WebsiteName;
     $rootScope.slideShow = [];
     $rootScope.navigates = '';
@@ -148,22 +148,22 @@ angular.module('ototaihyundaiApp').controller('indexCtrl', function($scope, $sce
         if($rootScope.searchText !== ''){
             var param = {search: $rootScope.searchText};
             baseService.POST(controller, param).then(function(response){
-                var url = $translate.instant('SEARCH.URL');
+                var url = '/tim-kiem';
                 $location.path(url);
                 $scope.searchResult = response;
                 $rootScope.pageTitle = title + ' | ' + $rootScope.searchText;
             });
         }
     }; 
-    baseService.GET(baseService.URL_HOST + baseService.module.addNewVisitor);    
-    $rootScope.getAllNavigates();
-    getSlider();    
-    $rootScope.getSidebarFeaturedPro($rootScope.dataType.product);
-    $rootScope.visitorStatistic();
-    $rootScope.getContactUser();
-    $rootScope.getMapList();
-    getHeaderAndInform();
-    $rootScope.getWidgets();
+//    baseService.GET(baseService.URL_HOST + baseService.module.addNewVisitor);    
+//    $rootScope.getAllNavigates();
+//    getSlider();    
+//    $rootScope.getSidebarFeaturedPro($rootScope.dataType.product);
+//    $rootScope.visitorStatistic();
+//    $rootScope.getContactUser();
+//    $rootScope.getMapList();
+//    getHeaderAndInform();
+//    $rootScope.getWidgets();
     $scope.sidebarRight = function($el){
         $el.removeClass('not-visible');
         $el.addClass('animated fadeInRight');

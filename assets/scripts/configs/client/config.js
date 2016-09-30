@@ -1,32 +1,29 @@
 angular.module('ototaihyundaiApp').config(function ($routeProvider, $locationProvider, $compileProvider){
-    $routeProvider.when('/404', {
-        templateUrl: 'IndexController/notfound'        
-    })     
+    $routeProvider.when('/', {
+        templateUrl: 'Indexcontroller/loadView/home'
+    })       
     .when('/trang-chu', {
-        templateUrl: function(url){            
-            return 'IndexController/loadView/home';
-        }
+        templateUrl: 'Indexcontroller/loadView/home'
     })
     .when('/lien-he', {
-        templateUrl: function(url){            
-            return 'IndexController/loadView/contact';
-        }
+        templateUrl: 'Indexcontroller/loadView/contact'
     })    
     .when('/tim-kiem', {
-        templateUrl: function(url){            
-            return 'IndexController/loadView/search';
-        }
-    })             
+        templateUrl: 'Indexcontroller/loadView/search'
+    })  
+    .when('/404', {
+        templateUrl: 'Indexcontroller/notfound'        
+    })  
     .when('/:meta', {
         templateUrl: function(url){
-            var meta = url.lang + '/' + url.meta;
-            return 'IndexController/loadTemplate/' + '?meta=' + meta;
+            var meta = url.meta;
+            return 'Indexcontroller/loadTemplate/' + '?meta=' + meta;
         }        
     })
     .when('/:meta/:child', {
         templateUrl: function(url){
             var meta = url.meta + '/' + url.child;            
-            return 'IndexController/loadTemplate/' + '?meta=' + meta;
+            return 'Indexcontroller/loadTemplate/' + '?meta=' + meta;
         }      
     })      
     .otherwise({
