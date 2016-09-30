@@ -1,2 +1,2 @@
-#User-specific files
+# ignore a single file
 database.php
