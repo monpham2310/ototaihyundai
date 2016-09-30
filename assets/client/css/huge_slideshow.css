@@ -1,0 +1,1835 @@
+.imgc_slider #slider77 {
+    border-color: aqua;
+    border-width: 3px;
+    text-transform: uppercase;
+    list-style: none;
+    outline: none;
+}
+
+.thumb_image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.entry-content a {
+    border-bottom: none !important;
+}
+
+.play-button-slider {
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+.youtube-icon {
+    position: absolute;
+    background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/images/play.youtube.png) center center no-repeat;
+    background-size: 14%;
+}
+
+#huge_it_loading_image_1 {
+    height: 500px;
+    width: 1360px;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#huge_it_loading_image_1.display {
+    display: table-cell;
+}
+
+#huge_it_loading_image_1.nodisplay {
+    display: none;
+}
+
+#huge_it_loading_image_1 img {
+    margin: auto 0;
+    width: 20% !important;
+}
+
+.huge_it_slideshow_image_wrap_1 {
+    height: 500px;
+    width: 1360px;
+    position: relative;
+    display: block;
+    text-align: center;
+    /*HEIGHT FROM HEADER.PHP*/
+    clear: both;
+    float: none;
+    margin: 0px auto;
+    border-style: solid;
+    border-left: 0px !important;
+    border-right: 0px !important;
+}
+
+.huge_it_slideshow_image_wrap1_1.display {
+    width: 100%;
+    height: 100%;
+}
+
+.huge_it_slideshow_image_wrap1_1.display {
+    display: block;
+}
+
+.huge_it_slideshow_image_wrap1_1.nodisplay {
+    display: none;
+}
+
+.huge_it_slideshow_image_wrap_1 * {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+.huge_it_slideshow_image_1 {
+    /*width:100%;*/
+}
+
+#huge_it_slideshow_left_1,
+#huge_it_slideshow_right_1 {
+    cursor: pointer;
+    display: none;
+    display: block;
+    height: 100%;
+    outline: medium none;
+    position: absolute;
+    /*z-index: 10130;*/
+    z-index: 13;
+    bottom: 25px;
+    top: 50%;
+}
+
+#huge_it_slideshow_left-ico_1,
+#huge_it_slideshow_right-ico_1 {
+    z-index: 13;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    cursor: pointer;
+    display: table;
+    left: -9999px;
+    line-height: 0;
+    margin-top: -15px;
+    position: absolute;
+    top: 50%;
+    /*z-index: 10135;*/
+}
+
+#huge_it_slideshow_left-ico_1:hover,
+#huge_it_slideshow_right-ico_1:hover {
+    cursor: pointer;
+}
+
+.huge_it_slideshow_image_container_1 {
+    display: table;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    text-align: center;
+    vertical-align: middle;
+    width: 100%;
+}
+
+.huge_it_slideshow_title_text_1 {
+    text-decoration: none;
+    position: absolute;
+    z-index: 11;
+    display: inline-block;
+    width: 24%;
+    /*height:44%;*/
+    right: 3%;
+    top: 3%;
+    padding: 2%;
+    text-align: right;
+    font-weight: bold;
+    color: #000000;
+    background: rgba(255, 255, 255, 0.7) !important;
+    border-style: solid;
+    font-size: 13px;
+    border-width: 0px;
+    border-color: #ffffff;
+    border-radius: 4px;
+}
+
+.huge_it_slideshow_description_text_1 {
+    text-decoration: none;
+    position: absolute;
+    z-index: 11;
+    border-style: solid;
+    display: inline-block;
+    width: 64%;
+    /*height:44%;*/
+    right: 3%;
+    bottom: 3%;
+    padding: 3%;
+    text-align: justify;
+    color: #ffffff;
+    background: rgba(0, 0, 0, 0.7) !important;
+    border-style: solid;
+    font-size: 13px;
+    border-width: 0px;
+    border-color: #ffffff;
+    border-radius: 0px;
+}
+
+.huge_it_slideshow_title_text_1.none,
+.huge_it_slideshow_description_text_1.none,
+.huge_it_slideshow_title_text_1.hidden,
+.huge_it_slideshow_description_text_1.hidden {
+    display: none;
+}
+
+.huge_it_slideshow_title_text_1 h1,
+.huge_it_slideshow_description_text_1 h1,
+.huge_it_slideshow_title_text_1 h2,
+.huge_it_slideshow_title_text_1 h2,
+.huge_it_slideshow_title_text_1 h3,
+.huge_it_slideshow_title_text_1 h3,
+.huge_it_slideshow_title_text_1 h4,
+.huge_it_slideshow_title_text_1 h4,
+.huge_it_slideshow_title_text_1 p,
+.huge_it_slideshow_title_text_1 p,
+.huge_it_slideshow_title_text_1 strong,
+.huge_it_slideshow_title_text_1 strong,
+.huge_it_slideshow_title_text_1 span,
+.huge_it_slideshow_title_text_1 span,
+.huge_it_slideshow_title_text_1 ul,
+.huge_it_slideshow_title_text_1 ul,
+.huge_it_slideshow_title_text_1 li,
+.huge_it_slideshow_title_text_1 li {
+    padding: 2px;
+    margin: 0px;
+}
+
+.huge_it_slide_container_1 {
+    display: table-cell;
+    margin: 0 auto;
+    position: relative;
+    vertical-align: middle;
+    width: 100%;
+    height: 100%;
+    _width: inherit;
+    _height: inherit;
+}
+
+.huge_it_slide_bg_1 {
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    _width: inherit;
+    _height: inherit;
+}
+
+.huge_it_slider_1 {
+    width: 100%;
+    height: 100%;
+    display: table !important;
+    padding: 0px !important;
+    margin: 0px !important;
+}
+
+.huge_it_slideshow_image_item_1 {
+    width: 100%;
+    height: 100%;
+    _width: inherit;
+    _height: inherit;
+    display: table-cell;
+    filter: Alpha(opacity=100);
+    opacity: 1;
+    position: absolute;
+    top: 0px !important;
+    left: 0px !important;
+    vertical-align: middle;
+    z-index: 1;
+    margin: 0px !important;
+    padding: 0px !important;
+    overflow: hidden !important;
+    border-radius: 0px !important;
+}
+
+.huge_it_slideshow_image_second_item_1 {
+    width: 100%;
+    height: 100%;
+    _width: inherit;
+    _height: inherit;
+    display: table-cell;
+    filter: Alpha(opacity=0);
+    opacity: 0;
+    position: absolute;
+    top: 0px !important;
+    left: 0px !important;
+    vertical-align: middle;
+    overflow: hidden;
+    margin: 0px !important;
+    visibility: visible !important;
+    padding: 0px !important;
+    border-radius: 0px !important;
+}
+
+.huge_it_slideshow_image_second_item_1 a,
+.huge_it_slideshow_image_item_1 a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.huge_it_grid_1 {
+    display: none;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+}
+
+.huge_it_gridlet_1 {
+    opacity: 1;
+    filter: Alpha(opacity=100);
+    position: absolute;
+}
+
+.huge_it_slideshow_dots_container_1 {
+    display: table;
+    position: absolute;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.huge_it_slideshow_dots_thumbnails_1 {
+    margin: 0 auto;
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    height: 30px;
+}
+
+.huge_it_slideshow_dots_1 {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1) inset, 1px 1px 1px rgba(255, 255, 255, 0.1);
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    background: #00f;
+    margin: 10px;
+    overflow: hidden;
+    z-index: 17;
+}
+
+.huge_it_slideshow_dots_active_1 {
+    opacity: 1;
+    filter: Alpha(opacity=100);
+}
+
+.huge_it_slideshow_dots_deactive_1 {}
+
+.huge_it_slideshow_image_wrap_1 {
+    background: #ffffff;
+    border-width: 0px;
+    border-color: #ffffff;
+    border-radius: 0px;
+}
+
+.huge_it_slideshow_image_wrap_1.nocolor {
+    background: transparent;
+}
+
+.huge_it_slideshow_dots_thumbnails_1 {
+    top: 0px;
+}
+
+.huge_it_slideshow_dots_1 {
+    background: #000000;
+}
+
+.huge_it_slideshow_dots_active_1 {
+    background: #ffffff;
+}
+
+
+/*//////////////////////slider thunbnail styles start///////////////////////////*/
+
+.bx-viewport {
+    height: 100px !important;
+    -webkit-transform: translatez(0);
+}
+
+.entry-content .huge_it_slideshow_image_wrap_1 a {
+    border-bottom: none !important;
+}
+
+.entry-content .huge_it_slideshow_image_wrap_1 li {
+    margin: 0px !important;
+    padding: 0px !important;
+}
+
+.entry-content .huge_it_slideshow_image_wrap_1 ul {
+    list-style-type: none !important;
+    margin: 0px !important;
+    padding: 0px !important;
+}
+
+.bx-wrapper {
+    position: relative;
+    margin: 0 auto 0 auto;
+    padding: 0;
+    max-width: px !important;
+    *zoom: 1;
+    -ms-touch-action: pan-y;
+    touch-action: pan-y;
+}
+
+.huge_it_slideshow_thumbs_container_1 {
+    display: none;
+}
+
+.huge_it_slideshow_thumbs_1 {}
+
+.huge_it_slideshow_thumbs_1 li {
+    display: inline-block;
+    height: 100px;
+}
+
+.huge_it_slideshow_thumbnails_1 {
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    background: #FFFFFF;
+    z-index: 17;
+}
+
+.sl_thumb_img {
+    width: 100% !important;
+    height: 100% !important;
+    display: block;
+    margin: 0 auto;
+}
+
+.sl_thumb_img2 {
+    height: 100% !important;
+    display: block;
+    margin: 0 auto;
+}
+
+.trans_back {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    position: absolute;
+    background: rgba(255, 255, 255, 0.5);
+    transition: 0.3s ease;
+}
+
+.trans_back:hover {
+    background: none !important;
+}
+
+.play-icon.youtube {
+    background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/images/play.youtube.png) center center no-repeat;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    position: absolute;
+}
+
+.play-icon.vimeo {
+    background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/images/play.vimeo.png) center center no-repeat;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    position: absolute;
+}
+
+.bx-wrapper {
+    border: 0px solid #fff;
+    background: #fff;
+}
+
+
+/*////////////slider thunbnail styles end//////////////*/
+
+#huge_it_slideshow_left_1 {
+    left: 0px;
+    margin-top: -21px;
+    height: 43px;
+    width: 29px;
+    background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) left top no-repeat;
+    background-size: 200%;
+}
+
+#huge_it_slideshow_right_1 {
+    right: 0px;
+    margin-top: -21px;
+    height: 43px;
+    width: 29px;
+    background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) right top no-repeat;
+    background-size: 200%;
+}
+
+@media screen and (max-width: 1360px) {
+    .huge_it_slideshow_title_text_1 {
+        font-size: 13px !important;
+    }
+    .huge_it_slideshow_description_text_1 {
+        font-size: 13px !important;
+    }
+    .huge_it_slideshow_dots_thumbnails_1 .huge_it_slideshow_dots_1 {
+        width: 10px;
+        height: 10px;
+        border-radius: 10px;
+        margin: 10px;
+    }
+    #huge_it_slideshow_left_1 {
+        left: 0px;
+        margin-top: -21px;
+        height: 4343px;
+        width: 29px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) left top no-repeat;
+        background-size: 200%;
+    }
+    #huge_it_slideshow_right_1 {
+        right: 0px;
+        margin-top: -21px;
+        height: 43px;
+        width: 29px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) right top no-repeat;
+        background-size: 200%;
+    }
+}
+
+@media screen and (max-width: 1332px) {
+    .huge_it_slideshow_title_text_1 {
+        font-size: 12.732352941176px !important;
+    }
+    .huge_it_slideshow_description_text_1 {
+        font-size: 12.732352941176px !important;
+    }
+    .huge_it_slideshow_dots_thumbnails_1 .huge_it_slideshow_dots_1 {
+        width: 9.7941176470588px;
+        height: 9.7941176470588px;
+        border-radius: 9.7941176470588px;
+        margin: 9.7941176470588px;
+    }
+    #huge_it_slideshow_left_1 {
+        left: 0px;
+        margin-top: -20.567647058824px;
+        height: 42.11470588235343px;
+        width: 28.402941176471px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) left top no-repeat;
+        background-size: 200%;
+    }
+    #huge_it_slideshow_right_1 {
+        right: 0px;
+        margin-top: -20.567647058824px;
+        height: 42.114705882353px;
+        width: 28.402941176471px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) right top no-repeat;
+        background-size: 200%;
+    }
+}
+
+@media screen and (max-width: 1304px) {
+    .huge_it_slideshow_title_text_1 {
+        font-size: 12.464705882353px !important;
+    }
+    .huge_it_slideshow_description_text_1 {
+        font-size: 12.464705882353px !important;
+    }
+    .huge_it_slideshow_dots_thumbnails_1 .huge_it_slideshow_dots_1 {
+        width: 9.5882352941176px;
+        height: 9.5882352941176px;
+        border-radius: 9.5882352941176px;
+        margin: 9.5882352941176px;
+    }
+    #huge_it_slideshow_left_1 {
+        left: 0px;
+        margin-top: -20.135294117647px;
+        height: 41.22941176470643px;
+        width: 27.805882352941px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) left top no-repeat;
+        background-size: 200%;
+    }
+    #huge_it_slideshow_right_1 {
+        right: 0px;
+        margin-top: -20.135294117647px;
+        height: 41.229411764706px;
+        width: 27.805882352941px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) right top no-repeat;
+        background-size: 200%;
+    }
+}
+
+@media screen and (max-width: 1276px) {
+    .huge_it_slideshow_title_text_1 {
+        font-size: 12.197058823529px !important;
+    }
+    .huge_it_slideshow_description_text_1 {
+        font-size: 12.197058823529px !important;
+    }
+    .huge_it_slideshow_dots_thumbnails_1 .huge_it_slideshow_dots_1 {
+        width: 9.3823529411765px;
+        height: 9.3823529411765px;
+        border-radius: 9.3823529411765px;
+        margin: 9.3823529411765px;
+    }
+    #huge_it_slideshow_left_1 {
+        left: 0px;
+        margin-top: -19.702941176471px;
+        height: 40.34411764705943px;
+        width: 27.208823529412px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) left top no-repeat;
+        background-size: 200%;
+    }
+    #huge_it_slideshow_right_1 {
+        right: 0px;
+        margin-top: -19.702941176471px;
+        height: 40.344117647059px;
+        width: 27.208823529412px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) right top no-repeat;
+        background-size: 200%;
+    }
+}
+
+@media screen and (max-width: 1248px) {
+    .huge_it_slideshow_title_text_1 {
+        font-size: 11.929411764706px !important;
+    }
+    .huge_it_slideshow_description_text_1 {
+        font-size: 11.929411764706px !important;
+    }
+    .huge_it_slideshow_dots_thumbnails_1 .huge_it_slideshow_dots_1 {
+        width: 9.1764705882353px;
+        height: 9.1764705882353px;
+        border-radius: 9.1764705882353px;
+        margin: 9.1764705882353px;
+    }
+    #huge_it_slideshow_left_1 {
+        left: 0px;
+        margin-top: -19.270588235294px;
+        height: 39.45882352941243px;
+        width: 26.611764705882px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) left top no-repeat;
+        background-size: 200%;
+    }
+    #huge_it_slideshow_right_1 {
+        right: 0px;
+        margin-top: -19.270588235294px;
+        height: 39.458823529412px;
+        width: 26.611764705882px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) right top no-repeat;
+        background-size: 200%;
+    }
+}
+
+@media screen and (max-width: 1220px) {
+    .huge_it_slideshow_title_text_1 {
+        font-size: 11.661764705882px !important;
+    }
+    .huge_it_slideshow_description_text_1 {
+        font-size: 11.661764705882px !important;
+    }
+    .huge_it_slideshow_dots_thumbnails_1 .huge_it_slideshow_dots_1 {
+        width: 8.9705882352941px;
+        height: 8.9705882352941px;
+        border-radius: 8.9705882352941px;
+        margin: 8.9705882352941px;
+    }
+    #huge_it_slideshow_left_1 {
+        left: 0px;
+        margin-top: -18.838235294118px;
+        height: 38.57352941176543px;
+        width: 26.014705882353px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) left top no-repeat;
+        background-size: 200%;
+    }
+    #huge_it_slideshow_right_1 {
+        right: 0px;
+        margin-top: -18.838235294118px;
+        height: 38.573529411765px;
+        width: 26.014705882353px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) right top no-repeat;
+        background-size: 200%;
+    }
+}
+
+@media screen and (max-width: 1192px) {
+    .huge_it_slideshow_title_text_1 {
+        font-size: 11.394117647059px !important;
+    }
+    .huge_it_slideshow_description_text_1 {
+        font-size: 11.394117647059px !important;
+    }
+    .huge_it_slideshow_dots_thumbnails_1 .huge_it_slideshow_dots_1 {
+        width: 8.7647058823529px;
+        height: 8.7647058823529px;
+        border-radius: 8.7647058823529px;
+        margin: 8.7647058823529px;
+    }
+    #huge_it_slideshow_left_1 {
+        left: 0px;
+        margin-top: -18.405882352941px;
+        height: 37.68823529411843px;
+        width: 25.417647058824px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) left top no-repeat;
+        background-size: 200%;
+    }
+    #huge_it_slideshow_right_1 {
+        right: 0px;
+        margin-top: -18.405882352941px;
+        height: 37.688235294118px;
+        width: 25.417647058824px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) right top no-repeat;
+        background-size: 200%;
+    }
+}
+
+@media screen and (max-width: 1164px) {
+    .huge_it_slideshow_title_text_1 {
+        font-size: 11.126470588235px !important;
+    }
+    .huge_it_slideshow_description_text_1 {
+        font-size: 11.126470588235px !important;
+    }
+    .huge_it_slideshow_dots_thumbnails_1 .huge_it_slideshow_dots_1 {
+        width: 8.5588235294118px;
+        height: 8.5588235294118px;
+        border-radius: 8.5588235294118px;
+        margin: 8.5588235294118px;
+    }
+    #huge_it_slideshow_left_1 {
+        left: 0px;
+        margin-top: -17.973529411765px;
+        height: 36.80294117647143px;
+        width: 24.820588235294px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) left top no-repeat;
+        background-size: 200%;
+    }
+    #huge_it_slideshow_right_1 {
+        right: 0px;
+        margin-top: -17.973529411765px;
+        height: 36.802941176471px;
+        width: 24.820588235294px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) right top no-repeat;
+        background-size: 200%;
+    }
+}
+
+@media screen and (max-width: 1136px) {
+    .huge_it_slideshow_title_text_1 {
+        font-size: 10.858823529412px !important;
+    }
+    .huge_it_slideshow_description_text_1 {
+        font-size: 10.858823529412px !important;
+    }
+    .huge_it_slideshow_dots_thumbnails_1 .huge_it_slideshow_dots_1 {
+        width: 8.3529411764706px;
+        height: 8.3529411764706px;
+        border-radius: 8.3529411764706px;
+        margin: 8.3529411764706px;
+    }
+    #huge_it_slideshow_left_1 {
+        left: 0px;
+        margin-top: -17.541176470588px;
+        height: 35.91764705882443px;
+        width: 24.223529411765px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) left top no-repeat;
+        background-size: 200%;
+    }
+    #huge_it_slideshow_right_1 {
+        right: 0px;
+        margin-top: -17.541176470588px;
+        height: 35.917647058824px;
+        width: 24.223529411765px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) right top no-repeat;
+        background-size: 200%;
+    }
+}
+
+@media screen and (max-width: 1108px) {
+    .huge_it_slideshow_title_text_1 {
+        font-size: 10.591176470588px !important;
+    }
+    .huge_it_slideshow_description_text_1 {
+        font-size: 10.591176470588px !important;
+    }
+    .huge_it_slideshow_dots_thumbnails_1 .huge_it_slideshow_dots_1 {
+        width: 8.1470588235294px;
+        height: 8.1470588235294px;
+        border-radius: 8.1470588235294px;
+        margin: 8.1470588235294px;
+    }
+    #huge_it_slideshow_left_1 {
+        left: 0px;
+        margin-top: -17.108823529412px;
+        height: 35.03235294117643px;
+        width: 23.626470588235px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) left top no-repeat;
+        background-size: 200%;
+    }
+    #huge_it_slideshow_right_1 {
+        right: 0px;
+        margin-top: -17.108823529412px;
+        height: 35.032352941176px;
+        width: 23.626470588235px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) right top no-repeat;
+        background-size: 200%;
+    }
+}
+
+@media screen and (max-width: 1080px) {
+    .huge_it_slideshow_title_text_1 {
+        font-size: 10.323529411765px !important;
+    }
+    .huge_it_slideshow_description_text_1 {
+        font-size: 10.323529411765px !important;
+    }
+    .huge_it_slideshow_dots_thumbnails_1 .huge_it_slideshow_dots_1 {
+        width: 7.9411764705882px;
+        height: 7.9411764705882px;
+        border-radius: 7.9411764705882px;
+        margin: 7.9411764705882px;
+    }
+    #huge_it_slideshow_left_1 {
+        left: 0px;
+        margin-top: -16.676470588235px;
+        height: 34.14705882352943px;
+        width: 23.029411764706px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) left top no-repeat;
+        background-size: 200%;
+    }
+    #huge_it_slideshow_right_1 {
+        right: 0px;
+        margin-top: -16.676470588235px;
+        height: 34.147058823529px;
+        width: 23.029411764706px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) right top no-repeat;
+        background-size: 200%;
+    }
+}
+
+@media screen and (max-width: 1052px) {
+    .huge_it_slideshow_title_text_1 {
+        font-size: 10.055882352941px !important;
+    }
+    .huge_it_slideshow_description_text_1 {
+        font-size: 10.055882352941px !important;
+    }
+    .huge_it_slideshow_dots_thumbnails_1 .huge_it_slideshow_dots_1 {
+        width: 7.7352941176471px;
+        height: 7.7352941176471px;
+        border-radius: 7.7352941176471px;
+        margin: 7.7352941176471px;
+    }
+    #huge_it_slideshow_left_1 {
+        left: 0px;
+        margin-top: -16.244117647059px;
+        height: 33.26176470588243px;
+        width: 22.432352941176px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) left top no-repeat;
+        background-size: 200%;
+    }
+    #huge_it_slideshow_right_1 {
+        right: 0px;
+        margin-top: -16.244117647059px;
+        height: 33.261764705882px;
+        width: 22.432352941176px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) right top no-repeat;
+        background-size: 200%;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .huge_it_slideshow_title_text_1 {
+        font-size: 9.7882352941176px !important;
+    }
+    .huge_it_slideshow_description_text_1 {
+        font-size: 9.7882352941176px !important;
+    }
+    .huge_it_slideshow_dots_thumbnails_1 .huge_it_slideshow_dots_1 {
+        width: 7.5294117647059px;
+        height: 7.5294117647059px;
+        border-radius: 7.5294117647059px;
+        margin: 7.5294117647059px;
+    }
+    #huge_it_slideshow_left_1 {
+        left: 0px;
+        margin-top: -15.811764705882px;
+        height: 32.37647058823543px;
+        width: 21.835294117647px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) left top no-repeat;
+        background-size: 200%;
+    }
+    #huge_it_slideshow_right_1 {
+        right: 0px;
+        margin-top: -15.811764705882px;
+        height: 32.376470588235px;
+        width: 21.835294117647px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) right top no-repeat;
+        background-size: 200%;
+    }
+}
+
+@media screen and (max-width: 996px) {
+    .huge_it_slideshow_title_text_1 {
+        font-size: 9.5205882352941px !important;
+    }
+    .huge_it_slideshow_description_text_1 {
+        font-size: 9.5205882352941px !important;
+    }
+    .huge_it_slideshow_dots_thumbnails_1 .huge_it_slideshow_dots_1 {
+        width: 7.3235294117647px;
+        height: 7.3235294117647px;
+        border-radius: 7.3235294117647px;
+        margin: 7.3235294117647px;
+    }
+    #huge_it_slideshow_left_1 {
+        left: 0px;
+        margin-top: -15.379411764706px;
+        height: 31.49117647058843px;
+        width: 21.238235294118px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) left top no-repeat;
+        background-size: 200%;
+    }
+    #huge_it_slideshow_right_1 {
+        right: 0px;
+        margin-top: -15.379411764706px;
+        height: 31.491176470588px;
+        width: 21.238235294118px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) right top no-repeat;
+        background-size: 200%;
+    }
+}
+
+@media screen and (max-width: 968px) {
+    .huge_it_slideshow_title_text_1 {
+        font-size: 9.2529411764706px !important;
+    }
+    .huge_it_slideshow_description_text_1 {
+        font-size: 9.2529411764706px !important;
+    }
+    .huge_it_slideshow_dots_thumbnails_1 .huge_it_slideshow_dots_1 {
+        width: 7.1176470588235px;
+        height: 7.1176470588235px;
+        border-radius: 7.1176470588235px;
+        margin: 7.1176470588235px;
+    }
+    #huge_it_slideshow_left_1 {
+        left: 0px;
+        margin-top: -14.947058823529px;
+        height: 30.60588235294143px;
+        width: 20.641176470588px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) left top no-repeat;
+        background-size: 200%;
+    }
+    #huge_it_slideshow_right_1 {
+        right: 0px;
+        margin-top: -14.947058823529px;
+        height: 30.605882352941px;
+        width: 20.641176470588px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) right top no-repeat;
+        background-size: 200%;
+    }
+}
+
+@media screen and (max-width: 940px) {
+    .huge_it_slideshow_title_text_1 {
+        font-size: 8.9852941176471px !important;
+    }
+    .huge_it_slideshow_description_text_1 {
+        font-size: 8.9852941176471px !important;
+    }
+    .huge_it_slideshow_dots_thumbnails_1 .huge_it_slideshow_dots_1 {
+        width: 6.9117647058824px;
+        height: 6.9117647058824px;
+        border-radius: 6.9117647058824px;
+        margin: 6.9117647058824px;
+    }
+    #huge_it_slideshow_left_1 {
+        left: 0px;
+        margin-top: -14.514705882353px;
+        height: 29.72058823529443px;
+        width: 20.044117647059px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) left top no-repeat;
+        background-size: 200%;
+    }
+    #huge_it_slideshow_right_1 {
+        right: 0px;
+        margin-top: -14.514705882353px;
+        height: 29.720588235294px;
+        width: 20.044117647059px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) right top no-repeat;
+        background-size: 200%;
+    }
+}
+
+@media screen and (max-width: 912px) {
+    .huge_it_slideshow_title_text_1 {
+        font-size: 8.7176470588235px !important;
+    }
+    .huge_it_slideshow_description_text_1 {
+        font-size: 8.7176470588235px !important;
+    }
+    .huge_it_slideshow_dots_thumbnails_1 .huge_it_slideshow_dots_1 {
+        width: 6.7058823529412px;
+        height: 6.7058823529412px;
+        border-radius: 6.7058823529412px;
+        margin: 6.7058823529412px;
+    }
+    #huge_it_slideshow_left_1 {
+        left: 0px;
+        margin-top: -14.082352941176px;
+        height: 28.83529411764743px;
+        width: 19.447058823529px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) left top no-repeat;
+        background-size: 200%;
+    }
+    #huge_it_slideshow_right_1 {
+        right: 0px;
+        margin-top: -14.082352941176px;
+        height: 28.835294117647px;
+        width: 19.447058823529px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) right top no-repeat;
+        background-size: 200%;
+    }
+}
+
+@media screen and (max-width: 884px) {
+    .huge_it_slideshow_title_text_1 {
+        font-size: 8.45px !important;
+    }
+    .huge_it_slideshow_description_text_1 {
+        font-size: 8.45px !important;
+    }
+    .huge_it_slideshow_dots_thumbnails_1 .huge_it_slideshow_dots_1 {
+        width: 6.5px;
+        height: 6.5px;
+        border-radius: 6.5px;
+        margin: 6.5px;
+    }
+    #huge_it_slideshow_left_1 {
+        left: 0px;
+        margin-top: -13.65px;
+        height: 27.9543px;
+        width: 18.85px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) left top no-repeat;
+        background-size: 200%;
+    }
+    #huge_it_slideshow_right_1 {
+        right: 0px;
+        margin-top: -13.65px;
+        height: 27.95px;
+        width: 18.85px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) right top no-repeat;
+        background-size: 200%;
+    }
+}
+
+@media screen and (max-width: 856px) {
+    .huge_it_slideshow_title_text_1 {
+        font-size: 8.1823529411765px !important;
+    }
+    .huge_it_slideshow_description_text_1 {
+        font-size: 8.1823529411765px !important;
+    }
+    .huge_it_slideshow_dots_thumbnails_1 .huge_it_slideshow_dots_1 {
+        width: 6.2941176470588px;
+        height: 6.2941176470588px;
+        border-radius: 6.2941176470588px;
+        margin: 6.2941176470588px;
+    }
+    #huge_it_slideshow_left_1 {
+        left: 0px;
+        margin-top: -13.217647058824px;
+        height: 27.06470588235343px;
+        width: 18.252941176471px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) left top no-repeat;
+        background-size: 200%;
+    }
+    #huge_it_slideshow_right_1 {
+        right: 0px;
+        margin-top: -13.217647058824px;
+        height: 27.064705882353px;
+        width: 18.252941176471px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) right top no-repeat;
+        background-size: 200%;
+    }
+}
+
+@media screen and (max-width: 828px) {
+    .huge_it_slideshow_title_text_1 {
+        font-size: 7.9147058823529px !important;
+    }
+    .huge_it_slideshow_description_text_1 {
+        font-size: 7.9147058823529px !important;
+    }
+    .huge_it_slideshow_dots_thumbnails_1 .huge_it_slideshow_dots_1 {
+        width: 6.0882352941176px;
+        height: 6.0882352941176px;
+        border-radius: 6.0882352941176px;
+        margin: 6.0882352941176px;
+    }
+    #huge_it_slideshow_left_1 {
+        left: 0px;
+        margin-top: -12.785294117647px;
+        height: 26.17941176470643px;
+        width: 17.655882352941px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) left top no-repeat;
+        background-size: 200%;
+    }
+    #huge_it_slideshow_right_1 {
+        right: 0px;
+        margin-top: -12.785294117647px;
+        height: 26.179411764706px;
+        width: 17.655882352941px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) right top no-repeat;
+        background-size: 200%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .huge_it_slideshow_title_text_1 {
+        font-size: 7.6470588235294px !important;
+    }
+    .huge_it_slideshow_description_text_1 {
+        font-size: 7.6470588235294px !important;
+    }
+    .huge_it_slideshow_dots_thumbnails_1 .huge_it_slideshow_dots_1 {
+        width: 5.8823529411765px;
+        height: 5.8823529411765px;
+        border-radius: 5.8823529411765px;
+        margin: 5.8823529411765px;
+    }
+    #huge_it_slideshow_left_1 {
+        left: 0px;
+        margin-top: -12.352941176471px;
+        height: 25.29411764705943px;
+        width: 17.058823529412px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) left top no-repeat;
+        background-size: 200%;
+    }
+    #huge_it_slideshow_right_1 {
+        right: 0px;
+        margin-top: -12.352941176471px;
+        height: 25.294117647059px;
+        width: 17.058823529412px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) right top no-repeat;
+        background-size: 200%;
+    }
+}
+
+@media screen and (max-width: 772px) {
+    .huge_it_slideshow_title_text_1 {
+        font-size: 7.3794117647059px !important;
+    }
+    .huge_it_slideshow_description_text_1 {
+        font-size: 7.3794117647059px !important;
+    }
+    .huge_it_slideshow_dots_thumbnails_1 .huge_it_slideshow_dots_1 {
+        width: 5.6764705882353px;
+        height: 5.6764705882353px;
+        border-radius: 5.6764705882353px;
+        margin: 5.6764705882353px;
+    }
+    #huge_it_slideshow_left_1 {
+        left: 0px;
+        margin-top: -11.920588235294px;
+        height: 24.40882352941243px;
+        width: 16.461764705882px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) left top no-repeat;
+        background-size: 200%;
+    }
+    #huge_it_slideshow_right_1 {
+        right: 0px;
+        margin-top: -11.920588235294px;
+        height: 24.408823529412px;
+        width: 16.461764705882px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) right top no-repeat;
+        background-size: 200%;
+    }
+}
+
+@media screen and (max-width: 744px) {
+    .huge_it_slideshow_title_text_1 {
+        font-size: 7.1117647058824px !important;
+    }
+    .huge_it_slideshow_description_text_1 {
+        font-size: 7.1117647058824px !important;
+    }
+    .huge_it_slideshow_dots_thumbnails_1 .huge_it_slideshow_dots_1 {
+        width: 5.4705882352941px;
+        height: 5.4705882352941px;
+        border-radius: 5.4705882352941px;
+        margin: 5.4705882352941px;
+    }
+    #huge_it_slideshow_left_1 {
+        left: 0px;
+        margin-top: -11.488235294118px;
+        height: 23.52352941176543px;
+        width: 15.864705882353px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) left top no-repeat;
+        background-size: 200%;
+    }
+    #huge_it_slideshow_right_1 {
+        right: 0px;
+        margin-top: -11.488235294118px;
+        height: 23.523529411765px;
+        width: 15.864705882353px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) right top no-repeat;
+        background-size: 200%;
+    }
+}
+
+@media screen and (max-width: 716px) {
+    .huge_it_slideshow_title_text_1 {
+        font-size: 6.8441176470588px !important;
+    }
+    .huge_it_slideshow_description_text_1 {
+        font-size: 6.8441176470588px !important;
+    }
+    .huge_it_slideshow_dots_thumbnails_1 .huge_it_slideshow_dots_1 {
+        width: 5.2647058823529px;
+        height: 5.2647058823529px;
+        border-radius: 5.2647058823529px;
+        margin: 5.2647058823529px;
+    }
+    #huge_it_slideshow_left_1 {
+        left: 0px;
+        margin-top: -11.055882352941px;
+        height: 22.63823529411843px;
+        width: 15.267647058824px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) left top no-repeat;
+        background-size: 200%;
+    }
+    #huge_it_slideshow_right_1 {
+        right: 0px;
+        margin-top: -11.055882352941px;
+        height: 22.638235294118px;
+        width: 15.267647058824px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) right top no-repeat;
+        background-size: 200%;
+    }
+}
+
+@media screen and (max-width: 688px) {
+    .huge_it_slideshow_title_text_1 {
+        font-size: 6.5764705882353px !important;
+    }
+    .huge_it_slideshow_description_text_1 {
+        font-size: 6.5764705882353px !important;
+    }
+    .huge_it_slideshow_dots_thumbnails_1 .huge_it_slideshow_dots_1 {
+        width: 5.0588235294118px;
+        height: 5.0588235294118px;
+        border-radius: 5.0588235294118px;
+        margin: 5.0588235294118px;
+    }
+    #huge_it_slideshow_left_1 {
+        left: 0px;
+        margin-top: -10.623529411765px;
+        height: 21.75294117647143px;
+        width: 14.670588235294px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) left top no-repeat;
+        background-size: 200%;
+    }
+    #huge_it_slideshow_right_1 {
+        right: 0px;
+        margin-top: -10.623529411765px;
+        height: 21.752941176471px;
+        width: 14.670588235294px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) right top no-repeat;
+        background-size: 200%;
+    }
+}
+
+@media screen and (max-width: 660px) {
+    .huge_it_slideshow_title_text_1 {
+        font-size: 6.3088235294118px !important;
+    }
+    .huge_it_slideshow_description_text_1 {
+        font-size: 6.3088235294118px !important;
+    }
+    .huge_it_slideshow_dots_thumbnails_1 .huge_it_slideshow_dots_1 {
+        width: 4.8529411764706px;
+        height: 4.8529411764706px;
+        border-radius: 4.8529411764706px;
+        margin: 4.8529411764706px;
+    }
+    #huge_it_slideshow_left_1 {
+        left: 0px;
+        margin-top: -10.191176470588px;
+        height: 20.86764705882443px;
+        width: 14.073529411765px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) left top no-repeat;
+        background-size: 200%;
+    }
+    #huge_it_slideshow_right_1 {
+        right: 0px;
+        margin-top: -10.191176470588px;
+        height: 20.867647058824px;
+        width: 14.073529411765px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) right top no-repeat;
+        background-size: 200%;
+    }
+}
+
+@media screen and (max-width: 632px) {
+    .huge_it_slideshow_title_text_1 {
+        font-size: 6.0411764705882px !important;
+    }
+    .huge_it_slideshow_description_text_1 {
+        font-size: 6.0411764705882px !important;
+    }
+    .huge_it_slideshow_dots_thumbnails_1 .huge_it_slideshow_dots_1 {
+        width: 4.6470588235294px;
+        height: 4.6470588235294px;
+        border-radius: 4.6470588235294px;
+        margin: 4.6470588235294px;
+    }
+    #huge_it_slideshow_left_1 {
+        left: 0px;
+        margin-top: -9.7588235294118px;
+        height: 19.98235294117643px;
+        width: 13.476470588235px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) left top no-repeat;
+        background-size: 200%;
+    }
+    #huge_it_slideshow_right_1 {
+        right: 0px;
+        margin-top: -9.7588235294118px;
+        height: 19.982352941176px;
+        width: 13.476470588235px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) right top no-repeat;
+        background-size: 200%;
+    }
+}
+
+@media screen and (max-width: 604px) {
+    .huge_it_slideshow_title_text_1 {
+        font-size: 5.7735294117647px !important;
+    }
+    .huge_it_slideshow_description_text_1 {
+        font-size: 5.7735294117647px !important;
+    }
+    .huge_it_slideshow_dots_thumbnails_1 .huge_it_slideshow_dots_1 {
+        width: 4.4411764705882px;
+        height: 4.4411764705882px;
+        border-radius: 4.4411764705882px;
+        margin: 4.4411764705882px;
+    }
+    #huge_it_slideshow_left_1 {
+        left: 0px;
+        margin-top: -9.3264705882353px;
+        height: 19.09705882352943px;
+        width: 12.879411764706px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) left top no-repeat;
+        background-size: 200%;
+    }
+    #huge_it_slideshow_right_1 {
+        right: 0px;
+        margin-top: -9.3264705882353px;
+        height: 19.097058823529px;
+        width: 12.879411764706px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) right top no-repeat;
+        background-size: 200%;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .huge_it_slideshow_title_text_1 {
+        font-size: 5.5058823529412px !important;
+    }
+    .huge_it_slideshow_description_text_1 {
+        font-size: 5.5058823529412px !important;
+    }
+    .huge_it_slideshow_dots_thumbnails_1 .huge_it_slideshow_dots_1 {
+        width: 4.2352941176471px;
+        height: 4.2352941176471px;
+        border-radius: 4.2352941176471px;
+        margin: 4.2352941176471px;
+    }
+    #huge_it_slideshow_left_1 {
+        left: 0px;
+        margin-top: -8.8941176470588px;
+        height: 18.21176470588243px;
+        width: 12.282352941176px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) left top no-repeat;
+        background-size: 200%;
+    }
+    #huge_it_slideshow_right_1 {
+        right: 0px;
+        margin-top: -8.8941176470588px;
+        height: 18.211764705882px;
+        width: 12.282352941176px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) right top no-repeat;
+        background-size: 200%;
+    }
+}
+
+@media screen and (max-width: 548px) {
+    .huge_it_slideshow_title_text_1 {
+        font-size: 5.2382352941176px !important;
+    }
+    .huge_it_slideshow_description_text_1 {
+        font-size: 5.2382352941176px !important;
+    }
+    .huge_it_slideshow_dots_thumbnails_1 .huge_it_slideshow_dots_1 {
+        width: 4.0294117647059px;
+        height: 4.0294117647059px;
+        border-radius: 4.0294117647059px;
+        margin: 4.0294117647059px;
+    }
+    #huge_it_slideshow_left_1 {
+        left: 0px;
+        margin-top: -8.4617647058824px;
+        height: 17.32647058823543px;
+        width: 11.685294117647px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) left top no-repeat;
+        background-size: 200%;
+    }
+    #huge_it_slideshow_right_1 {
+        right: 0px;
+        margin-top: -8.4617647058824px;
+        height: 17.326470588235px;
+        width: 11.685294117647px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) right top no-repeat;
+        background-size: 200%;
+    }
+}
+
+@media screen and (max-width: 520px) {
+    .huge_it_slideshow_title_text_1 {
+        font-size: 4.9705882352941px !important;
+    }
+    .huge_it_slideshow_description_text_1 {
+        font-size: 4.9705882352941px !important;
+    }
+    .huge_it_slideshow_dots_thumbnails_1 .huge_it_slideshow_dots_1 {
+        width: 3.8235294117647px;
+        height: 3.8235294117647px;
+        border-radius: 3.8235294117647px;
+        margin: 3.8235294117647px;
+    }
+    #huge_it_slideshow_left_1 {
+        left: 0px;
+        margin-top: -8.0294117647059px;
+        height: 16.44117647058843px;
+        width: 11.088235294118px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) left top no-repeat;
+        background-size: 200%;
+    }
+    #huge_it_slideshow_right_1 {
+        right: 0px;
+        margin-top: -8.0294117647059px;
+        height: 16.441176470588px;
+        width: 11.088235294118px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) right top no-repeat;
+        background-size: 200%;
+    }
+}
+
+@media screen and (max-width: 492px) {
+    .huge_it_slideshow_title_text_1 {
+        font-size: 4.7029411764706px !important;
+    }
+    .huge_it_slideshow_description_text_1 {
+        font-size: 4.7029411764706px !important;
+    }
+    .huge_it_slideshow_dots_thumbnails_1 .huge_it_slideshow_dots_1 {
+        width: 3.6176470588235px;
+        height: 3.6176470588235px;
+        border-radius: 3.6176470588235px;
+        margin: 3.6176470588235px;
+    }
+    #huge_it_slideshow_left_1 {
+        left: 0px;
+        margin-top: -7.5970588235294px;
+        height: 15.55588235294143px;
+        width: 10.491176470588px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) left top no-repeat;
+        background-size: 200%;
+    }
+    #huge_it_slideshow_right_1 {
+        right: 0px;
+        margin-top: -7.5970588235294px;
+        height: 15.555882352941px;
+        width: 10.491176470588px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) right top no-repeat;
+        background-size: 200%;
+    }
+}
+
+@media screen and (max-width: 464px) {
+    .huge_it_slideshow_title_text_1 {
+        font-size: 4.4352941176471px !important;
+    }
+    .huge_it_slideshow_description_text_1 {
+        font-size: 4.4352941176471px !important;
+    }
+    .huge_it_slideshow_dots_thumbnails_1 .huge_it_slideshow_dots_1 {
+        width: 3.4117647058824px;
+        height: 3.4117647058824px;
+        border-radius: 3.4117647058824px;
+        margin: 3.4117647058824px;
+    }
+    #huge_it_slideshow_left_1 {
+        left: 0px;
+        margin-top: -7.1647058823529px;
+        height: 14.67058823529443px;
+        width: 9.8941176470588px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) left top no-repeat;
+        background-size: 200%;
+    }
+    #huge_it_slideshow_right_1 {
+        right: 0px;
+        margin-top: -7.1647058823529px;
+        height: 14.670588235294px;
+        width: 9.8941176470588px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) right top no-repeat;
+        background-size: 200%;
+    }
+}
+
+@media screen and (max-width: 436px) {
+    .huge_it_slideshow_title_text_1 {
+        font-size: 4.1676470588235px !important;
+    }
+    .huge_it_slideshow_description_text_1 {
+        font-size: 4.1676470588235px !important;
+    }
+    .huge_it_slideshow_dots_thumbnails_1 .huge_it_slideshow_dots_1 {
+        width: 3.2058823529412px;
+        height: 3.2058823529412px;
+        border-radius: 3.2058823529412px;
+        margin: 3.2058823529412px;
+    }
+    #huge_it_slideshow_left_1 {
+        left: 0px;
+        margin-top: -6.7323529411765px;
+        height: 13.78529411764743px;
+        width: 9.2970588235294px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) left top no-repeat;
+        background-size: 200%;
+    }
+    #huge_it_slideshow_right_1 {
+        right: 0px;
+        margin-top: -6.7323529411765px;
+        height: 13.785294117647px;
+        width: 9.2970588235294px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) right top no-repeat;
+        background-size: 200%;
+    }
+}
+
+@media screen and (max-width: 408px) {
+    .huge_it_slideshow_title_text_1 {
+        font-size: 3.9px !important;
+    }
+    .huge_it_slideshow_description_text_1 {
+        font-size: 3.9px !important;
+    }
+    .huge_it_slideshow_dots_thumbnails_1 .huge_it_slideshow_dots_1 {
+        width: 3px;
+        height: 3px;
+        border-radius: 3px;
+        margin: 3px;
+    }
+    #huge_it_slideshow_left_1 {
+        left: 0px;
+        margin-top: -6.3px;
+        height: 12.943px;
+        width: 8.7px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) left top no-repeat;
+        background-size: 200%;
+    }
+    #huge_it_slideshow_right_1 {
+        right: 0px;
+        margin-top: -6.3px;
+        height: 12.9px;
+        width: 8.7px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) right top no-repeat;
+        background-size: 200%;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    .huge_it_slideshow_title_text_1 {
+        font-size: 3.6323529411765px !important;
+    }
+    .huge_it_slideshow_description_text_1 {
+        font-size: 3.6323529411765px !important;
+    }
+    .huge_it_slideshow_dots_thumbnails_1 .huge_it_slideshow_dots_1 {
+        width: 2.7941176470588px;
+        height: 2.7941176470588px;
+        border-radius: 2.7941176470588px;
+        margin: 2.7941176470588px;
+    }
+    #huge_it_slideshow_left_1 {
+        left: 0px;
+        margin-top: -5.8676470588235px;
+        height: 12.01470588235343px;
+        width: 8.1029411764706px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) left top no-repeat;
+        background-size: 200%;
+    }
+    #huge_it_slideshow_right_1 {
+        right: 0px;
+        margin-top: -5.8676470588235px;
+        height: 12.014705882353px;
+        width: 8.1029411764706px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) right top no-repeat;
+        background-size: 200%;
+    }
+}
+
+@media screen and (max-width: 352px) {
+    .huge_it_slideshow_title_text_1 {
+        font-size: 3.3647058823529px !important;
+    }
+    .huge_it_slideshow_description_text_1 {
+        font-size: 3.3647058823529px !important;
+    }
+    .huge_it_slideshow_dots_thumbnails_1 .huge_it_slideshow_dots_1 {
+        width: 2.5882352941176px;
+        height: 2.5882352941176px;
+        border-radius: 2.5882352941176px;
+        margin: 2.5882352941176px;
+    }
+    #huge_it_slideshow_left_1 {
+        left: 0px;
+        margin-top: -5.4352941176471px;
+        height: 11.12941176470643px;
+        width: 7.5058823529412px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) left top no-repeat;
+        background-size: 200%;
+    }
+    #huge_it_slideshow_right_1 {
+        right: 0px;
+        margin-top: -5.4352941176471px;
+        height: 11.129411764706px;
+        width: 7.5058823529412px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) right top no-repeat;
+        background-size: 200%;
+    }
+}
+
+@media screen and (max-width: 324px) {
+    .huge_it_slideshow_title_text_1 {
+        font-size: 3.0970588235294px !important;
+    }
+    .huge_it_slideshow_description_text_1 {
+        font-size: 3.0970588235294px !important;
+    }
+    .huge_it_slideshow_dots_thumbnails_1 .huge_it_slideshow_dots_1 {
+        width: 2.3823529411765px;
+        height: 2.3823529411765px;
+        border-radius: 2.3823529411765px;
+        margin: 2.3823529411765px;
+    }
+    #huge_it_slideshow_left_1 {
+        left: 0px;
+        margin-top: -5.0029411764706px;
+        height: 10.24411764705943px;
+        width: 6.9088235294118px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) left top no-repeat;
+        background-size: 200%;
+    }
+    #huge_it_slideshow_right_1 {
+        right: 0px;
+        margin-top: -5.0029411764706px;
+        height: 10.244117647059px;
+        width: 6.9088235294118px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) right top no-repeat;
+        background-size: 200%;
+    }
+}
+
+@media screen and (max-width: 296px) {
+    .huge_it_slideshow_title_text_1 {
+        font-size: 2.8294117647059px !important;
+    }
+    .huge_it_slideshow_description_text_1 {
+        font-size: 2.8294117647059px !important;
+    }
+    .huge_it_slideshow_dots_thumbnails_1 .huge_it_slideshow_dots_1 {
+        width: 2.1764705882353px;
+        height: 2.1764705882353px;
+        border-radius: 2.1764705882353px;
+        margin: 2.1764705882353px;
+    }
+    #huge_it_slideshow_left_1 {
+        left: 0px;
+        margin-top: -4.5705882352941px;
+        height: 9.358823529411843px;
+        width: 6.3117647058824px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) left top no-repeat;
+        background-size: 200%;
+    }
+    #huge_it_slideshow_right_1 {
+        right: 0px;
+        margin-top: -4.5705882352941px;
+        height: 9.3588235294118px;
+        width: 6.3117647058824px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) right top no-repeat;
+        background-size: 200%;
+    }
+}
+
+@media screen and (max-width: 268px) {
+    .huge_it_slideshow_title_text_1 {
+        font-size: 2.5617647058824px !important;
+    }
+    .huge_it_slideshow_description_text_1 {
+        font-size: 2.5617647058824px !important;
+    }
+    .huge_it_slideshow_dots_thumbnails_1 .huge_it_slideshow_dots_1 {
+        width: 1.9705882352941px;
+        height: 1.9705882352941px;
+        border-radius: 1.9705882352941px;
+        margin: 1.9705882352941px;
+    }
+    #huge_it_slideshow_left_1 {
+        left: 0px;
+        margin-top: -4.1382352941176px;
+        height: 8.473529411764743px;
+        width: 5.7147058823529px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) left top no-repeat;
+        background-size: 200%;
+    }
+    #huge_it_slideshow_right_1 {
+        right: 0px;
+        margin-top: -4.1382352941176px;
+        height: 8.4735294117647px;
+        width: 5.7147058823529px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) right top no-repeat;
+        background-size: 200%;
+    }
+}
+
+@media screen and (max-width: 240px) {
+    .huge_it_slideshow_title_text_1 {
+        font-size: 2.2941176470588px !important;
+    }
+    .huge_it_slideshow_description_text_1 {
+        font-size: 2.2941176470588px !important;
+    }
+    .huge_it_slideshow_dots_thumbnails_1 .huge_it_slideshow_dots_1 {
+        width: 1.7647058823529px;
+        height: 1.7647058823529px;
+        border-radius: 1.7647058823529px;
+        margin: 1.7647058823529px;
+    }
+    #huge_it_slideshow_left_1 {
+        left: 0px;
+        margin-top: -3.7058823529412px;
+        height: 7.588235294117643px;
+        width: 5.1176470588235px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) left top no-repeat;
+        background-size: 200%;
+    }
+    #huge_it_slideshow_right_1 {
+        right: 0px;
+        margin-top: -3.7058823529412px;
+        height: 7.5882352941176px;
+        width: 5.1176470588235px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) right top no-repeat;
+        background-size: 200%;
+    }
+}
+
+@media screen and (max-width: 212px) {
+    .huge_it_slideshow_title_text_1 {
+        font-size: 2.0264705882353px !important;
+    }
+    .huge_it_slideshow_description_text_1 {
+        font-size: 2.0264705882353px !important;
+    }
+    .huge_it_slideshow_dots_thumbnails_1 .huge_it_slideshow_dots_1 {
+        width: 1.5588235294118px;
+        height: 1.5588235294118px;
+        border-radius: 1.5588235294118px;
+        margin: 1.5588235294118px;
+    }
+    #huge_it_slideshow_left_1 {
+        left: 0px;
+        margin-top: -3.2735294117647px;
+        height: 6.702941176470643px;
+        width: 4.5205882352941px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) left top no-repeat;
+        background-size: 200%;
+    }
+    #huge_it_slideshow_right_1 {
+        right: 0px;
+        margin-top: -3.2735294117647px;
+        height: 6.7029411764706px;
+        width: 4.5205882352941px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) right top no-repeat;
+        background-size: 200%;
+    }
+}
+
+@media screen and (max-width: 184px) {
+    .huge_it_slideshow_title_text_1 {
+        font-size: 1.7588235294118px !important;
+    }
+    .huge_it_slideshow_description_text_1 {
+        font-size: 1.7588235294118px !important;
+    }
+    .huge_it_slideshow_dots_thumbnails_1 .huge_it_slideshow_dots_1 {
+        width: 1.3529411764706px;
+        height: 1.3529411764706px;
+        border-radius: 1.3529411764706px;
+        margin: 1.3529411764706px;
+    }
+    #huge_it_slideshow_left_1 {
+        left: 0px;
+        margin-top: -2.8411764705882px;
+        height: 5.817647058823543px;
+        width: 3.9235294117647px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) left top no-repeat;
+        background-size: 200%;
+    }
+    #huge_it_slideshow_right_1 {
+        right: 0px;
+        margin-top: -2.8411764705882px;
+        height: 5.8176470588235px;
+        width: 3.9235294117647px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) right top no-repeat;
+        background-size: 200%;
+    }
+}
+
+@media screen and (max-width: 156px) {
+    .huge_it_slideshow_title_text_1 {
+        font-size: 1.4911764705882px !important;
+    }
+    .huge_it_slideshow_description_text_1 {
+        font-size: 1.4911764705882px !important;
+    }
+    .huge_it_slideshow_dots_thumbnails_1 .huge_it_slideshow_dots_1 {
+        width: 1.1470588235294px;
+        height: 1.1470588235294px;
+        border-radius: 1.1470588235294px;
+        margin: 1.1470588235294px;
+    }
+    #huge_it_slideshow_left_1 {
+        left: 0px;
+        margin-top: -2.4088235294118px;
+        height: 4.932352941176543px;
+        width: 3.3264705882353px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) left top no-repeat;
+        background-size: 200%;
+    }
+    #huge_it_slideshow_right_1 {
+        right: 0px;
+        margin-top: -2.4088235294118px;
+        height: 4.9323529411765px;
+        width: 3.3264705882353px;
+        background: url(http://ototaihyundai.net/wp-content/plugins/slider-image/Front_images/arrows/arrows.simple.png) right top no-repeat;
+        background-size: 200%;
+    }
+}
