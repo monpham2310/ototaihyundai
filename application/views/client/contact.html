@@ -1,0 +1,48 @@
+<div id="primary">
+    <div class="col-lg-6">
+        <aside id="xo10_wc_cats_widget-2" class="widget woocommerce-product-categories">
+            <h3 class="widget-title title-block-wrap clearfix"><span class="block-title"><span>Thông tin liên hệ:</span></span></h3>
+            <form name="form" class="form-horizontal" ng-submit="contact()">
+                <div class="form-group">
+                    <div class="col-sm-2">Tên: <font style="color:red; margin-left:3px">(*)</font></div>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control contact" ng-model="name" required/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-2">Điện thoại: </div>
+                    <div class="col-sm-10">
+                        <input type="tel" class="form-control contact" ng-model="phone" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-2">Email<font style="color:red; margin-left:3px">(*)</font></div>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control contact" ng-model="email" required/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-2">Chủ đề: <font style="color:red; margin-left:3px">(*)</font></div>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control contact" ng-model="title" required/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-2">Nội dung: <font style="color:red; margin-left:3px">(*)</font></div>
+                    <div class="col-sm-10">
+                        <textarea class="form-control contact" ng-model="content"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input class="btn-send" type="submit" value="Gửi">
+                </div>
+            </form>
+        </aside>
+    </div>
+    <div class="col-lg-6">
+        <aside id="xo10_wc_cats_widget-2" class="widget woocommerce-product-categories">
+            <h3 class="widget-title title-block-wrap clearfix"><span class="block-title"><span>Bản đồ</span></span></h3>
+
+        </aside>
+    </div>
+</div>
