@@ -1871,6 +1871,7 @@ Magazine Block 1 CSS
     font-size: 18px;
     overflow: hidden;
     margin-bottom: 20px;
+    margin-top: 0px;
 }
 
 .block-title {

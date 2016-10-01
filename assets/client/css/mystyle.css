@@ -1,3 +1,15 @@
+.home-video {
+    max-width: 100%;
+}
+.home-video iframe {
+    max-width: 100%;
+}
+.home-widget-row {
+    margin-bottom: 20px;
+}
+.home-widget-title {
+    margin-top: 0px;
+}
 #secondary{
 /*    padding-left: 10px;*/
 }

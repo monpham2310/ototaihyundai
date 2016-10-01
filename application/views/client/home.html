@@ -1,16 +1,38 @@
-<div id="primary">
-    <h3>Sản phẩm mới</h3>
-    <div class="primary-widget">
-        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 product">
-            <a href="#">
-                <div class="thumbnail">
-                    <img class="img-responsive" src="assets/client/img/benyc1.jpg" alt="...">
-                    <div class="caption">
-                        <h5>xe tải hyundai 1T, hyundai H100, hyundai 990kg</h5>
-                        <p>Giá cả: Liên hệ</p>
+<div ng-controller="homeCtrl">
+    <div class="row home-widget-row" ng-repeat="widget in $root.listWidgets track by $index" ng-if="widget.Area === 'body'">
+        <h3 class="home-widget-title" ng-bind="widget.Title"></h3>
+        <div class="primary-widget">
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 product" ng-repeat="item in widget.artList track by $index">
+                <a ng-href="{{item.ArtMeta}}">
+                    <div class="thumbnail">
+                        <img class="img-responsive" ng-src="{{item.Image}}" alt="{{item.ArtName}}" ng-if="item.Image !== '' && item.Image !== null">
+                        <div class="home-video" ng-bind-html="trustAsHtml(item.Video)" ng-if="item.Video !== '' && item.Video !== null"></div>
+                        <div class="caption">
+                            <h5 ng-bind="item.ArtName"></h5>
+                            <p>Giá cả: 
+                                <span ng-if="item.Price === '0'">Liên hệ</span>                            
+                                <span ng-if="item.Price !== '0'" ng-bind="item.Price"></span>                            
+                            </p>
+                        </div>
                     </div>
-                </div>
-            </a>
+                </a>
+            </div>
         </div>
+    </div>
+    <div class="row">
+       <h3 class="home-widget-title">Sản phẩm mới</h3>
+        <div class="primary-widget">
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 product">
+                <a href="#">
+                    <div class="thumbnail">
+                        <img class="img-responsive" src="assets/client/img/benyc1.jpg" alt="...">
+                        <div class="caption">
+                            <h5>xe tải hyundai 1T, hyundai H100, hyundai 990kg</h5>
+                            <p>Giá cả: Liên hệ</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div> 
     </div>
 </div>

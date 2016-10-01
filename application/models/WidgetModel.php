@@ -29,7 +29,7 @@ class Widgetmodel extends CI_Model {
     }
     
     public function getArtForCate($cateId){
-        $query = $this->db->query('SELECT ArtID, ArtName, ArtMeta, Image, ArtDescribes,Video                 
+        $query = $this->db->query('SELECT ArtID, ArtName, ArtMeta, Image, Price, Video                 
                                     FROM articles                               
                                     where CatId = '.$cateId.'
                                     order by DateCreated desc
@@ -37,8 +37,7 @@ class Widgetmodel extends CI_Model {
         return ($query->num_rows() > 0)? $query->result_array() : array();
     }
     
-    public function getAllWidgets($data){        
-        $currentLang = $this->phpsession->getCookie('monpham_language');
+    public function getAllWidgets($data){                
         if($data['type'] === 'admin'){
             $result = $this->db->query('select ID,Title,Describes,Area,Status,Position,CateID
                                     from widgets
@@ -55,7 +54,7 @@ class Widgetmodel extends CI_Model {
             $count = count($result);
             if($count > 0){
                 for($i = 0; $i < $count; $i++){
-                    $result[$i]['artList'] = $this->getArtForCate($result[$i]['CateID'], $currentLang);
+                    $result[$i]['artList'] = $this->getArtForCate($result[$i]['CateID']);
                 }
             }
             return $result;

@@ -34,8 +34,7 @@ angular.module('ototaihyundaiApp').controller('indexCtrl', function($scope, $sce
     }
     $scope.visitorCount = [];
     $rootScope.searchText = '';
-    $rootScope.contacts = [];    
-    $scope.banner = {};
+    $rootScope.contacts = [];     
     $scope.myInterval = 4000;
     $scope.trustAsHtml = $sce.trustAsHtml;
     $scope.searchResult = [];
@@ -102,7 +101,6 @@ angular.module('ototaihyundaiApp').controller('indexCtrl', function($scope, $sce
         var controller = baseService.URL_HOST + baseService.module.getHeader;          
         baseService.GET(controller).then(function(response){
             $rootScope.widgets.header = response[0];
-            $scope.banner = {'background-image': 'url(' + $rootScope.widgets.header.Banner + ')'};
         });    
     };    
     $rootScope.visitorStatistic = function(){
@@ -155,15 +153,15 @@ angular.module('ototaihyundaiApp').controller('indexCtrl', function($scope, $sce
             });
         }
     }; 
-//    baseService.GET(baseService.URL_HOST + baseService.module.addNewVisitor);    
-//    $rootScope.getAllNavigates();
+    baseService.GET(baseService.URL_HOST + baseService.module.addNewVisitor);    
+    $rootScope.getAllNavigates();
 //    getSlider();    
 //    $rootScope.getSidebarFeaturedPro($rootScope.dataType.product);
 //    $rootScope.visitorStatistic();
 //    $rootScope.getContactUser();
 //    $rootScope.getMapList();
-//    getHeaderAndInform();
-//    $rootScope.getWidgets();
+    getHeaderAndInform();
+    $rootScope.getWidgets();
     $scope.sidebarRight = function($el){
         $el.removeClass('not-visible');
         $el.addClass('animated fadeInRight');

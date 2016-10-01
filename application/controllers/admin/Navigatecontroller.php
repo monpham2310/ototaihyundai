@@ -106,11 +106,13 @@ class Navigatecontroller extends CI_Controller {
         // Điều kiện dừng của đệ quy là cho tới khi menu không còn nữa
         if ($menu_tmp) 
         {      
-            if($class === true)
-                echo '<ul class="dropdown-menu">';
+            if(!$class)
+                echo '<ul id="nav" class="menu">';
+            else
+                echo '<ul class="sub-menu">';
             foreach ($menu_tmp as $item) 
-            {
-                echo '<li id="drop-'.$item['NavID'].'" class="dropdown" ng-mouseenter="event.hover('.$item['NavID'].')" ng-mouseleave="event.leave('.$item['NavID'].')">';
+            {                
+                echo '<li id="menu-item-'.$item['NavID'].'" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-383">';
                 $url = explode("/",$item['NavMeta']);
                 if($url[0] === 'http:' || $url[0] === 'https:')
                     echo '<a href="' . $item['NavMeta'] . '" aria-haspopup="true" aria-expanded="true" target="_blank">' . $item['NavName'] . '</a>';
@@ -121,8 +123,7 @@ class Navigatecontroller extends CI_Controller {
                 $this->showMenuOnClient($menus, $item['NavID'], true);
                 echo '</li>';
             }
-            if($class === true)
-                echo '</ul>';
+            echo '</ul>';
         }
     }
         
