@@ -105,9 +105,9 @@ angular.module('ototaihyundaiApp').controller('navigateCtrl', function ($scope, 
             $('#bt-' + id).find('i').toggleClass('fa-caret-down').toggleClass('fa-caret-up');
             $('#form-' + id).slideToggle(200);
         },
-        saveChange: function () {
-            console.log($window.JSON.stringify($scope.nestableNav));
+        saveChange: function () {            
             $scope.nestableNav = $('#nestable').nestable('serialize');
+            console.log($scope.nestableNav);
             var controller = baseService.URL_HOST + baseService.module.changePosition;
             baseService.POST(controller, $scope.nestableNav).then(function (response) {
                 isChanged = false;

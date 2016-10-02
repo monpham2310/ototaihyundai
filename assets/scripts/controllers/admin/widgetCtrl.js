@@ -75,31 +75,13 @@ angular.module('ototaihyundaiApp').controller('widgetCtrl', function($scope, $ro
         getWidgets('body');
         getWidgets('sidebar');
         getWidgets('footer');
-    };  
-    function serialize(list){
-        var output = [];
-        if ($window.JSON) {
-            var json = $window.JSON.stringify(list.nestable('serialize'), function(key, val) {
-               if (typeof val == "object") {
-                    if (output.length > 0)
-                        return;
-                    output.push(val);
-                }
-                return val;
-            });
-            for(var i = 0; i < output[0].length; i++){
-                if(output[0][i].$scope !== undefined){
-                    delete output[0][i].$scope;
-                }
-            }            
-            console.log(output[0]);            
-        } 
-        return output[0];
-    };
+    };      
     function saveChange(area, list){
         var controller = baseService.URL_HOST + baseService.module.sortableWidget; 
         for(var i = 0; i < list.length; i++){
             list[i].area = area;
+            if(list[i].$scope !== undefined)
+                delete list[i].$scope;
         }
         baseService.POST(controller, list).then(function(response){
             if(response.redirect !== undefined){
@@ -119,27 +101,23 @@ angular.module('ototaihyundaiApp').controller('widgetCtrl', function($scope, $ro
         });
     };
     function updateOutputNoArea(e) {
-        var list = e.length ? e : $(e.target);
-        listNestableNoArea = serialize(list);
-        console.log(listNestableNoArea);
+        var list = e.length ? e : $(e.target);        
+        console.log(list);
         noAreaIsChanged = true;
     };
     function updateOutputBody(e) {
-        var list = e.length ? e : $(e.target);
-        listNestableBody = serialize(list);
-        console.log(listNestableBody);
+        var list = e.length ? e : $(e.target);        
+        console.log(list);
         bodyIsChanged = true;
     };
     function updateOutputSidebar(e) {
-        var list = e.length ? e : $(e.target);
-        listNestableSidebar = serialize(list);
-        console.log(listNestableSidebar);
+        var list = e.length ? e : $(e.target);        
+        console.log(list);
         sidebarIsChanged = true;
     };
     function updateOutputFooter(e) {
-        var list = e.length ? e : $(e.target);
-        listNestableFooter = serialize(list);
-        console.log(listNestableFooter);
+        var list = e.length ? e : $(e.target);        
+        console.log(list);
         footerIsChanged = true;
     };
     $('#nestableWidget').nestable({
@@ -184,18 +162,22 @@ angular.module('ototaihyundaiApp').controller('widgetCtrl', function($scope, $ro
         },
         save: function(){
             if(noAreaIsChanged){
+                listNestableNoArea = $('#nestableWidget').nestable('serialize');                
                 saveChange('noArea', listNestableNoArea);
                 noAreaIsChanged = false;
             }
             if(bodyIsChanged){
+                listNestableBody = $('#nestableBody').nestable('serialize');                
                 saveChange('body', listNestableBody);
                 bodyIsChanged = false;
             }
             if(sidebarIsChanged){
+                listNestableSidebar = $('#nestableSidebar').nestable('serialize');                
                 saveChange('sidebar', listNestableSidebar);
                 sidebarIsChanged = false;
             }
             if(footerIsChanged){
+                listNestableFooter = $('#nestableFooter').nestable('serialize');                
                 saveChange('footer', listNestableFooter);
                 footerIsChanged = false;
             }
