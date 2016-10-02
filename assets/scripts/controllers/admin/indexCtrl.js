@@ -178,5 +178,5 @@ angular.module('ototaihyundaiApp').controller('indexCtrl', function($scope, $roo
     $window.onbeforeunload = function(event){                
         var controller = baseService.URL_HOST + baseService.module.destroySession;
         baseService.GetNotAsync(controller);        
-    };        
+    };       
 });

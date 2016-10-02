@@ -4,7 +4,14 @@ angular.module('ototaihyundaiApp').controller('widgetCtrl', function($scope, $ro
         child: '',
         class: 'fa fa-flask'
     };      
-    $scope.newWidget = {};   
+    $scope.newWidget = {};  
+    $scope.statisticConfig = [
+        {value: 'total', text: 'Tổng lượt'},
+        {value: 'today', text: 'Hôm nay'},
+        {value: 'yesterday', text: 'Hôm qua'},
+        {value: 'month', text: 'Trong tháng'},
+        {value: 'year', text: 'Trong năm'},
+    ];
     $scope.areas = [
         {value: 'noArea', text: 'Trống'},
         {value: 'body', text: 'Body'},
@@ -38,19 +45,19 @@ angular.module('ototaihyundaiApp').controller('widgetCtrl', function($scope, $ro
         var controller = baseService.URL_HOST + baseService.module.getAllWidgets;
         var param = {type: 'admin', area: area};
         baseService.POST(controller, param).then(function(response){            
-            if(area === 'body'){
+            if(area === 'body'){                
                 $rootScope.listWidgets.body = [];
                 $rootScope.listWidgets.body = response;
             }
-            else if(area === 'sidebar'){
+            else if(area === 'sidebar'){                
                 $rootScope.listWidgets.sidebar = [];
                 $rootScope.listWidgets.sidebar = response;
             }
-            else if(area === 'footer'){
+            else if(area === 'footer'){                
                 $rootScope.listWidgets.footer = [];
                 $rootScope.listWidgets.footer = response;
             }
-            else{
+            else{                
                 $rootScope.listWidgets.noArea = [];
                 $rootScope.listWidgets.noArea = response;
             }
@@ -63,7 +70,7 @@ angular.module('ototaihyundaiApp').controller('widgetCtrl', function($scope, $ro
             $rootScope.widgets.information = response[0];
         });
     };
-    function init(){                
+    function init(){            
         getWidgets('noArea');
         getWidgets('body');
         getWidgets('sidebar');
@@ -99,7 +106,8 @@ angular.module('ototaihyundaiApp').controller('widgetCtrl', function($scope, $ro
                 $window.location.href = response.redirect;   
             }
             else if(response === 'true'){
-                $route.reload();                
+                $route.reload();                                
+                //init();                
                 baseService.showToast('Cập nhật thành công!', 'success');
             }
             else{
@@ -311,5 +319,5 @@ angular.module('ototaihyundaiApp').controller('widgetCtrl', function($scope, $ro
             $('#bt-' + id).find('i').toggleClass('fa-caret-down').toggleClass('fa-caret-up');
             $('#form-' + id).slideToggle(200);
         }
-    };
+    };    
 });
