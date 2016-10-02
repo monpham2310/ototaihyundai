@@ -277,39 +277,64 @@
         <div id="secondary">
             <aside id="xo10_wc_cats_widget-2" class="widget woocommerce-product-categories">
                 <h3 class="widget-title title-block-wrap clearfix"><span class="block-title"><span>Danh mục sản phẩm</span></span></h3>
-                <div class="xo10-accordion-list-holder">
-                    <ul class="product-categories">
-                        <li>
-                            <a href="#"><img src="http://ototaihyundai.net/wp-content/uploads/2016/05/1403668553365882.png" title="XE TẢI DONGFENG" alt="XE TẢI DONGFENG" width="50" height="50"><span class="cat-name">XE TẢI DONGFENG</span></a>
-                        </li>
-                        <li>
-                            <a href="#"><img src="http://ototaihyundai.net/wp-content/uploads/2016/07/Fuso.png" title="XE TẢI FUSO" alt="XE TẢI FUSO" width="50" height="50"><span class="cat-name">XE TẢI FUSO</span></a>
-                        </li>
-                        <li>
-                            <a href="#"><img src="http://ototaihyundai.net/wp-content/uploads/2016/05/huynhdai.png" title="XE TẢI HYUNDAI" alt="XE TẢI HYUNDAI" width="50" height="50"><span class="cat-name">XE TẢI HYUNDAI</span></a>
-                        </li>
-                        <li>
-                            <a href="#"><img src="http://ototaihyundai.net/wp-content/uploads/2016/07/isuzu-old-vector-logo-400x400.png" title="XE TẢI ISUZU" alt="XE TẢI ISUZU" width="50" height="50"><span class="cat-name">XE TẢI ISUZU</span></a>
-                        </li>
-                        <li>
-                            <a href="#"><img src="http://ototaihyundai.net/wp-content/uploads/2016/05/veam_logo.png" title="XE TẢI VEAM" alt="XE TẢI VEAM" width="50" height="50"><span class="cat-name">XE TẢI VEAM</span></a>
-                            <ul class="children">
-                                <li>
-                                    <a href="#"><img src="http://ototaihyundai.net/wp-content/plugins/woocommerce/assets/images/placeholder.png" title="XE BEN VEAM" alt="XE BEN VEAM" width="50" height="50"><span class="cat-name">XE BEN VEAM</span></a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
+                <div class="xo10-accordion-list-holder" compile-html="$root.sidebarCategory">
+                    
                 </div>
             </aside>
+            <div id="rpwwt-recent-posts-widget-with-thumbnails-2" class="rpwwt-widget" ng-repeat="item in $root.listWidgets track by $index" ng-if="item.Area === 'sidebar'">
+                <aside id="recent-posts-widget-with-thumbnails-2" class="widget recent-posts-widget-with-thumbnails">
+                    <h3 class="widget-title title-block-wrap clearfix"><span class="block-title"><span ng-bind="item.Title"></span></span></h3>
+                    <ul>
+                        <li ng-repeat="art in item.artList track by $index">                            
+                            <a ng-href="{{art.ArtMeta}}">
+                                <img ng-src="{{art.Image}}" title="{{art.ArtName}}" alt="{{art.ArtName}}" width="50" height="50">
+                                <span class="cat-name" ng-bind="art.ArtName"></span>
+                            </a>
+                        </li>
+                    </ul>                    
+                </aside>
+            </div>
             <div id="rpwwt-recent-posts-widget-with-thumbnails-2" class="rpwwt-widget">
                 <aside id="recent-posts-widget-with-thumbnails-2" class="widget recent-posts-widget-with-thumbnails">
                     <h3 class="widget-title title-block-wrap clearfix"><span class="block-title"><span>Tin tức nổi bật</span></span></h3>
                     <ul>
-                        <li><a href="http://ototaihyundai.net/how-to-write-a-term-paper-which-has-example-3/"><span class="rpwwt-post-title">Ô tô tải</span></a></li>
+                        <li ng-repeat="item in $root.sidebar.featuredArticles track by $index">                            
+                            <a ng-href="{{item.ArtMeta}}">
+                                <img ng-src="{{item.Image}}" title="{{item.ArtName}}" alt="{{item.ArtName}}" width="50" height="50">
+                                <span class="cat-name" ng-bind="item.ArtName"></span>
+                            </a>
+                        </li>
                     </ul>
                 </aside>
-            </div>
+            </div>            
+            <aside id="xo10_wc_cats_widget-2" class="widget woocommerce-product-categories">
+                <h3 class="widget-title title-block-wrap clearfix"><span class="block-title"><span>Thống kê truy cập</span></span></h3>
+                <div class="xo10-accordion-list-holder">
+                    <img ng-src="<?php echo base_url('/assets/includes/upload/images/icons/mvctotal.png')?>" alt="Tổng lượt" />&nbsp;
+                    <span class="font-size-footer"><span>Tổng lượt:</span></span>&nbsp;
+                    <span class="font-size-footer" ng-bind="visitorCount[4].Number"></span>
+                    <br>
+                    <br>
+                    <img ng-src="<?php echo base_url('/assets/includes/upload/images/icons/mvcvisit.png')?>" alt="Hôm nay" />&nbsp;
+                    <span class="font-size-footer"><span>Hôm nay:</span></span>&nbsp;
+                    <span class="font-size-footer" ng-bind="visitorCount[0].Number"></span>
+                    <br>
+                    <br>
+                    <img ng-src="<?php echo base_url('/assets/includes/upload/images/icons/mvcyesterday.png')?>" alt="Hôm qua" />&nbsp;
+                    <span class="font-size-footer"><span>Hôm qua:</span></span>&nbsp;
+                    <span class="font-size-footer" ng-bind="visitorCount[1].Number"></span>
+                    <br>
+                    <br>
+                    <img ng-src="<?php echo base_url('/assets/includes/upload/images/icons/mvconline.png')?>" alt="Trong tháng" />&nbsp;
+                    <span class="font-size-footer"><span>Trong tháng:</span></span>&nbsp;
+                    <span class="font-size-footer" ng-bind="visitorCount[2].Number"></span>
+                    <br>
+                    <br>
+                    <img ng-src="<?php echo base_url('/assets/includes/upload/images/icons/mvconline.png')?>" alt="Trong năm" />&nbsp;
+                    <span class="font-size-footer"><span>Trong năm:</span></span>&nbsp;
+                    <span class="font-size-footer" ng-bind="visitorCount[3].Number"></span>
+                </div>
+            </aside>
         </div>
     </div>
     <div class="main-footer">

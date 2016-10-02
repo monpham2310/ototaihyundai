@@ -19,7 +19,7 @@ angular.module('ototaihyundaiApp').controller('indexCtrl', function($scope, $sce
     };
     $rootScope.sidebarCategory = '';
     $rootScope.sidebar = {
-        featuredProducts: [],
+        featuredArticles: [],
         video: []
     };
     $rootScope.resourceCates = [];
@@ -102,7 +102,8 @@ angular.module('ototaihyundaiApp').controller('indexCtrl', function($scope, $sce
         baseService.GET(controller).then(function(response){
             $rootScope.widgets.header = response[0];
         });    
-    };    
+    };
+    
     $rootScope.visitorStatistic = function(){
         var controller = baseService.URL_HOST + baseService.module.visitorStatistic;
         baseService.GET(controller).then(function(response){
@@ -125,10 +126,10 @@ angular.module('ototaihyundaiApp').controller('indexCtrl', function($scope, $sce
             $rootScope.sidebarCategory = response; 
         });
     };
-    $rootScope.getSidebarFeaturedPro = function(type){
+    function getSidebarFeaturedArt(type){
         var controller = baseService.URL_HOST + baseService.module.getFeaturedPro + '/' + type;
         baseService.GET(controller).then(function(response){
-            $rootScope.sidebar.featuredProducts = response; 
+            $rootScope.sidebar.featuredArticles = response; 
         });
     };
     $rootScope.getResources = function(type){
@@ -156,8 +157,9 @@ angular.module('ototaihyundaiApp').controller('indexCtrl', function($scope, $sce
     baseService.GET(baseService.URL_HOST + baseService.module.addNewVisitor);    
     $rootScope.getAllNavigates();
 //    getSlider();    
-//    $rootScope.getSidebarFeaturedPro($rootScope.dataType.product);
-//    $rootScope.visitorStatistic();
+    getSidebarFeaturedArt($rootScope.dataType.article);
+    $rootScope.visitorStatistic();
+    $rootScope.getSidebarCategory($rootScope.dataType.product);
 //    $rootScope.getContactUser();
 //    $rootScope.getMapList();
     getHeaderAndInform();

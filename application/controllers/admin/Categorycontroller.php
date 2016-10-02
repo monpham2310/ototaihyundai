@@ -111,12 +111,13 @@ class Categorycontroller extends CI_Controller {
         if ($menu_tmp) 
         {      
             if(!$child)
-                echo '<ul>';
+                echo '<ul class="product-categories">';
             else
-                echo '<ul class="child">';
+                echo '<ul class="children">';
             foreach ($menu_tmp as $item) 
-            {
-                echo '<li class="margin-bottom-left"><a href="'.$item['CatMeta'].'">'.$item['CatName'].'</a></li>';                
+            {                
+                echo '<li>
+                        <a href="'.$item['CatMeta'].'"><img src="'.$item['CatImg'].'" title="'.$item['CatName'].'" alt="'.$item['CatName'].'" width="50" height="50"><span class="cat-name">'.$item['CatName'].'</span></a>';                
                 // Gọi lại đệ quy
                 // Truyền vào danh sách menu chưa lặp và parent của menu hiện tại
                 $this->showNestableCate($query, $item['CatID'], true);
