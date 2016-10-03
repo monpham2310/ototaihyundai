@@ -1,3 +1,10 @@
+.footer-widget-title {
+    margin-top: 0px;
+    color: white;
+}
+.recent-posts-widget-with-thumbnails, .xo10-accordion-list-holder {
+    width: 100%;
+}
 .grid-item {
     max-height: 200px;
 }

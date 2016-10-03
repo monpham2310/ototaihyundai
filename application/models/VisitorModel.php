@@ -65,7 +65,7 @@ class Visitormodel extends CI_Model {
             return $result->result_array();
         }
         else{
-            return null;
+            return array();
         }
     }
 }

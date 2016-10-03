@@ -48,19 +48,7 @@ class Articlecontroller extends CI_Controller {
             echo $json;
         }                
     }
-    
-    public function newProduct(){
-        $result = $this->Articlemodel->getNewArtOrPro(2);
-        $json = json_encode($result);
-        echo $json;
-    }
-    
-    public function newArticle(){
-        $result = $this->Articlemodel->getNewArtOrPro(1);
-        $json = json_encode($result);
-        echo $json;
-    }
-    
+            
     public function addArticle(){
         $request = $this->input->post('data');                        
 
@@ -113,13 +101,8 @@ class Articlecontroller extends CI_Controller {
         $result = $this->Articlemodel->getArtOrPro($meta);
         $json = json_encode($result);
         echo $json;
-    }
-            
-    public function getFeaturedPro($type){
-        $result = $this->Articlemodel->getFeaturedPro($type);
-        $json = json_encode($result);
-        echo $json;
-    }
+    }     
+    
 }
 
 ?>

@@ -1,41 +1,127 @@
 <div ng-controller="homeCtrl">
     <div class="row home-widget-row" ng-repeat="widget in $root.listWidgets track by $index" ng-if="widget.Area === 'body'">
         <h3 class="home-widget-title" ng-bind="widget.Title"></h3>
-        <div class="primary-widget">
-            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 product" ng-repeat="item in widget.artList track by $index">
-                <a ng-href="{{item.ArtMeta}}">
-                    <div class="thumbnail">
-                        <img class="img-responsive" ng-src="{{item.Image}}" alt="{{item.ArtName}}" ng-if="item.Image !== '' && item.Image !== null">
-                        <div class="home-video" ng-bind-html="trustAsHtml(item.Video)" ng-if="item.Video !== '' && item.Video !== null"></div>
-                        <div class="caption">
-                            <h5 ng-bind="item.ArtName"></h5>                             
-                            <span class="price" ng-if="item.Price === '0'">Giá cả: Liên hệ</span>                            
-                            <span class="price" ng-if="item.Price !== '0'">Giá cả: {{item.Price}}</span>                              
+        <div ng-if="widget.Method === 'wd_allProduct'">
+            <div class="primary-widget">            
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 product" dir-paginate="item in widget.data | itemsPerPage: widget.Config track by $index" pagination-id="paginationProduct">
+                    <a ng-href="{{item.ArtMeta}}">
+                        <div class="thumbnail">
+                            <img class="img-responsive" ng-src="{{item.Image}}" alt="{{item.ArtName}}" ng-if="item.Image !== '' && item.Image !== null">
+                            <div class="home-video" ng-bind-html="trustAsHtml(item.Video)" ng-if="item.Video !== '' && item.Video !== null"></div>
+                            <div class="caption">
+                                <h5 ng-bind="item.ArtName"></h5>                             
+                                <span class="price" ng-if="item.Price === '0'">Giá cả: Liên hệ</span>                            
+                                <span class="price" ng-if="item.Price !== '0'">Giá cả: {{item.Price}}</span>                            
+                            </div>
                         </div>
-                    </div>
-                </a>
-            </div>
-        </div>             
-    </div>
-    <div class="row">
-       <h3 class="home-widget-title">Sản phẩm nổi bật</h3>
-        <div class="primary-widget">
-            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 product" dir-paginate="item in featuredProducts | itemsPerPage: 4 track by $index" pagination-id="paginationProduct">
-                <a ng-href="{{item.ArtMeta}}">
-                    <div class="thumbnail">
-                        <img class="img-responsive" ng-src="{{item.Image}}" alt="{{item.ArtName}}" ng-if="item.Image !== '' && item.Image !== null">
-                        <div class="home-video" ng-bind-html="trustAsHtml(item.Video)" ng-if="item.Video !== '' && item.Video !== null"></div>
-                        <div class="caption">
-                            <h5 ng-bind="item.ArtName"></h5>
-                            <span class="price" ng-if="item.Price === '0'">Giá cả: Liên hệ</span>                            
-                            <span class="price" ng-if="item.Price !== '0'">Giá cả: {{item.Price}}</span> 
+                    </a>
+                </div>            
+            </div> 
+            <dir-pagination-controls pagination-id="paginationProduct" max-size="5"></dir-pagination-controls>
+        </div> 
+        <div ng-if="widget.Method === 'wd_allArticle'">
+            <div class="primary-widget">            
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 product" dir-paginate="item in widget.data | itemsPerPage: widget.Config track by $index" pagination-id="paginationArticle">
+                    <a ng-href="{{item.ArtMeta}}">
+                        <div class="thumbnail">
+                            <img class="img-responsive" ng-src="{{item.Image}}" alt="{{item.ArtName}}" ng-if="item.Image !== '' && item.Image !== null">
+                            <div class="home-video" ng-bind-html="trustAsHtml(item.Video)" ng-if="item.Video !== '' && item.Video !== null"></div>
+                            <div class="caption">
+                                <h5 ng-bind="item.ArtName"></h5>                             
+                                <span class="price" ng-if="item.Price === '0'">Giá cả: Liên hệ</span>                            
+                                <span class="price" ng-if="item.Price !== '0'">Giá cả: {{item.Price}}</span>                            
+                            </div>
                         </div>
-                    </div>
-                </a>
+                    </a>
+                </div>            
+            </div> 
+            <dir-pagination-controls pagination-id="paginationArticle" max-size="5"></dir-pagination-controls>
+        </div>        
+        <div ng-if="widget.Method === 'wd_featurePro' || widget.Method === 'wd_newProduct'">
+            <div class="primary-widget">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 product" ng-repeat="item in widget.data track by $index">
+                    <a ng-href="{{item.ArtMeta}}">
+                        <div class="thumbnail">
+                            <img class="img-responsive" ng-src="{{item.Image}}" alt="{{item.ArtName}}" ng-if="item.Image !== '' && item.Image !== null">
+                            <div class="home-video" ng-bind-html="trustAsHtml(item.Video)" ng-if="item.Video !== '' && item.Video !== null"></div>
+                            <div class="caption">
+                                <h5 ng-bind="item.ArtName"></h5>
+                                <span class="price" ng-if="item.Price === '0'">Giá cả: Liên hệ</span>                            
+                                <span class="price" ng-if="item.Price !== '0'">Giá cả: {{item.Price}}</span> 
+                            </div>
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
-        <div class="center">
-            <dir-pagination-controls class="center" pagination-id="paginationProduct" max-size="5" boundary-links="false"></dir-pagination-controls>
+        <div ng-if="widget.Method === null || widget.Method === ''">
+            <div class="primary-widget">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 product" ng-repeat="item in widget.data track by $index">
+                    <a ng-href="{{item.ArtMeta}}">
+                        <div class="thumbnail">
+                            <img class="img-responsive" ng-src="{{item.Image}}" alt="{{item.ArtName}}" ng-if="item.Image !== '' && item.Image !== null">
+                            <div class="home-video" ng-bind-html="trustAsHtml(item.Video)" ng-if="item.Video !== '' && item.Video !== null"></div>
+                            <div class="caption">
+                                <h5 ng-bind="item.ArtName"></h5>
+                                <span class="price" ng-if="item.Price === '0'">Giá cả: Liên hệ</span>                            
+                                <span class="price" ng-if="item.Price !== '0'">Giá cả: {{item.Price}}</span> 
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div ng-if="widget.Method === 'wd_featureArt' || widget.Method === 'wd_newArticle'">
+            <ul>
+                <li ng-repeat="art in widget.data track by $index">                            
+                    <a ng-href="{{art.ArtMeta}}">
+                        <img class="img-responsive" ng-src="{{art.Image}}" title="{{art.ArtName}}" alt="{{art.ArtName}}" ng-if="art.Image !== '' && art.Image !== null">
+                        <span class="home-video" ng-bind-html="trustAsHtml(art.Video)" ng-if="art.Video !== '' && art.Video !== null"></span>                       
+                        <span class="cat-name" ng-bind="art.ArtName"></span>
+                    </a>
+                </li>
+            </ul> 
+        </div>
+        <div class="xo10-accordion-list-holder" compile-html="widget.data" ng-if="widget.Method === 'wd_productCategories' || widget.Method === 'wd_articleCategories'">
+                    
+        </div>
+        <div class="xo10-accordion-list-holder" ng-if="widget.Method === 'wd_visitorStatistic'" ng-init="widget.Content = widget.Content.split(',')">
+            <p ng-if="widget.Content[0] !== '' && widget.Content[0] !== null">
+                <img src="assets/includes/upload/images/icons/mvctotal.png" class="img-statistic"> 
+                Tổng lượt: <span ng-bind="widget.data[4].Number"></span>
+            </p>
+            <p ng-if="widget.Content[1] !== '' && widget.Content[1] !== null">
+                <img src="assets/includes/upload/images/icons/mvctoday.png" class="img-statistic"> 
+                Hôm nay: <span ng-bind="widget.data[0].Number"></span>
+            </p>
+            <p ng-if="widget.Content[2] !== '' && widget.Content[2] !== null">
+                <img src="assets/includes/upload/images/icons/mvcyesterday.png" class="img-statistic"> 
+                Hôm qua: <span ng-bind="widget.data[1].Number"></span>
+            </p>
+            <p ng-if="widget.Content[3] !== '' && widget.Content[3] !== null">
+                <img src="assets/includes/upload/images/icons/mvconline.png" class="img-statistic"> 
+                Tháng: <span ng-bind="widget.data[2].Number"></span>
+            </p>
+            <p ng-if="widget.Content[4] !== '' && widget.Content[4] !== null">
+                <img src="assets/includes/upload/images/icons/mvcvisit.png" class="img-statistic"> 
+                Năm: <span ng-bind="widget.data[3].Number"></span>
+            </p>
+        </div>
+        <div class="xo10-accordion-list-holder" ng-if="widget.Method === 'wd_search'" compile-html="widget.Content">
         </div> 
-    </div>
+        <div class="xo10-accordion-list-holder" ng-if="item.Method === 'wd_text'" ng-bind-html="trustAsHtml(item.Content)">
+        </div>
+        <div class="xo10-accordion-list-holder" ng-if="widget.Method === 'wd_markerList'" ng-init="$root.initMapList(widget.data)">
+            <ng-map center="[{{$root.coordinate.lat}}, {{$root.coordinate.lng}}]" zoom="8">
+                <marker ng-repeat="marker in widget.data track by $index" position="{{marker.Lattitude}}, {{marker.Longitude}}"></marker>
+            </ng-map>
+        </div> 
+        <div class="xo10-accordion-list-holder" ng-if="widget.Method === 'wd_fanPage'">
+            <div class="fb-page" data-href="{{widget.Content}}" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+                <div class="fb-xfbml-parse-ignore">
+                    <blockquote cite="{{widget.Content}}"><a ng-href="{{widget.Content}}"></a></blockquote>
+                </div>
+            </div>
+        </div>  
+    </div>    
 </div>

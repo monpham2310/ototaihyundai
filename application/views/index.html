@@ -50,6 +50,7 @@
 </head>
 
 <body ng-controller="indexCtrl">
+    <div id="fb-root"></div>
     <header id="masthead" class="site-header" role="banner">
         <div class="top-header-wrapper clearfix">
             <div class="tg-container">
@@ -275,72 +276,176 @@
             <!-- child view -->
         </div>
         <div id="secondary">
-            <aside id="xo10_wc_cats_widget-2" class="widget woocommerce-product-categories">
-                <h3 class="widget-title title-block-wrap clearfix"><span class="block-title"><span>Danh mục sản phẩm</span></span></h3>
-                <div class="xo10-accordion-list-holder" compile-html="$root.sidebarCategory">
-                    
-                </div>
-            </aside>
             <div id="rpwwt-recent-posts-widget-with-thumbnails-2" class="rpwwt-widget" ng-repeat="item in $root.listWidgets track by $index" ng-if="item.Area === 'sidebar'">
                 <aside id="recent-posts-widget-with-thumbnails-2" class="widget recent-posts-widget-with-thumbnails">
                     <h3 class="widget-title title-block-wrap clearfix"><span class="block-title"><span ng-bind="item.Title"></span></span></h3>
-                    <ul>
-                        <li ng-repeat="art in item.artList track by $index">                            
+                    <div class="xo10-accordion-list-holder" compile-html="item.data" ng-if="item.Method === 'wd_productCategories' || item.Method === 'wd_articleCategories'">
+                    
+                    </div>
+                    <ul ng-if="item.Method === 'wd_featureArt' || item.Method === 'wd_featurePro' || item.Method === 'wd_newArticle' || item.Method === 'wd_newProduct'">
+                        <li ng-repeat="art in item.data track by $index">                            
+                            <a ng-href="{{art.ArtMeta}}">
+                                <img ng-src="{{art.Image}}" title="{{art.ArtName}}" alt="{{art.ArtName}}" width="50" height="50">
+                                <span class="cat-name" ng-bind="art.ArtName"></span>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul ng-if="item.Method === null || item.Method === ''">
+                        <li ng-repeat="art in item.data track by $index">                            
                             <a ng-href="{{art.ArtMeta}}">
                                 <img ng-src="{{art.Image}}" title="{{art.ArtName}}" alt="{{art.ArtName}}" width="50" height="50">
                                 <span class="cat-name" ng-bind="art.ArtName"></span>
                             </a>
                         </li>
                     </ul>                    
+                    <div class="xo10-accordion-list-holder" ng-if="item.Method === 'wd_visitorStatistic'" ng-init="item.Content = item.Content.split(',')">
+                        <p ng-if="item.Content[0] !== '' && item.Content[0] !== null">
+                            <img src="assets/includes/upload/images/icons/mvctotal.png" class="img-statistic"> 
+                            Tổng lượt: <span ng-bind="item.data[4].Number"></span>
+                        </p>
+                        <p ng-if="item.Content[1] !== '' && item.Content[1] !== null">
+                            <img src="assets/includes/upload/images/icons/mvctoday.png" class="img-statistic"> 
+                            Hôm nay: <span ng-bind="item.data[0].Number"></span>
+                        </p>
+                        <p ng-if="item.Content[2] !== '' && item.Content[2] !== null">
+                            <img src="assets/includes/upload/images/icons/mvcyesterday.png" class="img-statistic"> 
+                            Hôm qua: <span ng-bind="item.data[1].Number"></span>
+                        </p>
+                        <p ng-if="item.Content[3] !== '' && item.Content[3] !== null">
+                            <img src="assets/includes/upload/images/icons/mvconline.png" class="img-statistic"> 
+                            Tháng: <span ng-bind="item.data[2].Number"></span>
+                        </p>
+                        <p ng-if="item.Content[4] !== '' && item.Content[4] !== null">
+                            <img src="assets/includes/upload/images/icons/mvcvisit.png" class="img-statistic"> 
+                            Năm: <span ng-bind="item.data[3].Number"></span>
+                        </p>
+                    </div>
+                    <div ng-if="item.Method === 'wd_allProduct'">
+                        <ul>
+                            <li dir-paginate="art in item.data | itemsPerPage: item.Config track by $index" pagination-id="sidebarAllPro">                            
+                                <a ng-href="{{art.ArtMeta}}">
+                                    <img ng-src="{{art.Image}}" title="{{art.ArtName}}" alt="{{art.ArtName}}" width="50" height="50">
+                                    <span class="cat-name" ng-bind="art.ArtName"></span>
+                                </a>
+                            </li>
+                        </ul>
+                        <dir-pagination-controls pagination-id="sidebarAllPro" max-size="3" boundary-links="false"></dir-pagination-controls> 
+                    </div>
+                    <div ng-if="item.Method === 'wd_allArticle'">
+                        <ul>
+                            <li dir-paginate="art in item.data | itemsPerPage: item.Config track by $index" pagination-id="sidebarAllArt">                            
+                                <a ng-href="{{art.ArtMeta}}">
+                                    <img ng-src="{{art.Image}}" title="{{art.ArtName}}" alt="{{art.ArtName}}" width="50" height="50">
+                                    <span class="cat-name" ng-bind="art.ArtName"></span>
+                                </a>
+                            </li>
+                        </ul>
+                        <dir-pagination-controls pagination-id="sidebarAllArt" max-size="3" boundary-links="false"></dir-pagination-controls> 
+                    </div>
+                    <div class="xo10-accordion-list-holder" ng-if="item.Method === 'wd_search'" compile-html="item.Content">
+                    </div> 
+                    <div class="xo10-accordion-list-holder" ng-if="item.Method === 'wd_text'" ng-bind-html="trustAsHtml(item.Content)">
+                    </div> 
+                    <div class="xo10-accordion-list-holder" ng-if="item.Method === 'wd_markerList'" ng-init="$root.initMapList(item.data)">
+                        <ng-map center="[{{$root.coordinate.lat}}, {{$root.coordinate.lng}}]" zoom="8">
+                            <marker ng-repeat="marker in item.data track by $index" position="{{marker.Lattitude}}, {{marker.Longitude}}"></marker>
+                        </ng-map>
+                    </div> 
+                    <div class="xo10-accordion-list-holder" ng-if="item.Method === 'wd_fanPage'">
+                        <div class="fb-page" data-href="{{item.Content}}" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+                            <div class="fb-xfbml-parse-ignore">
+                                <blockquote cite="{{item.Content}}"><a ng-href="{{item.Content}}"></a></blockquote>
+                            </div>
+                        </div>
+                    </div>                                   
                 </aside>
             </div>
-            <div id="rpwwt-recent-posts-widget-with-thumbnails-2" class="rpwwt-widget">
-                <aside id="recent-posts-widget-with-thumbnails-2" class="widget recent-posts-widget-with-thumbnails">
-                    <h3 class="widget-title title-block-wrap clearfix"><span class="block-title"><span>Tin tức nổi bật</span></span></h3>
-                    <ul>
-                        <li ng-repeat="item in $root.sidebar.featuredArticles track by $index">                            
-                            <a ng-href="{{item.ArtMeta}}">
-                                <img ng-src="{{item.Image}}" title="{{item.ArtName}}" alt="{{item.ArtName}}" width="50" height="50">
-                                <span class="cat-name" ng-bind="item.ArtName"></span>
-                            </a>
-                        </li>
-                    </ul>
-                </aside>
-            </div>            
-            <aside id="xo10_wc_cats_widget-2" class="widget woocommerce-product-categories">
-                <h3 class="widget-title title-block-wrap clearfix"><span class="block-title"><span>Thống kê truy cập</span></span></h3>
-                <div class="xo10-accordion-list-holder">
-                    <img ng-src="<?php echo base_url('/assets/includes/upload/images/icons/mvctotal.png')?>" alt="Tổng lượt" />&nbsp;
-                    <span class="font-size-footer"><span>Tổng lượt:</span></span>&nbsp;
-                    <span class="font-size-footer" ng-bind="visitorCount[4].Number"></span>
-                    <br>
-                    <br>
-                    <img ng-src="<?php echo base_url('/assets/includes/upload/images/icons/mvcvisit.png')?>" alt="Hôm nay" />&nbsp;
-                    <span class="font-size-footer"><span>Hôm nay:</span></span>&nbsp;
-                    <span class="font-size-footer" ng-bind="visitorCount[0].Number"></span>
-                    <br>
-                    <br>
-                    <img ng-src="<?php echo base_url('/assets/includes/upload/images/icons/mvcyesterday.png')?>" alt="Hôm qua" />&nbsp;
-                    <span class="font-size-footer"><span>Hôm qua:</span></span>&nbsp;
-                    <span class="font-size-footer" ng-bind="visitorCount[1].Number"></span>
-                    <br>
-                    <br>
-                    <img ng-src="<?php echo base_url('/assets/includes/upload/images/icons/mvconline.png')?>" alt="Trong tháng" />&nbsp;
-                    <span class="font-size-footer"><span>Trong tháng:</span></span>&nbsp;
-                    <span class="font-size-footer" ng-bind="visitorCount[2].Number"></span>
-                    <br>
-                    <br>
-                    <img ng-src="<?php echo base_url('/assets/includes/upload/images/icons/mvconline.png')?>" alt="Trong năm" />&nbsp;
-                    <span class="font-size-footer"><span>Trong năm:</span></span>&nbsp;
-                    <span class="font-size-footer" ng-bind="visitorCount[3].Number"></span>
-                </div>
-            </aside>
         </div>
     </div>
     <div class="main-footer">
         <div class="row footer-main">
-            <div class="col-lg-3">
-
+            <div class="col-lg-3" ng-repeat="item in $root.listWidgets track by $index" ng-if="item.Area === 'footer'">
+                <h3 class="footer-widget-title" ng-bind="item.Title"></h3>
+                <div class="primary-widget"></div>
+                <div class="xo10-accordion-list-holder" compile-html="item.data" ng-if="item.Method === 'wd_productCategories' || item.Method === 'wd_articleCategories'">
+                    
+                </div>
+                <ul ng-if="item.Method === 'wd_featureArt' || item.Method === 'wd_featurePro' || item.Method === 'wd_newArticle' || item.Method === 'wd_newProduct'">
+                    <li ng-repeat="art in item.data track by $index">                            
+                        <a ng-href="{{art.ArtMeta}}">
+                            <img ng-src="{{art.Image}}" title="{{art.ArtName}}" alt="{{art.ArtName}}" width="50" height="50">
+                            <span class="cat-name" ng-bind="art.ArtName"></span>
+                        </a>
+                    </li>
+                </ul> 
+                <ul ng-if="item.Method === null || item.Method === ''">
+                    <li ng-repeat="art in item.data track by $index">                            
+                        <a ng-href="{{art.ArtMeta}}">
+                            <img ng-src="{{art.Image}}" title="{{art.ArtName}}" alt="{{art.ArtName}}" width="50" height="50">
+                            <span class="cat-name" ng-bind="art.ArtName"></span>
+                        </a>
+                    </li>
+                </ul>                   
+                <div class="xo10-accordion-list-holder" ng-if="item.Method === 'wd_visitorStatistic'" ng-init="item.Content = item.Content.split(',')">
+                    <p ng-if="item.Content[0] !== '' && item.Content[0] !== null">
+                        <img src="assets/includes/upload/images/icons/mvctotal.png" class="img-statistic"> 
+                        Tổng lượt: <span ng-bind="item.data[4].Number"></span>
+                    </p>
+                    <p ng-if="item.Content[1] !== '' && item.Content[1] !== null">
+                        <img src="assets/includes/upload/images/icons/mvctoday.png" class="img-statistic"> 
+                        Hôm nay: <span ng-bind="item.data[0].Number"></span>
+                    </p>
+                    <p ng-if="item.Content[2] !== '' && item.Content[2] !== null">
+                        <img src="assets/includes/upload/images/icons/mvcyesterday.png" class="img-statistic"> 
+                        Hôm qua: <span ng-bind="item.data[1].Number"></span>
+                    </p>
+                    <p ng-if="item.Content[3] !== '' && item.Content[3] !== null">
+                        <img src="assets/includes/upload/images/icons/mvconline.png" class="img-statistic"> 
+                        Tháng: <span ng-bind="item.data[2].Number"></span>
+                    </p>
+                    <p ng-if="item.Content[4] !== '' && item.Content[4] !== null">
+                        <img src="assets/includes/upload/images/icons/mvcvisit.png" class="img-statistic"> 
+                        Năm: <span ng-bind="item.data[3].Number"></span>
+                    </p>
+                </div>
+                <div ng-if="item.Method === 'wd_allProduct'">
+                    <ul>
+                        <li dir-paginate="art in item.data | itemsPerPage: item.Config track by $index" pagination-id="sidebarAllPro">                            
+                            <a ng-href="{{art.ArtMeta}}">
+                                <img ng-src="{{art.Image}}" title="{{art.ArtName}}" alt="{{art.ArtName}}" width="50" height="50">
+                                <span class="cat-name" ng-bind="art.ArtName"></span>
+                            </a>
+                        </li>
+                    </ul>
+                    <dir-pagination-controls pagination-id="sidebarAllPro" max-size="3" boundary-links="false"></dir-pagination-controls> 
+                </div>
+                <div ng-if="item.Method === 'wd_allArticle'">
+                    <ul>
+                        <li dir-paginate="art in item.data | itemsPerPage: item.Config track by $index" pagination-id="sidebarAllArt">                            
+                            <a ng-href="{{art.ArtMeta}}">
+                                <img ng-src="{{art.Image}}" title="{{art.ArtName}}" alt="{{art.ArtName}}" width="50" height="50">
+                                <span class="cat-name" ng-bind="art.ArtName"></span>
+                            </a>
+                        </li>
+                    </ul>
+                    <dir-pagination-controls pagination-id="sidebarAllArt" max-size="3" boundary-links="false"></dir-pagination-controls> 
+                </div>
+                <div class="xo10-accordion-list-holder" ng-if="item.Method === 'wd_search'" compile-html="item.Content">
+                </div> 
+                <div class="xo10-accordion-list-holder" ng-if="item.Method === 'wd_text'" ng-bind-html="trustAsHtml(item.Content)">
+                </div> 
+                <div class="xo10-accordion-list-holder" ng-if="item.Method === 'wd_markerList'" ng-init="$root.initMapList(item.data)">
+                    <ng-map center="[{{$root.coordinate.lat}}, {{$root.coordinate.lng}}]" zoom="8">
+                        <marker ng-repeat="marker in item.data track by $index" position="{{marker.Lattitude}}, {{marker.Longitude}}"></marker>
+                    </ng-map>
+                </div> 
+                <div class="xo10-accordion-list-holder" ng-if="item.Method === 'wd_fanPage'">
+                    <div class="fb-page" data-href="{{item.Content}}" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+                        <div class="fb-xfbml-parse-ignore">
+                            <blockquote cite="{{item.Content}}"><a ng-href="{{item.Content}}"></a></blockquote>
+                        </div>
+                    </div>
+                </div> 
             </div>
         </div>
     </div>
@@ -371,6 +476,20 @@
 
     <script type="application/javascript" src="assets/client/js/huge_slideshow.js"></script>
     <script type="application/javascript" src="assets/includes/bootstrap/js/bootstrap.min.js"></script>
+    <script>
+        $(function(){            
+            window.fbAsyncInit = function() {
+                FB.init({appId: '476481575889860', status: true, cookie: true,
+                xfbml: true});
+                };
+                (function() {
+                var e = document.createElement('script'); e.async = true;
+                e.src = document.location.protocol +
+                '//connect.facebook.net/en_US/all.js';
+                document.getElementById('fb-root').appendChild(e);
+            }());
+        });
+    </script>
 </body>
 
 </html>

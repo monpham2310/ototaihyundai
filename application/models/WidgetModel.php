@@ -2,42 +2,79 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Widgetmodel extends CI_Model {
-    
+        
     public function __construct(){
         parent::__construct();
-        $this->load->database();        
+        $this->load->database();    
+        $this->load->model('Articlemodel');
+        $this->load->model('Categorymodel');
+        $this->load->model('Visitormodel');
+        $this->load->model('Mapmodel');
     }
     
-    public function getInformation($type){        
-        if($type === 'admin'){
-            $result = $this->db->query('select InformId,Name,Email,Phone,Facebook
-                    from information
-                    ;');  
-        }
-        else{
-            $result = $this->db->query('select InformId,Name,Email,Phone,Facebook
-                    from information
-                    ;');  
-        }
-        return ($result->num_rows() > 0)? $result->result_array() : array();
-    }
+//    public function getInformation($type){        
+//        if($type === 'admin'){
+//            $result = $this->db->query('select InformId,Name,Email,Phone,Facebook
+//                    from information
+//                    ;');  
+//        }
+//        else{
+//            $result = $this->db->query('select InformId,Name,Email,Phone,Facebook
+//                    from information
+//                    ;');  
+//        }
+//        return ($result->num_rows() > 0)? $result->result_array() : array();
+//    }
     
     public function getHeader(){
         $result = $this->db->query('select BannerId,Logo,Banner
                     from banner;');
         return ($result->num_rows() > 0)? $result->result_array() : array();
     }
-    
-    public function getArtForCate($cateId){
-        $query = $this->db->query('SELECT ArtID, ArtName, ArtMeta, Image, Price, Video                 
-                                    FROM articles                               
-                                    where CatId = '.$cateId.'
-                                    order by DateCreated desc
-                                    limit 12;');
-        return ($query->num_rows() > 0)? $query->result_array() : array();
+            
+    function showNestableCate($query, &$refVar, $parent = 0, $child = false){
+        $menu_tmp = array();
+        
+        foreach ($query as $key => $item) {
+            // Nếu có parent bằng với $parent hiện tại
+            if ((int) $item['CatParent'] == (int) $parent) {
+                $menu_tmp[] = $item;
+                // Sau khi thêm vào biên lưu trữ menu ở bước lặp
+                // thì unset nó ra khỏi danh sách menu ở các bước tiếp theo
+                unset($query[$key]);
+            }
+        }
+
+        # BƯỚC 2: lẶP MENU THEO DANH SÁCH MENU Ở BƯỚC 1
+        // Điều kiện dừng của đệ quy là cho tới khi menu không còn nữa
+        if ($menu_tmp) 
+        {      
+            if(!$child)
+                $refVar .= '<ul class="product-categories">';
+            else
+                $refVar .= '<ul class="children">';
+            foreach ($menu_tmp as $item) 
+            {                
+                $refVar .= '<li>
+                        <a href="'.$item['CatMeta'].'"><img src="'.$item['CatImg'].'" title="'.$item['CatName'].'" alt="'.$item['CatName'].'" width="50" height="50"><span class="cat-name">'.$item['CatName'].'</span></a>';                
+                // Gọi lại đệ quy
+                // Truyền vào danh sách menu chưa lặp và parent của menu hiện tại
+                $this->showNestableCate($query, $refVar, $item['CatID'], true);
+                $refVar .= '</li>';
+            }
+            $refVar .= '</ul>';
+        }        
     }
     
-    public function getAllWidgets($data){                
+    function getNestableCate($place, $type){
+        $result = $this->Categorymodel->getAllCategories($place, $type);        
+        $sidebarCategory = '';
+        $this->showNestableCate($result, $sidebarCategory);
+        return $sidebarCategory;
+    }
+        
+    public function getAllWidgets($data){ 
+        $this->sidebarCategory = '';
         if($data['type'] === 'admin'){
             $result = $this->db->query('select ID,Title,Describes,Area,Status,Position,CateID,Config,Content,Method,Type
                                     from widgets
@@ -46,17 +83,50 @@ class Widgetmodel extends CI_Model {
             return ($result->num_rows() > 0)? $result->result_array() : array();
         }
         else{
-            $result = $this->db->query('select ID,Title,Describes,Area,a.Status,Position,CateID,CatMeta,Config,Content,Method,Type
-                                    from widgets a join categories b on a.CateID = b.CatID
-                                    where a.Status = 1
+            $result = $this->db->query('select ID,Title,Describes,Area,a.Status,Position,CateID,CatMeta,Config,Content,Method,a.Type
+                                    from widgets a left join categories b on a.CateID = b.CatID
+                                    where a.Status = 1 and Area <> "noArea"
                                     order by Position;');
             $result = $result->result_array();
             $count = count($result);
             if($count > 0){
                 for($i = 0; $i < $count; $i++){
-                    $result[$i]['artList'] = $this->getArtForCate($result[$i]['CateID']);
+                    if($result[$i]['Type'] === 1)
+                        $result[$i]['data'] = $this->Articlemodel->getArtForCate($result[$i]['CateID'], $result[$i]['Config']);
+                    else{
+                        if($result[$i]['Method'] === 'wd_productCategories'){                            
+                            $result[$i]['data'] = $this->getNestableCate($data['type'], 2);
+                        }
+                        if($result[$i]['Method'] === 'wd_articleCategories'){
+                            $result[$i]['data'] = $this->getNestableCate($data['type'], 1);
+                        }
+                        if($result[$i]['Method'] === 'wd_allProduct'){
+                            $result[$i]['data'] = $this->Articlemodel->getAllArtOrPro(2);
+                        }
+                        if($result[$i]['Method'] === 'wd_allArticle'){
+                            $result[$i]['data'] = $this->Articlemodel->getAllArtOrPro(1);
+                        }
+                        if($result[$i]['Method'] === 'wd_featureArt'){
+                            $result[$i]['data'] = $this->Articlemodel->getFeatureArtOrPro(1, $result[$i]['Config']);
+                        }
+                        if($result[$i]['Method'] === 'wd_featurePro'){
+                            $result[$i]['data'] = $this->Articlemodel->getFeatureArtOrPro(2, $result[$i]['Config']);
+                        }
+                        if($result[$i]['Method'] === 'wd_newProduct'){
+                            $result[$i]['data'] = $this->Articlemodel->getNewArtOrPro(2, $result[$i]['Config']);
+                        }
+                        if($result[$i]['Method'] === 'wd_newArticle'){
+                            $result[$i]['data'] = $this->Articlemodel->getNewArtOrPro(1, $result[$i]['Config']);
+                        }
+                        if($result[$i]['Method'] === 'wd_markerList'){
+                            $result[$i]['data'] = $this->Mapmodel->getMapList();
+                        }
+                        if($result[$i]['Method'] === 'wd_visitorStatistic'){
+                            $result[$i]['data'] = $this->Visitormodel->visitorStatistic();
+                        }
+                    }
                 }
-            }
+            }            
             return $result;
         }        
     }

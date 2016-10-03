@@ -22,25 +22,6 @@ SET time_zone = "+00:00";
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `categories`
---
-
-CREATE TABLE `categories` (
-  `CatID` int(11) NOT NULL,
-  `CatName` text COLLATE utf8_unicode_ci,
-  `CatMeta` text COLLATE utf8_unicode_ci,
-  `CatDescribes` text COLLATE utf8_unicode_ci,
-  `TempId` int(11) DEFAULT NULL,
-  `Type` int(11) DEFAULT '1',
-  `CatParent` int(11) DEFAULT NULL,
-  `CatImg` text COLLATE utf8_unicode_ci
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `categories`
---
-
 INSERT INTO `categories` (`CatID`, `CatName`, `CatMeta`, `CatDescribes`, `TempId`, `Type`, `CatParent`, `CatImg`) VALUES
 (1, 'XE TẢI DONGFENG', 'danh-muc/xe-tai-dongfeng', 'XE TẢI DONGFENG', 5, 2, 0, 'assets/includes/upload/files/1403668553365882-345x265.png'),
 (2, 'XE TẢI FUSO', 'danh-muc/xe-tai-fuso', 'XE TẢI FUSO', 5, 2, 0, 'assets/includes/upload/files/Fuso.png'),
@@ -55,18 +36,3 @@ INSERT INTO `categories` (`CatID`, `CatName`, `CatMeta`, `CatDescribes`, `TempId
 --
 -- Indexes for table `categories`
 --
-ALTER TABLE `categories`
-  ADD PRIMARY KEY (`CatID`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `categories`
---
-ALTER TABLE `categories`
-  MODIFY `CatID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

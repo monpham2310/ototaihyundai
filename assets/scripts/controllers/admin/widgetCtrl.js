@@ -5,13 +5,27 @@ angular.module('ototaihyundaiApp').controller('widgetCtrl', function($scope, $ro
         class: 'fa fa-flask'
     };      
     $scope.newWidget = {};  
-    $scope.statisticConfig = [
-        {value: 'total', text: 'Tổng lượt'},
-        {value: 'today', text: 'Hôm nay'},
-        {value: 'yesterday', text: 'Hôm qua'},
-        {value: 'month', text: 'Trong tháng'},
-        {value: 'year', text: 'Trong năm'},
-    ];
+    $scope.statisticSidebar = {
+        total: false,
+        today: false,
+        yesterday: false,
+        month: false,
+        year: false
+    };
+    $scope.statisticBody = {
+        total: false,
+        today: false,
+        yesterday: false,
+        month: false,
+        year: false
+    };
+    $scope.statisticFooter = {
+        total: false,
+        today: false,
+        yesterday: false,
+        month: false,
+        year: false
+    };    
     $scope.areas = [
         {value: 'noArea', text: 'Trống'},
         {value: 'body', text: 'Body'},
@@ -48,14 +62,32 @@ angular.module('ototaihyundaiApp').controller('widgetCtrl', function($scope, $ro
             if(area === 'body'){                
                 $rootScope.listWidgets.body = [];
                 $rootScope.listWidgets.body = response;
+                for(var i = 0;i < $rootScope.listWidgets.body.length; i++){
+                    if($rootScope.listWidgets.body[i].Method === 'wd_visitorStatistic'){
+                        var temp = $rootScope.listWidgets.body[i].Content.split(',');
+                        $rootScope.listWidgets.body[i].Content = temp;
+                    }
+                }
             }
             else if(area === 'sidebar'){                
                 $rootScope.listWidgets.sidebar = [];
                 $rootScope.listWidgets.sidebar = response;
+                for(var i = 0;i < $rootScope.listWidgets.sidebar.length; i++){
+                    if($rootScope.listWidgets.sidebar[i].Method === 'wd_visitorStatistic'){
+                        var temp = $rootScope.listWidgets.sidebar[i].Content.split(',');
+                        $rootScope.listWidgets.sidebar[i].Content = temp;
+                    }
+                }
             }
             else if(area === 'footer'){                
                 $rootScope.listWidgets.footer = [];
                 $rootScope.listWidgets.footer = response;
+                for(var i = 0;i < $rootScope.listWidgets.footer.length; i++){
+                    if($rootScope.listWidgets.footer[i].Method === 'wd_visitorStatistic'){
+                        var temp = $rootScope.listWidgets.footer[i].Content.split(',');
+                        $rootScope.listWidgets.footer[i].Content = temp;
+                    }
+                }
             }
             else{                
                 $rootScope.listWidgets.noArea = [];
@@ -182,9 +214,31 @@ angular.module('ototaihyundaiApp').controller('widgetCtrl', function($scope, $ro
                 footerIsChanged = false;
             }
         },
+        updateFormVisitCounter: function(obj){
+            var temp = '';            
+            for(var i = 0; i < obj.Content.length; i++)
+                temp += obj.Content[i] + ',';
+            obj.Content = temp; 
+            var controller = baseService.URL_HOST + baseService.module.updateWidget;                
+            baseService.POST(controller, obj).then(function(response){
+                if(response.redirect !== undefined){
+                    $window.location.href = response.redirect;   
+                }
+                else if(response === 'true'){
+                    init();
+                    baseService.showToast('Cập nhật thành công!', 'success');
+                }
+                else{
+                    baseService.showToast('Cập nhật thất bại!', 'danger');
+                }
+            }, function(err){
+                baseService.showToast('Cập nhật thất bại!', 'danger');
+                console.log(err);
+            });
+        },
         updateForm: function(obj, isUpdate){
             if(isUpdate){
-                var controller = baseService.URL_HOST + baseService.module.updateWidget;
+                var controller = baseService.URL_HOST + baseService.module.updateWidget;                
                 baseService.POST(controller, obj).then(function(response){
                     if(response.redirect !== undefined){
                         $window.location.href = response.redirect;   

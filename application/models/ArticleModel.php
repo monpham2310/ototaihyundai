@@ -58,12 +58,12 @@ class Articlemodel extends CI_Model {
         }
     }
     
-    public function getArtForCate($cateId){        
-        $result = $this->db->query('SELECT ArtID, ArtName, ArtMeta, Image,ArtDescribes                 
-                FROM articles                               
-                where CatId = '.$cateId.' and Status = 1
-                order by DateCreated desc
-                limit 8;');
+    public function getArtForCate($cateId, $limit){        
+        $result = $this->db->query('SELECT ArtID, ArtName, ArtMeta, Image, Price, Video                 
+                                    FROM articles                               
+                                    where CatId = '.$cateId.'
+                                    order by DateCreated desc
+                                    limit '.$limit.';');
         if($result->num_rows() > 0){
             return $result->result_array();            
         }
@@ -72,12 +72,12 @@ class Articlemodel extends CI_Model {
         }
     }
     
-    public function getNewArtOrPro($type){        
-        $result = $this->db->query('SELECT ArtID, ArtName, ArtMeta, Image,ArtDescribes                
+    public function getNewArtOrPro($type, $limit){        
+        $result = $this->db->query('SELECT ArtID,ArtName,ArtMeta,ArtDescribes,Image,Video
                 FROM articles                               
                 where Type = '.$type.' and Status = 1
                 order by DateCreated desc
-                limit 12;');
+                limit '.$limit.';');
         return ($result->num_rows() > 0)? $result->result_array() : array();
     }
         
@@ -167,12 +167,20 @@ class Articlemodel extends CI_Model {
         return ($result->num_rows() > 0)? $result->result_array() : array();
     }
             
-    public function getFeaturedPro($type){        
-        $result = $this->db->query('select ArtName,ArtMeta,ArtDescribes,Image,Video
+    function getFeatureArtOrPro($type, $limit){
+        $result = $this->db->query('select ArtID,ArtName,ArtMeta,ArtDescribes,Image,Video
                                     from articles
                                     where Type = '.$type.' and Status = 1
                                     order by ViewCount desc
-                                    limit 12;');
+                                    limit '.$limit.';');
+        return ($result->num_rows() > 0)? $result->result_array() : array();
+    }
+    
+    public function getAllArtOrPro($type){
+        $result = $this->db->query('SELECT ArtID, ArtName, ArtMeta, Image, Price, Video                 
+                                    FROM articles                               
+                                    where Type = '.$type.'
+                                    order by DateCreated desc;');
         return ($result->num_rows() > 0)? $result->result_array() : array();
     }
 }

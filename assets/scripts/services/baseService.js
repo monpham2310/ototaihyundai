@@ -24,9 +24,7 @@ angular.module('ototaihyundaiApp').factory('baseService', function($http, $q, $w
             allCategories: 'admin/Categorycontroller/loadAllCategories',
             updateCate: 'admin/Categorycontroller/updateCategory',
             addCate: 'admin/Categorycontroller/addCategory',
-            delCate: 'admin/Categorycontroller/deleteCategory',
-            newProduct: 'admin/Articlecontroller/newProduct',
-            newArticle: 'admin/Articlecontroller/newArticle',
+            delCate: 'admin/Categorycontroller/deleteCategory',            
             articles: 'admin/Articlecontroller/loadArticles',
             allArticles: 'admin/Articlecontroller/loadAllArticles',
             updateArt: 'admin/Articlecontroller/updateArticle',
@@ -81,8 +79,7 @@ angular.module('ototaihyundaiApp').factory('baseService', function($http, $q, $w
             delResource: 'admin/Resourcecontroller/delResource',
             addResourceCat: 'admin/Resourcecontroller/addResourceCat',
             updateResourceCat: 'admin/Resourcecontroller/updateResourceCat',
-            delResourceCat: 'admin/Resourcecontroller/delResourceCat',
-            getFeaturedPro: 'admin/Articlecontroller/getFeaturedPro',
+            delResourceCat: 'admin/Resourcecontroller/delResourceCat'            
         },        
         ckeditorOptions: {
             language: 'vi',

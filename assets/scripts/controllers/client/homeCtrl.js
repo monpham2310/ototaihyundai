@@ -7,7 +7,7 @@ angular.module('ototaihyundaiApp').controller('homeCtrl', function($scope, $root
         $el.removeClass('not-visible');
         $el.addClass('animated fadeInLeft');
     };
-    $scope.featuredProducts = [];
+    //$scope.featuredProducts = [];
     $scope.cut = function(value, min, max, tail) {
         if (!value) return '';
         min = parseInt(min, 10);
@@ -20,11 +20,4 @@ angular.module('ototaihyundaiApp').controller('homeCtrl', function($scope, $root
         value = value.substr(0, lastspace);
         return value + (tail || ' …');
     }
-    function getFeaturedPro(type){
-        var controller = baseService.URL_HOST + baseService.module.getFeaturedPro + '/' + type;
-        baseService.GET(controller).then(function(response){
-            $scope.featuredProducts = response; 
-        });
-    };
-    getFeaturedPro($rootScope.dataType.product);
 });

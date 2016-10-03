@@ -29,6 +29,30 @@
                                     <div class="dd-handle dd-handle-height">
                                         <span ng-bind="item.Title"></span>
                                     </div>
+                                    <form id="form-{{item.ID}}" class="panel panel-default panel-body margin-bottom-0 none-display" name="frmWidget{{item.ID}}" role="form" ng-submit="event.updateForm(item, true)" novalidate ng-if="item.Method === 'wd_search'">
+                                        <div class="form-group" ng-class="{ 'has-error' : frmWidget{{item.ID}}.txtTitle.$invalid && frmWidget{{item.ID}}.txtTitle.$touched && frmWidget{{item.ID}}.txtTitle.$error.required }">
+                                            <label>Tiêu đề&nbsp;<span class="text-danger">(*)</span></label>
+                                            <input class="form-control" type="text" name="txtTitle" placeholder="Nhập tiêu đề" ng-model="item.Title" required />
+                                            <p class="text-danger" ng-show="frmWidget{{item.ID}}.txtTitle.$invalid && frmWidget{{item.ID}}.txtTitle.$touched && frmWidget{{item.ID}}.txtTitle.$error.required">Vui lòng nhập tiêu đề.</p>
+                                        </div>
+                                        <div class="form-group border-top">
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <div class="onoffswitch">
+                                                        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="ckb-{{item.ID}}" ng-model="item.Status" ng-true-value="'1'" ng-false-value="'0'" />
+                                                        <label class="onoffswitch-label" for="ckb-{{item.ID}}">
+                                                            <span class="onoffswitch-inner"></span>
+                                                            <span class="onoffswitch-switch"></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <button type="button" class="btn btn-danger fa fa-trash right" ng-click="event.delete(item)"></button>
+                                                    <button type="submit" class="btn btn-primary fa fa-save right"></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
                                     <form id="form-{{item.ID}}" class="panel panel-default panel-body margin-bottom-0 none-display" name="frmWidget{{item.ID}}" role="form" ng-submit="event.updateForm(item, true)" novalidate ng-if="item.Method === 'wd_productCategories'">
                                         <div class="form-group" ng-class="{ 'has-error' : frmWidget{{item.ID}}.txtTitle.$invalid && frmWidget{{item.ID}}.txtTitle.$touched && frmWidget{{item.ID}}.txtTitle.$error.required }">
                                             <label>Tiêu đề&nbsp;<span class="text-danger">(*)</span></label>
@@ -133,16 +157,38 @@
                                             </div>
                                         </div>
                                     </form>
-                                    <form id="form-{{item.ID}}" class="panel panel-default panel-body margin-bottom-0 none-display" name="frmWidget{{item.ID}}" role="form" ng-submit="event.updateForm(item, true)" novalidate ng-if="item.Method === 'wd_visitorStatistic'">
+                                    <form id="form-{{item.ID}}" class="panel panel-default panel-body margin-bottom-0 none-display" name="frmWidget{{item.ID}}" role="form" ng-submit="event.updateFormVisitCounter(item)" novalidate ng-if="item.Method === 'wd_visitorStatistic'">
                                         <div class="form-group" ng-class="{ 'has-error' : frmWidget{{item.ID}}.txtTitle.$invalid && frmWidget{{item.ID}}.txtTitle.$touched && frmWidget{{item.ID}}.txtTitle.$error.required }">
                                             <label>Tiêu đề&nbsp;<span class="text-danger">(*)</span></label>
                                             <input class="form-control" type="text" name="txtTitle" placeholder="Nhập tiêu đề" ng-model="item.Title" required />
                                             <p class="text-danger" ng-show="frmWidget{{item.ID}}.txtTitle.$invalid && frmWidget{{item.ID}}.txtTitle.$touched && frmWidget{{item.ID}}.txtTitle.$error.required">Vui lòng nhập tiêu đề.</p>
                                         </div>
                                         <div class="form-group">
-                                            <div class="checkbox" ng-repeat="type in statisticConfig track by $index">
+                                            <div class="checkbox">
                                                 <label>
-                                                    <input type="checkbox" checklist-model="item.Content" name="cates" checklist-value="type.value">{{type.text}}
+                                                    <input id="total{{item.ID}}" type="checkbox"  name="visitCount" ng-model="item.Content[0]" ng-true-value="'total'" ng-false-value="''">Tổng lượt
+                                                </label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input id="today{{item.ID}}" type="checkbox"  name="visitCount" ng-model="item.Content[1]" ng-true-value="'today'" ng-false-value="''">
+                                                    Hôm nay
+                                                </label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input id="yesterday{{item.ID}}" type="checkbox"  name="visitCount" ng-model="item.Content[2]" ng-true-value="'yesterday'" ng-false-value="''">Hôm qua
+                                                </label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input id="month{{item.ID}}" type="checkbox"  name="visitCount" ng-model="item.Content[3]" ng-true-value="'month'" ng-false-value="''">Trong tháng
+                                                </label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input id="year{{item.ID}}" type="checkbox"  name="visitCount" ng-model="item.Content[4]" ng-true-value="'year'" ng-false-value="''">
+                                                    Trong năm
                                                 </label>
                                             </div>
                                         </div>
@@ -172,7 +218,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Văn bản</label>
-                                            <textarea class="form-control" row="5" ng-model="item.Content" name="content"></textarea>
+                                            <textarea class="form-control" row="8" ng-model="item.Content" name="content"></textarea>
                                         </div>
                                         <div class="form-group border-top">
                                             <div class="row">
@@ -292,6 +338,10 @@
                                             </div>
                                             <p ng-show="frmWidget{{item.ID}}.category.$invalid && frmWidget{{item.ID}}.category.$touched && frmWidget{{item.ID}}.category.$error.required" class="text-danger">Vui lòng danh mục hiển thị.</p>
                                         </div>
+                                        <div class="form-group">
+                                            <label>Số lượng hiển thị</label>
+                                            <input class="form-control" type="number" name="txtConfig" string-to-number ng-model="item.Config" />
+                                        </div>
                                         <div class="form-group border-top">
                                             <div class="row">
                                                 <div class="col-sm-6">
@@ -374,6 +424,30 @@
                                             <div class="dd-handle dd-handle-height">
                                                 <span ng-bind="item.Title"></span>
                                             </div>
+                                            <form id="form-{{item.ID}}" class="panel panel-default panel-body margin-bottom-0 none-display" name="frmWidget{{item.ID}}" role="form" ng-submit="event.updateForm(item, true)" novalidate ng-if="item.Method === 'wd_search'">
+                                                <div class="form-group" ng-class="{ 'has-error' : frmWidget{{item.ID}}.txtTitle.$invalid && frmWidget{{item.ID}}.txtTitle.$touched && frmWidget{{item.ID}}.txtTitle.$error.required }">
+                                                    <label>Tiêu đề&nbsp;<span class="text-danger">(*)</span></label>
+                                                    <input class="form-control" type="text" name="txtTitle" placeholder="Nhập tiêu đề" ng-model="item.Title" required />
+                                                    <p class="text-danger" ng-show="frmWidget{{item.ID}}.txtTitle.$invalid && frmWidget{{item.ID}}.txtTitle.$touched && frmWidget{{item.ID}}.txtTitle.$error.required">Vui lòng nhập tiêu đề.</p>
+                                                </div>
+                                                <div class="form-group border-top">
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <div class="onoffswitch">
+                                                                <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="ckb-{{item.ID}}" ng-model="item.Status" ng-true-value="'1'" ng-false-value="'0'" />
+                                                                <label class="onoffswitch-label" for="ckb-{{item.ID}}">
+                                                                    <span class="onoffswitch-inner"></span>
+                                                                    <span class="onoffswitch-switch"></span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <button type="button" class="btn btn-danger fa fa-trash right" ng-click="event.delete(item)"></button>
+                                                            <button type="submit" class="btn btn-primary fa fa-save right"></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
                                             <form id="form-{{item.ID}}" class="panel panel-default panel-body margin-bottom-0 none-display" name="frmWidget{{item.ID}}" role="form" ng-submit="event.updateForm(item, true)" novalidate ng-if="item.Method === 'wd_productCategories'">
                                                 <div class="form-group" ng-class="{ 'has-error' : frmWidget{{item.ID}}.txtTitle.$invalid && frmWidget{{item.ID}}.txtTitle.$touched && frmWidget{{item.ID}}.txtTitle.$error.required }">
                                                     <label>Tiêu đề&nbsp;<span class="text-danger">(*)</span></label>
@@ -478,16 +552,38 @@
                                                     </div>
                                                 </div>
                                             </form>
-                                            <form id="form-{{item.ID}}" class="panel panel-default panel-body margin-bottom-0 none-display" name="frmWidget{{item.ID}}" role="form" ng-submit="event.updateForm(item, true)" novalidate ng-if="item.Method === 'wd_visitorStatistic'">
+                                            <form id="form-{{item.ID}}" class="panel panel-default panel-body margin-bottom-0 none-display" name="frmWidget{{item.ID}}" role="form" ng-submit="event.updateFormVisitCounter(item)" novalidate ng-if="item.Method === 'wd_visitorStatistic'">
                                                 <div class="form-group" ng-class="{ 'has-error' : frmWidget{{item.ID}}.txtTitle.$invalid && frmWidget{{item.ID}}.txtTitle.$touched && frmWidget{{item.ID}}.txtTitle.$error.required }">
                                                     <label>Tiêu đề&nbsp;<span class="text-danger">(*)</span></label>
                                                     <input class="form-control" type="text" name="txtTitle" placeholder="Nhập tiêu đề" ng-model="item.Title" required />
                                                     <p class="text-danger" ng-show="frmWidget{{item.ID}}.txtTitle.$invalid && frmWidget{{item.ID}}.txtTitle.$touched && frmWidget{{item.ID}}.txtTitle.$error.required">Vui lòng nhập tiêu đề.</p>
                                                 </div>
                                                 <div class="form-group">
-                                                    <div class="checkbox" ng-repeat="type in statisticConfig track by $index">
+                                                    <div class="checkbox">
                                                         <label>
-                                                            <input type="checkbox" checklist-model="item.Content" name="cates" checklist-value="type.value">{{type.text}}
+                                                            <input id="total{{item.ID}}" type="checkbox"  name="visitCount" ng-model="item.Content[0]" ng-true-value="'total'" ng-false-value="''">Tổng lượt
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input id="today{{item.ID}}" type="checkbox"  name="visitCount" ng-model="item.Content[1]" ng-true-value="'today'" ng-false-value="''">
+                                                            Hôm nay
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input id="yesterday{{item.ID}}" type="checkbox"  name="visitCount" ng-model="item.Content[2]" ng-true-value="'yesterday'" ng-false-value="''">Hôm qua
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input id="month{{item.ID}}" type="checkbox"  name="visitCount" ng-model="item.Content[3]" ng-true-value="'month'" ng-false-value="''">Trong tháng
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input id="year{{item.ID}}" type="checkbox"  name="visitCount" ng-model="item.Content[4]" ng-true-value="'year'" ng-false-value="''">
+                                                            Trong năm
                                                         </label>
                                                     </div>
                                                 </div>
@@ -517,7 +613,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Văn bản</label>
-                                                    <textarea class="form-control" row="5" ng-model="item.Content" name="content"></textarea>
+                                                    <textarea class="form-control" row="8" ng-model="item.Content" name="content"></textarea>
                                                 </div>
                                                 <div class="form-group border-top">
                                                     <div class="row">
@@ -636,6 +732,10 @@
                                                         </select>
                                                     </div>
                                                     <p ng-show="frmWidget{{item.ID}}.category.$invalid && frmWidget{{item.ID}}.category.$touched && frmWidget{{item.ID}}.category.$error.required" class="text-danger">Vui lòng danh mục hiển thị.</p>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Số lượng hiển thị</label>
+                                                    <input class="form-control" type="number" name="txtConfig" string-to-number ng-model="item.Config" />
                                                 </div>
                                                 <div class="form-group border-top">
                                                     <div class="row">
@@ -682,6 +782,30 @@
                                             <div class="dd-handle dd-handle-height">
                                                 <span ng-bind="item.Title"></span>
                                             </div>
+                                            <form id="form-{{item.ID}}" class="panel panel-default panel-body margin-bottom-0 none-display" name="frmWidget{{item.ID}}" role="form" ng-submit="event.updateForm(item, true)" novalidate ng-if="item.Method === 'wd_search'">
+                                                <div class="form-group" ng-class="{ 'has-error' : frmWidget{{item.ID}}.txtTitle.$invalid && frmWidget{{item.ID}}.txtTitle.$touched && frmWidget{{item.ID}}.txtTitle.$error.required }">
+                                                    <label>Tiêu đề&nbsp;<span class="text-danger">(*)</span></label>
+                                                    <input class="form-control" type="text" name="txtTitle" placeholder="Nhập tiêu đề" ng-model="item.Title" required />
+                                                    <p class="text-danger" ng-show="frmWidget{{item.ID}}.txtTitle.$invalid && frmWidget{{item.ID}}.txtTitle.$touched && frmWidget{{item.ID}}.txtTitle.$error.required">Vui lòng nhập tiêu đề.</p>
+                                                </div>
+                                                <div class="form-group border-top">
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <div class="onoffswitch">
+                                                                <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="ckb-{{item.ID}}" ng-model="item.Status" ng-true-value="'1'" ng-false-value="'0'" />
+                                                                <label class="onoffswitch-label" for="ckb-{{item.ID}}">
+                                                                    <span class="onoffswitch-inner"></span>
+                                                                    <span class="onoffswitch-switch"></span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <button type="button" class="btn btn-danger fa fa-trash right" ng-click="event.delete(item)"></button>
+                                                            <button type="submit" class="btn btn-primary fa fa-save right"></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
                                             <form id="form-{{item.ID}}" class="panel panel-default panel-body margin-bottom-0 none-display" name="frmWidget{{item.ID}}" role="form" ng-submit="event.updateForm(item, true)" novalidate ng-if="item.Method === 'wd_productCategories'">
                                                 <div class="form-group" ng-class="{ 'has-error' : frmWidget{{item.ID}}.txtTitle.$invalid && frmWidget{{item.ID}}.txtTitle.$touched && frmWidget{{item.ID}}.txtTitle.$error.required }">
                                                     <label>Tiêu đề&nbsp;<span class="text-danger">(*)</span></label>
@@ -786,16 +910,38 @@
                                                     </div>
                                                 </div>
                                             </form>
-                                            <form id="form-{{item.ID}}" class="panel panel-default panel-body margin-bottom-0 none-display" name="frmWidget{{item.ID}}" role="form" ng-submit="event.updateForm(item, true)" novalidate ng-if="item.Method === 'wd_visitorStatistic'">
+                                            <form id="form-{{item.ID}}" class="panel panel-default panel-body margin-bottom-0 none-display" name="frmWidget{{item.ID}}" role="form" ng-submit="event.updateFormVisitCounter(item)" novalidate ng-if="item.Method === 'wd_visitorStatistic'">
                                                 <div class="form-group" ng-class="{ 'has-error' : frmWidget{{item.ID}}.txtTitle.$invalid && frmWidget{{item.ID}}.txtTitle.$touched && frmWidget{{item.ID}}.txtTitle.$error.required }">
                                                     <label>Tiêu đề&nbsp;<span class="text-danger">(*)</span></label>
                                                     <input class="form-control" type="text" name="txtTitle" placeholder="Nhập tiêu đề" ng-model="item.Title" required />
                                                     <p class="text-danger" ng-show="frmWidget{{item.ID}}.txtTitle.$invalid && frmWidget{{item.ID}}.txtTitle.$touched && frmWidget{{item.ID}}.txtTitle.$error.required">Vui lòng nhập tiêu đề.</p>
                                                 </div>
                                                 <div class="form-group">
-                                                    <div class="checkbox" ng-repeat="type in statisticConfig track by $index">
+                                                    <div class="checkbox">
                                                         <label>
-                                                            <input type="checkbox" checklist-model="item.Content" name="cates" checklist-value="type.value">{{type.text}}
+                                                            <input id="total{{item.ID}}" type="checkbox"  name="visitCount" ng-model="item.Content[0]" ng-true-value="'total'" ng-false-value="''">Tổng lượt
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input id="today{{item.ID}}" type="checkbox"  name="visitCount" ng-model="item.Content[1]" ng-true-value="'today'" ng-false-value="''">
+                                                            Hôm nay
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input id="yesterday{{item.ID}}" type="checkbox"  name="visitCount" ng-model="item.Content[2]" ng-true-value="'yesterday'" ng-false-value="''">Hôm qua
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input id="month{{item.ID}}" type="checkbox"  name="visitCount" ng-model="item.Content[3]" ng-true-value="'month'" ng-false-value="''">Trong tháng
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input id="year{{item.ID}}" type="checkbox"  name="visitCount" ng-model="item.Content[4]" ng-true-value="'year'" ng-false-value="''">
+                                                            Trong năm
                                                         </label>
                                                     </div>
                                                 </div>
@@ -825,7 +971,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Văn bản</label>
-                                                    <textarea class="form-control" row="5" ng-model="item.Content" name="content"></textarea>
+                                                    <textarea class="form-control" row="8" ng-model="item.Content" name="content"></textarea>
                                                 </div>
                                                 <div class="form-group border-top">
                                                     <div class="row">
@@ -944,6 +1090,10 @@
                                                         </select>
                                                     </div>
                                                     <p ng-show="frmWidget{{item.ID}}.category.$invalid && frmWidget{{item.ID}}.category.$touched && frmWidget{{item.ID}}.category.$error.required" class="text-danger">Vui lòng danh mục hiển thị.</p>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Số lượng hiển thị</label>
+                                                    <input class="form-control" type="number" name="txtConfig" string-to-number ng-model="item.Config" />
                                                 </div>
                                                 <div class="form-group border-top">
                                                     <div class="row">
@@ -990,6 +1140,30 @@
                                             <div class="dd-handle dd-handle-height">
                                                 <span ng-bind="item.Title"></span>
                                             </div>
+                                            <form id="form-{{item.ID}}" class="panel panel-default panel-body margin-bottom-0 none-display" name="frmWidget{{item.ID}}" role="form" ng-submit="event.updateForm(item, true)" novalidate ng-if="item.Method === 'wd_search'">
+                                                <div class="form-group" ng-class="{ 'has-error' : frmWidget{{item.ID}}.txtTitle.$invalid && frmWidget{{item.ID}}.txtTitle.$touched && frmWidget{{item.ID}}.txtTitle.$error.required }">
+                                                    <label>Tiêu đề&nbsp;<span class="text-danger">(*)</span></label>
+                                                    <input class="form-control" type="text" name="txtTitle" placeholder="Nhập tiêu đề" ng-model="item.Title" required />
+                                                    <p class="text-danger" ng-show="frmWidget{{item.ID}}.txtTitle.$invalid && frmWidget{{item.ID}}.txtTitle.$touched && frmWidget{{item.ID}}.txtTitle.$error.required">Vui lòng nhập tiêu đề.</p>
+                                                </div>
+                                                <div class="form-group border-top">
+                                                    <div class="row">
+                                                        <div class="col-sm-6">
+                                                            <div class="onoffswitch">
+                                                                <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="ckb-{{item.ID}}" ng-model="item.Status" ng-true-value="'1'" ng-false-value="'0'" />
+                                                                <label class="onoffswitch-label" for="ckb-{{item.ID}}">
+                                                                    <span class="onoffswitch-inner"></span>
+                                                                    <span class="onoffswitch-switch"></span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <button type="button" class="btn btn-danger fa fa-trash right" ng-click="event.delete(item)"></button>
+                                                            <button type="submit" class="btn btn-primary fa fa-save right"></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
                                             <form id="form-{{item.ID}}" class="panel panel-default panel-body margin-bottom-0 none-display" name="frmWidget{{item.ID}}" role="form" ng-submit="event.updateForm(item, true)" novalidate ng-if="item.Method === 'wd_productCategories'">
                                                 <div class="form-group" ng-class="{ 'has-error' : frmWidget{{item.ID}}.txtTitle.$invalid && frmWidget{{item.ID}}.txtTitle.$touched && frmWidget{{item.ID}}.txtTitle.$error.required }">
                                                     <label>Tiêu đề&nbsp;<span class="text-danger">(*)</span></label>
@@ -1094,16 +1268,38 @@
                                                     </div>
                                                 </div>
                                             </form>
-                                            <form id="form-{{item.ID}}" class="panel panel-default panel-body margin-bottom-0 none-display" name="frmWidget{{item.ID}}" role="form" ng-submit="event.updateForm(item, true)" novalidate ng-if="item.Method === 'wd_visitorStatistic'">
+                                            <form id="form-{{item.ID}}" class="panel panel-default panel-body margin-bottom-0 none-display" name="frmWidget{{item.ID}}" role="form" ng-submit="event.updateFormVisitCounter(item)" novalidate ng-if="item.Method === 'wd_visitorStatistic'">
                                                 <div class="form-group" ng-class="{ 'has-error' : frmWidget{{item.ID}}.txtTitle.$invalid && frmWidget{{item.ID}}.txtTitle.$touched && frmWidget{{item.ID}}.txtTitle.$error.required }">
                                                     <label>Tiêu đề&nbsp;<span class="text-danger">(*)</span></label>
                                                     <input class="form-control" type="text" name="txtTitle" placeholder="Nhập tiêu đề" ng-model="item.Title" required />
                                                     <p class="text-danger" ng-show="frmWidget{{item.ID}}.txtTitle.$invalid && frmWidget{{item.ID}}.txtTitle.$touched && frmWidget{{item.ID}}.txtTitle.$error.required">Vui lòng nhập tiêu đề.</p>
                                                 </div>
                                                 <div class="form-group">
-                                                    <div class="checkbox" ng-repeat="type in statisticConfig track by $index">
+                                                    <div class="checkbox">
                                                         <label>
-                                                            <input type="checkbox" checklist-model="item.Content" name="cates" checklist-value="type.value">{{type.text}}
+                                                            <input id="total{{item.ID}}" type="checkbox"  name="visitCount" ng-model="item.Content[0]" ng-true-value="'total'" ng-false-value="''">Tổng lượt
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input id="today{{item.ID}}" type="checkbox"  name="visitCount" ng-model="item.Content[1]" ng-true-value="'today'" ng-false-value="''">
+                                                            Hôm nay
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input id="yesterday{{item.ID}}" type="checkbox"  name="visitCount" ng-model="item.Content[2]" ng-true-value="'yesterday'" ng-false-value="''">Hôm qua
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input id="month{{item.ID}}" type="checkbox"  name="visitCount" ng-model="item.Content[3]" ng-true-value="'month'" ng-false-value="''">Trong tháng
+                                                        </label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input id="year{{item.ID}}" type="checkbox"  name="visitCount" ng-model="item.Content[4]" ng-true-value="'year'" ng-false-value="''">
+                                                            Trong năm
                                                         </label>
                                                     </div>
                                                 </div>
@@ -1133,7 +1329,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Văn bản</label>
-                                                    <textarea class="form-control" row="5" ng-model="item.Content" name="content"></textarea>
+                                                    <textarea class="form-control" row="8" ng-model="item.Content" name="content"></textarea>
                                                 </div>
                                                 <div class="form-group border-top">
                                                     <div class="row">
@@ -1252,6 +1448,10 @@
                                                         </select>
                                                     </div>
                                                     <p ng-show="frmWidget{{item.ID}}.category.$invalid && frmWidget{{item.ID}}.category.$touched && frmWidget{{item.ID}}.category.$error.required" class="text-danger">Vui lòng danh mục hiển thị.</p>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Số lượng hiển thị</label>
+                                                    <input class="form-control" type="number" name="txtConfig" string-to-number ng-model="item.Config" />
                                                 </div>
                                                 <div class="form-group border-top">
                                                     <div class="row">
@@ -1311,6 +1511,10 @@
                                     </select>
                                 </div>
                                 <p ng-show="Form.category.$invalid && Form.category.$touched && Form.category.$error.required" class="text-danger">Vui lòng danh mục hiển thị.</p>
+                            </div>
+                            <div class="form-group">
+                                <label>Số lượng hiển thị</label>
+                                <input class="form-control" type="number" name="txtConfig" string-to-number ng-model="newWidget.Config" />
                             </div>
                             <div class="form-group">
                                 <label>Vị trí</label>

@@ -91,13 +91,26 @@ angular.module('ototaihyundaiApp').controller('indexCtrl', function($scope, $sce
         }, function(err){
             console.log(err);
         });    
-    };    
+    };
+    $rootScope.initMapList = function(model){                    
+        var i = 0;
+        var count = 0;
+        var avgLat = 0;
+        var avgLng = 0;
+        for(i = 0; i < model.length; i++){
+            count++;
+            avgLat += parseFloat(model[i].Lattitude);
+            avgLng += parseFloat(model[i].Longitude);            
+        }
+        $rootScope.coordinate.lat = avgLat / count;
+        $rootScope.coordinate.lng = avgLng / count;        
+    };
     function getHeaderAndInform(){        
-        var controller = baseService.URL_HOST + baseService.module.getInformation;  
-        var param = {type: 'client'};
-        baseService.POST(controller, param).then(function(response){
-            $rootScope.widgets.information = response[0];
-        });      
+//        var controller = baseService.URL_HOST + baseService.module.getInformation;  
+//        var param = {type: 'client'};
+//        baseService.POST(controller, param).then(function(response){
+//            $rootScope.widgets.information = response[0];
+//        });      
         var controller = baseService.URL_HOST + baseService.module.getHeader;          
         baseService.GET(controller).then(function(response){
             $rootScope.widgets.header = response[0];
@@ -125,13 +138,7 @@ angular.module('ototaihyundaiApp').controller('indexCtrl', function($scope, $sce
         baseService.GET(controller).then(function(response){
             $rootScope.sidebarCategory = response; 
         });
-    };
-    function getSidebarFeaturedArt(type){
-        var controller = baseService.URL_HOST + baseService.module.getFeaturedPro + '/' + type;
-        baseService.GET(controller).then(function(response){
-            $rootScope.sidebar.featuredArticles = response; 
-        });
-    };
+    };    
     $rootScope.getResources = function(type){
         var controller = baseService.URL_HOST + baseService.module.getResources; 
         var param = {type: 'client', resourceCate: type};
@@ -157,9 +164,9 @@ angular.module('ototaihyundaiApp').controller('indexCtrl', function($scope, $sce
     baseService.GET(baseService.URL_HOST + baseService.module.addNewVisitor);    
     $rootScope.getAllNavigates();
 //    getSlider();    
-    getSidebarFeaturedArt($rootScope.dataType.article);
-    $rootScope.visitorStatistic();
-    $rootScope.getSidebarCategory($rootScope.dataType.product);
+    
+    //$rootScope.visitorStatistic();
+    //$rootScope.getSidebarCategory($rootScope.dataType.product);
 //    $rootScope.getContactUser();
 //    $rootScope.getMapList();
     getHeaderAndInform();

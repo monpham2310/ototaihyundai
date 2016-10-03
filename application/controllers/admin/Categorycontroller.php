@@ -129,7 +129,7 @@ class Categorycontroller extends CI_Controller {
     
     public function getNestableCate($type){
         $result = $this->Categorymodel->getAllCategories('client', $type);
-        echo $this->showNestableCate($result);
+        echo $this->showNestableCate($result); 
     }
     
     public function getCateOrProCate(){
