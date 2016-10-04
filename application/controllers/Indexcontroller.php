@@ -39,6 +39,7 @@ class Indexcontroller extends CI_Controller {
         }
         else{
             $filename = $this->Templatemodel->getTempOfView($meta);
+            echo $filename;
             if($filename !== null){
                 $view = 'client/'.$filename->Filename;
                 if($view !== 'client/')
