@@ -71,15 +71,17 @@ class Indexcontroller extends CI_Controller {
         $this->load->view('sitemap_view.php',$data);
     }
     
+    /* Test search xem có trả ra kết quả đã gửi lên không */
     public function search(){
         $request = $this->input->post('data');
-        $text = $request['search'];
-        $result = $this->Templatemodel->search($text);
-        $json = '';
-        $json = json_encode($result);
-        echo $json;
+//        $text = $request['search'];
+//        $result = $this->Templatemodel->search($text);
+//        $json = '';
+//        $json = json_encode($result);
+//        echo $json;
+        echo json_encode($request);
     }
-                        
+    
 }
 
 ?>

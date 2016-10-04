@@ -25,7 +25,7 @@ angular.module('ototaihyundaiApp').config(function ($routeProvider, $locationPro
             var meta = url.meta + '/' + url.child;            
             return 'Indexcontroller/loadTemplate/' + '?meta=' + meta;
         }      
-    })      
+    })
     .otherwise({
         redirectTo: '/404'
     });        

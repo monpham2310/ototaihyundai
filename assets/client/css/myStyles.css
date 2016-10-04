@@ -1011,3 +1011,7 @@ div.ibox {
         margin-left: 34px;
     }
 }
+.media {
+    margin-top: 15px;
+    border-bottom: 1px dashed #CCC;
+}
