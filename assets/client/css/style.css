@@ -2870,6 +2870,10 @@ a#scroll-up:hover {
 /* Large desktop */
 
 @media (max-width: 1200px) {
+    .thumbnail{
+        border: none;
+        height:300px;
+    }
     .boxed-layout #page {
         width: 98%;
         margin: 0 auto;
@@ -2905,6 +2909,10 @@ a#scroll-up:hover {
 /* Portrait tablet to landscape and desktop */
 
 @media (min-width: 769px) and (max-width: 979px) {
+    .thumbnail{
+        border: none;
+        height:270px;
+    }
     .logo {
         float: none;
         text-align: center;
@@ -2979,6 +2987,10 @@ a#scroll-up:hover {
 /* Landscape phone to portrait tablet */
 
 @media (max-width: 768px) {
+    .thumbnail{
+        border: none;
+        height:270px;
+    }
     .logo {
         float: none;
         text-align: center;

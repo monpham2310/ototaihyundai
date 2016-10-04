@@ -85,20 +85,6 @@
                         <nav id="site-navigation" class="main-navigation clearfix" role="navigation">
                             <div class="menu-toggle hide">Menu</div>
                             <span compile-html="$root.navigates"></span>
-                            <!--
-                            <ul id="nav" class="menu">
-                                <li id="menu-item-383" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-383"><a href="http://ototaihyundai.net/danh-muc/xe-tai-hyundai/">XE TẢI HYUNDAI</a></li>
-                                <li id="menu-item-67" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-67"><a href="http://ototaihyundai.net/danh-muc/xe-tai-fuso/">XE TẢI FUSO</a></li>
-                                <li id="menu-item-80" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-80"><a href="http://ototaihyundai.net/danh-muc/xe-tai-isuzu/">XE TẢI ISUZU</a></li>
-                                <li id="menu-item-79" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-79"><a href="http://ototaihyundai.net/danh-muc/xe-tai-dongfeng/">XE TẢI DONGFENG</a></li>
-                                <li id="menu-item-120" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-has-children menu-item-120"><a href="http://ototaihyundai.net/danh-muc/xe-tai-veam/">XE TẢI VEAM</a>
-                                    <ul class="sub-menu">
-                                        <li id="menu-item-324" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-324"><a href="http://ototaihyundai.net/danh-muc/xe-tai-veam/xe-ben-veam/">XE BEN VEAM</a></li>
-                                    </ul>
-                                </li>
-                                <li id="menu-item-112" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-112"><a href="http://ototaihyundai.net/lien-he/">LIÊN HỆ</a></li>
-                            </ul>
--->
                         </nav>
                         <div class="share-search-wrap">
                             <div class="home-search">
@@ -107,8 +93,8 @@
                                 </div>
                                 <div class="search-box">
                                     <div class="close">×</div>
-                                    <form role="search" action="http://ototaihyundai.net/" class="searchform" method="get">
-                                        <input type="text" placeholder="Enter a word for search" class="search-field" value="" name="s">
+                                    <form role="search" class="searchform" ng-submit="$root.search()">
+                                        <input type="text" placeholder="Nhập thông tin tìm kiếm" class="search-field" ng-model="$root.searchText" name="s">
                                         <button class="searchsubmit" name="submit" type="submit"><i class="fa fa-search"></i></button>
                                     </form>
                                 </div>
@@ -280,84 +266,88 @@
                 <aside id="recent-posts-widget-with-thumbnails-2" class="widget recent-posts-widget-with-thumbnails">
                     <h3 class="widget-title title-block-wrap clearfix"><span class="block-title"><span ng-bind="item.Title"></span></span></h3>
                     <div class="xo10-accordion-list-holder" compile-html="item.data" ng-if="item.Method === 'wd_productCategories' || item.Method === 'wd_articleCategories'">
-                    
                     </div>
                     <ul ng-if="item.Method === 'wd_featureArt' || item.Method === 'wd_featurePro' || item.Method === 'wd_newArticle' || item.Method === 'wd_newProduct'">
-                        <li ng-repeat="art in item.data track by $index">                            
+                        <li ng-repeat="art in item.data track by $index">
+                            <div class="media">
+                                <div class="media-left media-middle">
+                                    <a ng-href="{{art.ArtMeta}}">
+                                        <img ng-src="{{art.Image}}" title="{{art.ArtName}}" alt="{{art.ArtName}}" width="180px" height="180px">
+                                    </a>
+                                </div>
+                                <div class="media-body">
+                                    <a ng-href="{{art.ArtMeta}}">
+                                        <span class="cat-name" ng-bind="art.ArtName"></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul ng-if="item.Method === null || item.Method === ''">
+                        <li ng-repeat="art in item.data track by $index">
                             <a ng-href="{{art.ArtMeta}}">
                                 <img ng-src="{{art.Image}}" title="{{art.ArtName}}" alt="{{art.ArtName}}" width="50" height="50">
                                 <span class="cat-name" ng-bind="art.ArtName"></span>
                             </a>
                         </li>
                     </ul>
-                    <ul ng-if="item.Method === null || item.Method === ''">
-                        <li ng-repeat="art in item.data track by $index">                            
-                            <a ng-href="{{art.ArtMeta}}">
-                                <img ng-src="{{art.Image}}" title="{{art.ArtName}}" alt="{{art.ArtName}}" width="50" height="50">
-                                <span class="cat-name" ng-bind="art.ArtName"></span>
-                            </a>
-                        </li>
-                    </ul>                    
                     <div class="xo10-accordion-list-holder" ng-if="item.Method === 'wd_visitorStatistic'" ng-init="item.Content = item.Content.split(',')">
                         <p ng-if="item.Content[0] !== '' && item.Content[0] !== null">
-                            <img src="assets/includes/upload/images/icons/mvctotal.png" class="img-statistic"> 
-                            Tổng lượt: <span ng-bind="item.data[4].Number"></span>
+                            <img src="assets/includes/upload/images/icons/mvctotal.png" class="img-statistic"> Tổng lượt: <span ng-bind="item.data[4].Number"></span>
                         </p>
                         <p ng-if="item.Content[1] !== '' && item.Content[1] !== null">
-                            <img src="assets/includes/upload/images/icons/mvctoday.png" class="img-statistic"> 
-                            Hôm nay: <span ng-bind="item.data[0].Number"></span>
+                            <img src="assets/includes/upload/images/icons/mvctoday.png" class="img-statistic"> Hôm nay: <span ng-bind="item.data[0].Number"></span>
                         </p>
                         <p ng-if="item.Content[2] !== '' && item.Content[2] !== null">
-                            <img src="assets/includes/upload/images/icons/mvcyesterday.png" class="img-statistic"> 
-                            Hôm qua: <span ng-bind="item.data[1].Number"></span>
+                            <img src="assets/includes/upload/images/icons/mvcyesterday.png" class="img-statistic"> Hôm qua: <span ng-bind="item.data[1].Number"></span>
                         </p>
                         <p ng-if="item.Content[3] !== '' && item.Content[3] !== null">
-                            <img src="assets/includes/upload/images/icons/mvconline.png" class="img-statistic"> 
-                            Tháng: <span ng-bind="item.data[2].Number"></span>
+                            <img src="assets/includes/upload/images/icons/mvconline.png" class="img-statistic"> Tháng: <span ng-bind="item.data[2].Number"></span>
                         </p>
                         <p ng-if="item.Content[4] !== '' && item.Content[4] !== null">
-                            <img src="assets/includes/upload/images/icons/mvcvisit.png" class="img-statistic"> 
-                            Năm: <span ng-bind="item.data[3].Number"></span>
+                            <img src="assets/includes/upload/images/icons/mvcvisit.png" class="img-statistic"> Năm: <span ng-bind="item.data[3].Number"></span>
                         </p>
                     </div>
                     <div ng-if="item.Method === 'wd_allProduct'">
                         <ul>
-                            <li dir-paginate="art in item.data | itemsPerPage: item.Config track by $index" pagination-id="sidebarAllPro">                            
+                            <li dir-paginate="art in item.data | itemsPerPage: item.Config track by $index" pagination-id="sidebarAllPro">
                                 <a ng-href="{{art.ArtMeta}}">
                                     <img ng-src="{{art.Image}}" title="{{art.ArtName}}" alt="{{art.ArtName}}" width="50" height="50">
                                     <span class="cat-name" ng-bind="art.ArtName"></span>
                                 </a>
                             </li>
                         </ul>
-                        <dir-pagination-controls pagination-id="sidebarAllPro" max-size="3" boundary-links="false"></dir-pagination-controls> 
+                        <dir-pagination-controls pagination-id="sidebarAllPro" max-size="3" boundary-links="false"></dir-pagination-controls>
                     </div>
                     <div ng-if="item.Method === 'wd_allArticle'">
                         <ul>
-                            <li dir-paginate="art in item.data | itemsPerPage: item.Config track by $index" pagination-id="sidebarAllArt">                            
+                            <li dir-paginate="art in item.data | itemsPerPage: item.Config track by $index" pagination-id="sidebarAllArt">
                                 <a ng-href="{{art.ArtMeta}}">
                                     <img ng-src="{{art.Image}}" title="{{art.ArtName}}" alt="{{art.ArtName}}" width="50" height="50">
                                     <span class="cat-name" ng-bind="art.ArtName"></span>
                                 </a>
                             </li>
                         </ul>
-                        <dir-pagination-controls pagination-id="sidebarAllArt" max-size="3" boundary-links="false"></dir-pagination-controls> 
+                        <dir-pagination-controls pagination-id="sidebarAllArt" max-size="3" boundary-links="false"></dir-pagination-controls>
                     </div>
                     <div class="xo10-accordion-list-holder" ng-if="item.Method === 'wd_search'" compile-html="item.Content">
-                    </div> 
+                    </div>
                     <div class="xo10-accordion-list-holder" ng-if="item.Method === 'wd_text'" ng-bind-html="trustAsHtml(item.Content)">
-                    </div> 
+                    </div>
                     <div class="xo10-accordion-list-holder" ng-if="item.Method === 'wd_markerList'" ng-init="$root.initMapList(item.data)">
                         <ng-map center="[{{$root.coordinate.lat}}, {{$root.coordinate.lng}}]" zoom="8">
                             <marker ng-repeat="marker in item.data track by $index" position="{{marker.Lattitude}}, {{marker.Longitude}}"></marker>
                         </ng-map>
-                    </div> 
+                    </div>
                     <div class="xo10-accordion-list-holder" ng-if="item.Method === 'wd_fanPage'">
                         <div class="fb-page" data-href="{{item.Content}}" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
                             <div class="fb-xfbml-parse-ignore">
-                                <blockquote cite="{{item.Content}}"><a ng-href="{{item.Content}}"></a></blockquote>
+                                <blockquote cite="{{item.Content}}">
+                                    <a ng-href="{{item.Content}}"></a>
+                                </blockquote>
                             </div>
                         </div>
-                    </div>                                   
+                    </div>
                 </aside>
             </div>
         </div>
@@ -368,85 +358,85 @@
                 <h3 class="footer-widget-title" ng-bind="item.Title"></h3>
                 <div class="primary-widget"></div>
                 <div class="xo10-accordion-list-holder" compile-html="item.data" ng-if="item.Method === 'wd_productCategories' || item.Method === 'wd_articleCategories'">
-                    
+
                 </div>
                 <ul ng-if="item.Method === 'wd_featureArt' || item.Method === 'wd_featurePro' || item.Method === 'wd_newArticle' || item.Method === 'wd_newProduct'">
-                    <li ng-repeat="art in item.data track by $index">                            
+                    <li ng-repeat="art in item.data track by $index">
                         <a ng-href="{{art.ArtMeta}}">
                             <img ng-src="{{art.Image}}" title="{{art.ArtName}}" alt="{{art.ArtName}}" width="50" height="50">
                             <span class="cat-name" ng-bind="art.ArtName"></span>
                         </a>
                     </li>
-                </ul> 
+                </ul>
                 <ul ng-if="item.Method === null || item.Method === ''">
-                    <li ng-repeat="art in item.data track by $index">                            
+                    <li ng-repeat="art in item.data track by $index">
                         <a ng-href="{{art.ArtMeta}}">
                             <img ng-src="{{art.Image}}" title="{{art.ArtName}}" alt="{{art.ArtName}}" width="50" height="50">
                             <span class="cat-name" ng-bind="art.ArtName"></span>
                         </a>
                     </li>
-                </ul>                   
+                </ul>
                 <div class="xo10-accordion-list-holder" ng-if="item.Method === 'wd_visitorStatistic'" ng-init="item.Content = item.Content.split(',')">
                     <p ng-if="item.Content[0] !== '' && item.Content[0] !== null">
-                        <img src="assets/includes/upload/images/icons/mvctotal.png" class="img-statistic"> 
-                        Tổng lượt: <span ng-bind="item.data[4].Number"></span>
+                        <img src="assets/includes/upload/images/icons/mvctotal.png" class="img-statistic"> Tổng lượt: <span ng-bind="item.data[4].Number"></span>
                     </p>
                     <p ng-if="item.Content[1] !== '' && item.Content[1] !== null">
-                        <img src="assets/includes/upload/images/icons/mvctoday.png" class="img-statistic"> 
-                        Hôm nay: <span ng-bind="item.data[0].Number"></span>
+                        <img src="assets/includes/upload/images/icons/mvctoday.png" class="img-statistic"> Hôm nay: <span ng-bind="item.data[0].Number"></span>
                     </p>
                     <p ng-if="item.Content[2] !== '' && item.Content[2] !== null">
-                        <img src="assets/includes/upload/images/icons/mvcyesterday.png" class="img-statistic"> 
-                        Hôm qua: <span ng-bind="item.data[1].Number"></span>
+                        <img src="assets/includes/upload/images/icons/mvcyesterday.png" class="img-statistic"> Hôm qua: <span ng-bind="item.data[1].Number"></span>
                     </p>
                     <p ng-if="item.Content[3] !== '' && item.Content[3] !== null">
-                        <img src="assets/includes/upload/images/icons/mvconline.png" class="img-statistic"> 
-                        Tháng: <span ng-bind="item.data[2].Number"></span>
+                        <img src="assets/includes/upload/images/icons/mvconline.png" class="img-statistic"> Tháng: <span ng-bind="item.data[2].Number"></span>
                     </p>
                     <p ng-if="item.Content[4] !== '' && item.Content[4] !== null">
-                        <img src="assets/includes/upload/images/icons/mvcvisit.png" class="img-statistic"> 
-                        Năm: <span ng-bind="item.data[3].Number"></span>
+                        <img src="assets/includes/upload/images/icons/mvcvisit.png" class="img-statistic"> Năm: <span ng-bind="item.data[3].Number"></span>
                     </p>
                 </div>
                 <div ng-if="item.Method === 'wd_allProduct'">
                     <ul>
-                        <li dir-paginate="art in item.data | itemsPerPage: item.Config track by $index" pagination-id="sidebarAllPro">                            
+                        <li dir-paginate="art in item.data | itemsPerPage: item.Config track by $index" pagination-id="sidebarAllPro">
                             <a ng-href="{{art.ArtMeta}}">
                                 <img ng-src="{{art.Image}}" title="{{art.ArtName}}" alt="{{art.ArtName}}" width="50" height="50">
                                 <span class="cat-name" ng-bind="art.ArtName"></span>
                             </a>
                         </li>
                     </ul>
-                    <dir-pagination-controls pagination-id="sidebarAllPro" max-size="3" boundary-links="false"></dir-pagination-controls> 
+                    <dir-pagination-controls pagination-id="sidebarAllPro" max-size="3" boundary-links="false"></dir-pagination-controls>
                 </div>
                 <div ng-if="item.Method === 'wd_allArticle'">
                     <ul>
-                        <li dir-paginate="art in item.data | itemsPerPage: item.Config track by $index" pagination-id="sidebarAllArt">                            
+                        <li dir-paginate="art in item.data | itemsPerPage: item.Config track by $index" pagination-id="sidebarAllArt">
                             <a ng-href="{{art.ArtMeta}}">
                                 <img ng-src="{{art.Image}}" title="{{art.ArtName}}" alt="{{art.ArtName}}" width="50" height="50">
                                 <span class="cat-name" ng-bind="art.ArtName"></span>
                             </a>
                         </li>
                     </ul>
-                    <dir-pagination-controls pagination-id="sidebarAllArt" max-size="3" boundary-links="false"></dir-pagination-controls> 
+                    <dir-pagination-controls pagination-id="sidebarAllArt" max-size="3" boundary-links="false"></dir-pagination-controls>
                 </div>
                 <div class="xo10-accordion-list-holder" ng-if="item.Method === 'wd_search'" compile-html="item.Content">
-                </div> 
+                </div>
                 <div class="xo10-accordion-list-holder" ng-if="item.Method === 'wd_text'" ng-bind-html="trustAsHtml(item.Content)">
-                </div> 
+                </div>
                 <div class="xo10-accordion-list-holder" ng-if="item.Method === 'wd_markerList'" ng-init="$root.initMapList(item.data)">
                     <ng-map center="[{{$root.coordinate.lat}}, {{$root.coordinate.lng}}]" zoom="8">
                         <marker ng-repeat="marker in item.data track by $index" position="{{marker.Lattitude}}, {{marker.Longitude}}"></marker>
                     </ng-map>
-                </div> 
+                </div>
                 <div class="xo10-accordion-list-holder" ng-if="item.Method === 'wd_fanPage'">
                     <div class="fb-page" data-href="{{item.Content}}" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
                         <div class="fb-xfbml-parse-ignore">
-                            <blockquote cite="{{item.Content}}"><a ng-href="{{item.Content}}"></a></blockquote>
+                            <blockquote cite="{{item.Content}}">
+                                <a ng-href="{{item.Content}}"></a>
+                            </blockquote>
                         </div>
                     </div>
-                </div> 
+                </div>
             </div>
+        </div>
+        <div class="row footer-main" style="background:#151515">
+            Copyright @ ototaihyundai.net - Design by MaYoLi
         </div>
     </div>
     <script src="assets/client/js/jQuery-2.1.4.min.js"></script>
@@ -477,15 +467,26 @@
     <script type="application/javascript" src="assets/client/js/huge_slideshow.js"></script>
     <script type="application/javascript" src="assets/includes/bootstrap/js/bootstrap.min.js"></script>
     <script>
-        $(function(){            
-            window.fbAsyncInit = function() {
-                FB.init({appId: '476481575889860', status: true, cookie: true,
-                xfbml: true});
-                };
-                (function() {
-                var e = document.createElement('script'); e.async = true;
+        $(function () {
+            window.fbAsyncInit = function () {
+                FB.init({
+                    appId: '476481575889860',
+                    status: true,
+                    cookie: true,
+                    xfbml: true
+                });
+            };
+            $('.search-icon').click(function(){
+                $('.search-box').css({display:'block', width: '80%', visibility: 'inherit', opacity:10});
+            });
+            $('.search-box .close').click(function(){
+                $('.search-box').css({width: '0',opacity:0});
+            })
+            (function () {
+                var e = document.createElement('script');
+                e.async = true;
                 e.src = document.location.protocol +
-                '//connect.facebook.net/en_US/all.js';
+                    '//connect.facebook.net/en_US/all.js';
                 document.getElementById('fb-root').appendChild(e);
             }());
         });
