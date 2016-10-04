@@ -6,12 +6,14 @@
                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 product" dir-paginate="item in widget.data | itemsPerPage: widget.Config track by $index" pagination-id="paginationProduct">
                     <a ng-href="{{item.ArtMeta}}">
                         <div class="thumbnail">
-                            <img class="img-responsive" ng-src="{{item.Image}}" alt="{{item.ArtName}}" ng-if="item.Image !== '' && item.Image !== null">
-                            <div class="home-video" ng-bind-html="trustAsHtml(item.Video)" ng-if="item.Video !== '' && item.Video !== null"></div>
-                            <div class="caption">
-                                <h5 ng-bind="item.ArtName"></h5>                             
-                                <span class="price" ng-if="item.Price === '0'">Giá cả: Liên hệ</span>                            
-                                <span class="price" ng-if="item.Price !== '0'">Giá cả: {{item.Price}}</span>                            
+                            <div class="thumbnail-item">
+                                <img class="img-responsive" ng-src="{{item.Image}}" alt="{{item.ArtName}}" ng-if="item.Image !== '' && item.Image !== null">
+                                <div class="home-video" ng-bind-html="trustAsHtml(item.Video)" ng-if="item.Video !== '' && item.Video !== null"></div>
+                                <div class="caption">
+                                    <h5 ng-bind="item.ArtName"></h5>                             
+                                    <span class="price" ng-if="item.Price === '0'">Giá cả: Liên hệ</span>                            
+                                    <span class="price" ng-if="item.Price !== '0'">Giá cả: {{item.Price}}</span>                            
+                                </div>
                             </div>
                         </div>
                     </a>
@@ -24,12 +26,14 @@
                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 product" dir-paginate="item in widget.data | itemsPerPage: widget.Config track by $index" pagination-id="paginationArticle">
                     <a ng-href="{{item.ArtMeta}}">
                         <div class="thumbnail">
-                            <img class="img-responsive" ng-src="{{item.Image}}" alt="{{item.ArtName}}" ng-if="item.Image !== '' && item.Image !== null">
-                            <div class="home-video" ng-bind-html="trustAsHtml(item.Video)" ng-if="item.Video !== '' && item.Video !== null"></div>
-                            <div class="caption">
-                                <h5 ng-bind="item.ArtName"></h5>                             
-                                <span class="price" ng-if="item.Price === '0'">Giá cả: Liên hệ</span>                            
-                                <span class="price" ng-if="item.Price !== '0'">Giá cả: {{item.Price}}</span>                            
+                            <div class="thumbnail-item">
+                                <img class="img-responsive" ng-src="{{item.Image}}" alt="{{item.ArtName}}" ng-if="item.Image !== '' && item.Image !== null">
+                                <div class="home-video" ng-bind-html="trustAsHtml(item.Video)" ng-if="item.Video !== '' && item.Video !== null"></div>
+                                <div class="caption">
+                                    <h5 ng-bind="item.ArtName"></h5>                             
+                                    <span class="price" ng-if="item.Price === '0'">Giá cả: Liên hệ</span>                            
+                                    <span class="price" ng-if="item.Price !== '0'">Giá cả: {{item.Price}}</span>                            
+                                </div>
                             </div>
                         </div>
                     </a>
@@ -42,12 +46,14 @@
                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 product" ng-repeat="item in widget.data track by $index">
                     <a ng-href="{{item.ArtMeta}}">
                         <div class="thumbnail">
-                            <img class="img-responsive" ng-src="{{item.Image}}" alt="{{item.ArtName}}" ng-if="item.Image !== '' && item.Image !== null">
-                            <div class="home-video" ng-bind-html="trustAsHtml(item.Video)" ng-if="item.Video !== '' && item.Video !== null"></div>
-                            <div class="caption">
-                                <h5 ng-bind="item.ArtName"></h5>
-                                <span class="price" ng-if="item.Price === '0'">Giá cả: Liên hệ</span>                            
-                                <span class="price" ng-if="item.Price !== '0'">Giá cả: {{item.Price}}</span> 
+                            <div class="thumbnail-item">
+                                <img class="img-responsive" ng-src="{{item.Image}}" alt="{{item.ArtName}}" ng-if="item.Image !== '' && item.Image !== null">
+                                <div class="home-video" ng-bind-html="trustAsHtml(item.Video)" ng-if="item.Video !== '' && item.Video !== null"></div>
+                                <div class="caption">
+                                    <h5 ng-bind="item.ArtName"></h5>
+                                    <span class="price" ng-if="item.Price === '0'">Giá cả: Liên hệ</span>                            
+                                    <span class="price" ng-if="item.Price !== '0'">Giá cả: {{item.Price}}</span> 
+                                </div>
                             </div>
                         </div>
                     </a>
@@ -59,12 +65,14 @@
                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 product" ng-repeat="item in widget.data track by $index">
                     <a ng-href="{{item.ArtMeta}}">
                         <div class="thumbnail">
-                            <img class="img-responsive" ng-src="{{item.Image}}" alt="{{item.ArtName}}" ng-if="item.Image !== '' && item.Image !== null">
-                            <div class="home-video" ng-bind-html="trustAsHtml(item.Video)" ng-if="item.Video !== '' && item.Video !== null"></div>
-                            <div class="caption">
-                                <h5 ng-bind="item.ArtName"></h5>
-                                <span class="price" ng-if="item.Price === '0'">Giá cả: Liên hệ</span>                            
-                                <span class="price" ng-if="item.Price !== '0'">Giá cả: {{item.Price}}</span> 
+                            <div class="thumbnail-item">
+                                <img class="img-responsive" ng-src="{{item.Image}}" alt="{{item.ArtName}}" ng-if="item.Image !== '' && item.Image !== null">
+                                <div class="home-video" ng-bind-html="trustAsHtml(item.Video)" ng-if="item.Video !== '' && item.Video !== null"></div>
+                                <div class="caption">
+                                    <h5 ng-bind="item.ArtName"></h5>
+                                    <span class="price" ng-if="item.Price === '0'">Giá cả: Liên hệ</span>                            
+                                    <span class="price" ng-if="item.Price !== '0'">Giá cả: {{item.Price}}</span> 
+                                </div>
                             </div>
                         </div>
                     </a>

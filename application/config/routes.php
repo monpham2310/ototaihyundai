@@ -49,16 +49,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'IndexController/index';
-$route['admin'] = 'admin/viewManageController/index';
-$route['login'] = 'admin/viewManageController/index';
-$route['admin/([a-z A-Z 0-9 -]+)'] = 'admin/viewManageController/index';
-$route['admin/([a-z A-Z 0-9 -]+)/([a-z 0-9 -]+)'] = 'admin/viewManageController/index';
-$route['admin/([a-z A-Z 0-9 -]+)/([a-z 0-9 -]+)/(:num)'] = 'admin/viewManageController/index';
+$route['default_controller'] = 'Indexcontroller/index';
+$route['admin'] = 'admin/Viewmanagecontroller/index';
+$route['login'] = 'admin/Viewmanagecontroller/index';
+$route['sitemap.xml'] = 'Indexcontroller/sitemap';   
 
-$route['sitemap.xml'] = 'IndexController/sitemap';
-$route['([a-z A-Z 0-9 -]+)'] = 'IndexController/index';    
-$route['([a-z A-Z 0-9 -]+)/([a-z A-Z 0-9 -]+)'] = 'IndexController/index';
+$route['admin/([a-z A-Z 0-9 -]+)'] = 'admin/Viewmanagecontroller/index';
+$route['admin/([a-z A-Z 0-9 -]+)/([a-z 0-9 -]+)'] = 'admin/Viewmanagecontroller/index';
+$route['admin/([a-z A-Z 0-9 -]+)/([a-z 0-9 -]+)/(:num)'] = 'admin/Viewmanagecontroller/index';
 
-$route['404_override'] = 'IndexController/index';
+$route['([a-z A-Z 0-9 -]+)'] = 'Indexcontroller/index';  
+$route['([a-z A-Z 0-9 -])/([a-z A-Z 0-9 -]+)'] = 'Indexcontroller/index';
+
+$route['404_override'] = 'Indexcontroller/index';
 $route['translate_uri_dashes'] = FALSE;

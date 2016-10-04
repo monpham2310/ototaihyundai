@@ -26,7 +26,8 @@ class Indexcontroller extends CI_Controller {
             
     public function loadTemplate(){
         $meta = $this->input->get('meta');        
-        $filename = $this->Templatemodel->getTemplateOfView($meta);              
+        $filename = $this->Templatemodel->getTemplateOfView($meta);
+        echo $filename;
         if($filename !== null){
             $view = 'client/'.$filename->Filename;
             if($view !== 'client/')
@@ -71,6 +72,7 @@ class Indexcontroller extends CI_Controller {
         $this->load->view('sitemap_view.php',$data);
     }
     
+    /* Test search xem có trả ra kết quả đã gửi lên không */
     public function search(){
         $request = $this->input->post('data');
         $text = $request['search'];
@@ -79,7 +81,7 @@ class Indexcontroller extends CI_Controller {
         $json = json_encode($result);
         echo $json;
     }
-                        
+    
 }
 
 ?>

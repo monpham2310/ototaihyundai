@@ -37,7 +37,7 @@ angular.module('ototaihyundaiApp').controller('indexCtrl', function($scope, $sce
     $rootScope.contacts = [];     
     $scope.myInterval = 4000;
     $scope.trustAsHtml = $sce.trustAsHtml;
-    $scope.searchResult = [];
+    $rootScope.searchResult = null;
     function getSlider(){
         var getSlides = baseService.URL_HOST + baseService.module.getSlides; 
         var param = {type: 'client'};
@@ -149,14 +149,17 @@ angular.module('ototaihyundaiApp').controller('indexCtrl', function($scope, $sce
             console.log(err);
         });
     };
-    $rootScope.search = function(){        
+    $rootScope.search = function(){
         var controller = baseService.URL_HOST + baseService.module.search;
+        console.log(controller);
         if($rootScope.searchText !== ''){
             var param = {search: $rootScope.searchText};
+            console.log(param);
             baseService.POST(controller, param).then(function(response){
+                console.log(response);
                 var url = '/tim-kiem';
                 $location.path(url);
-                $scope.searchResult = response;                
+                $rootScope.searchResult = response;                
             });
         }
     }; 

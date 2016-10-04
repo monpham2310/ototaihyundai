@@ -106,11 +106,11 @@ class Templatemodel extends CI_Model {
     }
     
     public function search($text){        
-        $result = $this->db->query('select CatID as ID,CatName as Name,CatMeta as Alias,CatDescribes as Describes
+        $result = $this->db->query('select CatID as ID,CatName as Name,CatMeta as Alias,CatDescribes as Describes,CatImg as Image
                                     from categories
                                     where (CatName like "%'.$text.'%" or CatDescribes like "%'.$text.'%")
                                     union
-                                    select ArtID as ID,ArtName as Name,ArtMeta as Alias,ArtDescribes as Describes
+                                    select ArtID as ID,ArtName as Name,ArtMeta as Alias,ArtDescribes as Describes,Image
                                     from articles
                                     where (ArtName like "%'.$text.'%" or ArtDescribes like "%'.$text.'%" or Content like "%'.$text.'%" or Estimate like "%'.$text.'%");');
         if($result->num_rows() > 0){
