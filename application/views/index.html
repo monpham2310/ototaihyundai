@@ -475,13 +475,7 @@
                     cookie: true,
                     xfbml: true
                 });
-            };
-            $('.search-icon').click(function(){
-                $('.search-box').css({display:'block', width: '80%', visibility: 'inherit', opacity:10});
-            });
-            $('.search-box .close').click(function(){
-                $('.search-box').css({width: '0',opacity:0});
-            })
+            };            
             (function () {
                 var e = document.createElement('script');
                 e.async = true;
@@ -489,6 +483,12 @@
                     '//connect.facebook.net/en_US/all.js';
                 document.getElementById('fb-root').appendChild(e);
             }());
+            $('.search-icon').click(function(){
+                $('.search-box').css({display:'block', width: '80%', visibility: 'inherit', opacity:10});
+            });
+            $('.search-box .close').click(function(){
+                $('.search-box').css({width: '0',opacity:0});
+            })
         });
     </script>
 </body>

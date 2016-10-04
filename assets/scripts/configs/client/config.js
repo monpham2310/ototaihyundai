@@ -17,14 +17,16 @@ angular.module('ototaihyundaiApp').config(function ($routeProvider, $locationPro
     .when('/:meta', {
         templateUrl: function(url){
             var meta = url.meta;
-            return 'Indexcontroller/loadTemplate/' + '?meta=' + meta;
+            alert('OK 1');
+         //   return 'Indexcontroller/loadTemplate' + '?meta=' + meta;
         }        
     })
     .when('/:meta/:child', {
-        templateUrl: function(url){
-            var meta = url.meta + '/' + url.child;            
-            return 'Indexcontroller/loadTemplate/' + '?meta=' + meta;
-        }      
+        templateUrl: 'Indexcontroller/notfound'  
+//        function(url){
+//            var meta = url.meta + '/' + url.child;     
+//            return 'Indexcontroller/loadTemplate?meta=' + meta;
+//        }      
     })
     .otherwise({
         redirectTo: '/404'
