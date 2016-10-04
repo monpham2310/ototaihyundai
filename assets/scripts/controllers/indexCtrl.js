@@ -156,8 +156,7 @@ angular.module('ototaihyundaiApp').controller('indexCtrl', function($scope, $sce
             baseService.POST(controller, param).then(function(response){
                 var url = '/tim-kiem';
                 $location.path(url);
-                $scope.searchResult = response;
-                $rootScope.pageTitle = title + ' | ' + $rootScope.searchText;
+                $scope.searchResult = response;                
             });
         }
     }; 

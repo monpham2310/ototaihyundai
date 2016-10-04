@@ -105,15 +105,14 @@ class Templatemodel extends CI_Model {
         }
     }
     
-    public function search($text){
-        $currentLang = $this->phpsession->getCookie('monpham_language');
+    public function search($text){        
         $result = $this->db->query('select CatID as ID,CatName as Name,CatMeta as Alias,CatDescribes as Describes
                                     from categories
-                                    where (CatName like "%'.$text.'%" or CatDescribes like "%'.$text.'%") and CatLang = "'.$currentLang.'" 
+                                    where (CatName like "%'.$text.'%" or CatDescribes like "%'.$text.'%")
                                     union
                                     select ArtID as ID,ArtName as Name,ArtMeta as Alias,ArtDescribes as Describes
                                     from articles
-                                    where (ArtName like "%'.$text.'%" or ArtDescribes like "%'.$text.'%" or Content like "%'.$text.'%" or Estimate like "%'.$text.'%") and ArtLang = "'.$currentLang.'";');
+                                    where (ArtName like "%'.$text.'%" or ArtDescribes like "%'.$text.'%" or Content like "%'.$text.'%" or Estimate like "%'.$text.'%");');
         if($result->num_rows() > 0){
             return $result->result_array();
         }
