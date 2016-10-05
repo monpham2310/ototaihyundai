@@ -12,20 +12,6 @@ class Widgetmodel extends CI_Model {
         $this->load->model('Mapmodel');
     }
     
-//    public function getInformation($type){        
-//        if($type === 'admin'){
-//            $result = $this->db->query('select InformId,Name,Email,Phone,Facebook
-//                    from information
-//                    ;');  
-//        }
-//        else{
-//            $result = $this->db->query('select InformId,Name,Email,Phone,Facebook
-//                    from information
-//                    ;');  
-//        }
-//        return ($result->num_rows() > 0)? $result->result_array() : array();
-//    }
-    
     public function getHeader(){
         $result = $this->db->query('select BannerId,Logo,Banner
                     from banner;');
@@ -73,8 +59,7 @@ class Widgetmodel extends CI_Model {
         return $sidebarCategory;
     }
         
-    public function getAllWidgets($data){ 
-        $this->sidebarCategory = '';
+    public function getAllWidgets($data){         
         if($data['type'] === 'admin'){
             $result = $this->db->query('select ID,Title,Describes,Area,Status,Position,CateID,Config,Content,Method,Type
                                     from widgets
@@ -149,13 +134,7 @@ class Widgetmodel extends CI_Model {
         }
         return $result;
     }
-    
-    public function updateInformation($data){
-        $this->db->where('InformId', $data['InformId']);
-        $result = $this->db->update('information', $data);
-        return ($result !== null)? true : false;
-    }
-    
+            
     public function updateWidget($param){
         $this->db->where('ID', $param['ID']);
         $result = $this->db->update('widgets', $param);

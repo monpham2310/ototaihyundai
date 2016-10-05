@@ -14,6 +14,7 @@ angular.module('ototaihyundaiApp').controller('editArticleCtrl', function($scope
     $rootScope.dataType = (typeLink.indexOf('product') !== -1)? 2 : 1;
     function init(){
         if($scope.meta.indexOf('add') !== -1){
+            $('#img').attr('src', '');
             $scope.selectedArt = {                
                 Author: $rootScope.user.IdUser,
                 Username: $rootScope.user.Username,

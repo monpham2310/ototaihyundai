@@ -1,3 +1,9 @@
+.img-item-cate {
+    max-height: 200px;
+}
+.center {
+    text-align: center;
+}
 .item-list li {
     padding-bottom: 10px;
     padding-top: 10px;
@@ -108,7 +114,7 @@ a:hover{
 h1.entry-title, h2.entry-title {
     color: #353535;
     font-weight: 700;
-    margin-bottom: 0;
+    margin-bottom: 10px;
     padding-bottom: 0;
     text-transform: capitalize;
     font-size: 30px;
@@ -185,4 +191,5 @@ h1.entry-title, h2.entry-title {
 }
 .thumbnail-item img{
     margin: 0 auto;
+    max-height: 200px;
 }

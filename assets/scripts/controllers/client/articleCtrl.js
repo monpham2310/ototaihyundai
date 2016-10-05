@@ -9,7 +9,7 @@ angular.module('ototaihyundaiApp').controller('articleCtrl', function($scope, $r
     $scope.relatedPost = [];
     function init(){
         var meta = $scope.meta.substr(1);
-        var controller = baseService.URL_HOST + baseService.module.viewArtOrPro;
+        var controller = baseService.URL_HOST + baseService.module.viewArtOrPro; 
         var param = {meta: meta};
         baseService.POST(controller, param).then(function(response){
             $scope.artOrPro = response[0];

@@ -167,7 +167,7 @@ class Articlemodel extends CI_Model {
         return ($result->num_rows() > 0)? $result->result_array() : array();
     }
             
-    function getFeatureArtOrPro($type, $limit){
+    public function getFeatureArtOrPro($type, $limit){
         $result = $this->db->query('select ArtID,ArtName,ArtMeta,ArtDescribes,Image,Video
                                     from articles
                                     where Type = '.$type.' and Status = 1

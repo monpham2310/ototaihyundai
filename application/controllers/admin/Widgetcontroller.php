@@ -16,14 +16,7 @@ class Widgetcontroller extends CI_Controller {
         $result = $this->Widgetmodel->getAllWidgets($request);
         echo json_encode($result);
     }
-    
-    public function getInformation(){
-        $request = $this->input->post('data');        
-        $type = $request['type'];
-        $result = $this->Widgetmodel->getInformation($type);
-        echo json_encode($result);        
-    }
-    
+            
     public function getHeader(){
         $result = $this->Widgetmodel->getHeader();
         echo json_encode($result);        
@@ -43,22 +36,7 @@ class Widgetcontroller extends CI_Controller {
             echo json_encode($not_login);            
         }
     }
-    
-    public function updateInform(){
-        $request = $this->input->post('data');
-        $session = $this->phpsession->get(null, 'ototaihyundai_user');        
-        if($session !== null){
-            $result = $this->Widgetmodel->updateInformation($request);
-            echo json_encode($result);
-        }
-        else{
-            $not_login = array(
-                'redirect' => base_url().'login'
-            );
-            echo json_encode($not_login);            
-        }
-    }
-    
+            
     public function sortableWidget(){
         $request = $this->input->post('data'); 
         $session = $this->phpsession->get(null, 'ototaihyundai_user');

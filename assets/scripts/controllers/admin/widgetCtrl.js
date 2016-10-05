@@ -4,28 +4,7 @@ angular.module('ototaihyundaiApp').controller('widgetCtrl', function($scope, $ro
         child: '',
         class: 'fa fa-flask'
     };      
-    $scope.newWidget = {};  
-    $scope.statisticSidebar = {
-        total: false,
-        today: false,
-        yesterday: false,
-        month: false,
-        year: false
-    };
-    $scope.statisticBody = {
-        total: false,
-        today: false,
-        yesterday: false,
-        month: false,
-        year: false
-    };
-    $scope.statisticFooter = {
-        total: false,
-        today: false,
-        yesterday: false,
-        month: false,
-        year: false
-    };    
+    $scope.newWidget = {};         
     $scope.areas = [
         {value: 'noArea', text: 'Trống'},
         {value: 'body', text: 'Body'},
@@ -94,14 +73,7 @@ angular.module('ototaihyundaiApp').controller('widgetCtrl', function($scope, $ro
                 $rootScope.listWidgets.noArea = response;
             }
         });
-    }; 
-    function getInformation(){
-        var controller = baseService.URL_HOST + baseService.module.getInformation;  
-        var param = {type: 'admin'};
-        baseService.POST(controller, param).then(function(response){
-            $rootScope.widgets.information = response[0];
-        });
-    };
+    };     
     function init(){            
         getWidgets('noArea');
         getWidgets('body');
@@ -175,8 +147,7 @@ angular.module('ototaihyundaiApp').controller('widgetCtrl', function($scope, $ro
         });
     };       
     getHeader();
-    init();
-    getInformation();
+    init();    
     $rootScope.getAllCategories();    
     $scope.event = {         
         add: function(){
@@ -312,25 +283,7 @@ angular.module('ototaihyundaiApp').controller('widgetCtrl', function($scope, $ro
                 baseService.showToast('Cập nhật thất bại!', 'danger');
                 console.log(err);
             });
-        },
-        updateInform: function(){            
-            var controller = baseService.URL_HOST + baseService.module.updateInform;
-            baseService.POST(controller, $rootScope.widgets.information).then(function(response){
-                if(response.redirect !== undefined){
-                    $window.location.href = response.redirect;   
-                }
-                else if(response === 'true'){
-                    getInformation(); 
-                    baseService.showToast('Cập nhật thành công!', 'success');
-                }
-                else{
-                    baseService.showToast('Cập nhật thất bại!', 'danger');
-                }
-            }, function(err){
-                baseService.showToast('Cập nhật thất bại!', 'danger');
-                console.log(err);
-            });
-        },
+        },        
         browserImg: function(){
             CKFinder.popup({
                 chooseFiles: true,  
