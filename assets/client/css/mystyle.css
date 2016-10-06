@@ -196,3 +196,9 @@ h1.entry-title, h2.entry-title {
     margin: 0 auto;
     max-height: 200px;
 }
+.product-tab-detail{
+    margin-bottom: 20px;
+}
+.wd_procate img{
+    display: none;
+}

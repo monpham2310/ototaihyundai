@@ -42,7 +42,8 @@ angular.module('ototaihyundaiApp').controller('indexCtrl', function($scope, $sce
         var getSlides = baseService.URL_HOST + baseService.module.getSlides; 
         var param = {type: 'client'};
         baseService.POST(getSlides, param).then(function(response){            
-             $rootScope.slideShow = response;                      
+             $rootScope.slideShow = response;
+            console.log($rootScope.slideShow);
         }, function(err){
             console.log(err.message);
         });
@@ -160,7 +161,7 @@ angular.module('ototaihyundaiApp').controller('indexCtrl', function($scope, $sce
     }; 
     baseService.GET(baseService.URL_HOST + baseService.module.addNewVisitor);    
     $rootScope.getAllNavigates();
-//    getSlider();    
+    getSlider();    
     
     //$rootScope.visitorStatistic();
     //$rootScope.getSidebarCategory($rootScope.dataType.product);
@@ -185,4 +186,5 @@ angular.module('ototaihyundaiApp').controller('indexCtrl', function($scope, $sce
             console.log(lat, lng);
         }
     }
+    $('#main').css({display:'block'});
 });

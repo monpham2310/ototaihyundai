@@ -38,4 +38,5 @@ angular.module('ototaihyundaiApp').controller('contactCtrl', function($scope, $r
             console.log(lat, lng);
         }
     };
+    $('#main').css({display:'none'});
 });

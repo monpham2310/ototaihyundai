@@ -33,4 +33,5 @@ angular.module('ototaihyundaiApp').controller('galleryCtrl', function($scope, $r
             $('#photoModal').modal('show');
         }
     }
+    $('#main').css({display:'none'});
 });

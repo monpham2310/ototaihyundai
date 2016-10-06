@@ -357,8 +357,11 @@
             <div class="col-lg-3" ng-repeat="item in $root.listWidgets track by $index" ng-if="item.Area === 'footer'">
                 <h3 class="footer-widget-title" ng-bind="item.Title"></h3>
                 <div class="primary-widget"></div>
-                <div class="xo10-accordion-list-holder" compile-html="item.data" ng-if="item.Method === 'wd_productCategories' || item.Method === 'wd_articleCategories'">
+                <div class="xo10-accordion-list-holder" compile-html="item.data" ng-if="item.Method === 'wd_articleCategories'">
 
+                </div>
+                <div class="xo10-accordion-list-holder wd_procate" compile-html="item.data" ng-if="item.Method === 'wd_productCategories'">
+                    
                 </div>
                 <ul ng-if="item.Method === 'wd_featureArt' || item.Method === 'wd_featurePro' || item.Method === 'wd_newArticle' || item.Method === 'wd_newProduct'">
                     <li ng-repeat="art in item.data track by $index">
