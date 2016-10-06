@@ -7,6 +7,7 @@ angular.module('ototaihyundaiApp').controller('templateCtrl', function($scope, $
         article: 1,
         product: 2
     }; 
+
     function init(){
         var meta = $scope.meta.substr(1);
         var controller = baseService.URL_HOST + baseService.module.getCateOrProCate;
@@ -15,9 +16,11 @@ angular.module('ototaihyundaiApp').controller('templateCtrl', function($scope, $
             $scope.sitemap = response[0];
             $rootScope.pageTitle = $scope.sitemap.CatName + baseService.WebsiteName;
             $scope.itemList = $scope.sitemap.CateList;
+            console.log($scope.itemList);
         }, function(err){
             console.log(err.message); 
         });
     };
     init();
+    
 });

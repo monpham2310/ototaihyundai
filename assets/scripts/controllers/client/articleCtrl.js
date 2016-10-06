@@ -16,6 +16,7 @@ angular.module('ototaihyundaiApp').controller('articleCtrl', function($scope, $r
             $rootScope.pageTitle = $scope.artOrPro.ArtName + baseService.WebsiteName; 
             var obj = {ArtID: $scope.artOrPro.ArtID};
             $scope.relatedPost = $scope.artOrPro.RelatedPost;
+            console.log($scope.artOrPro);
         }, function(err){
             console.log(err.message); 
         });
@@ -47,6 +48,7 @@ angular.module('ototaihyundaiApp').controller('articleCtrl', function($scope, $r
                     caption: $scope.artOrPro.ArtName,
                     description: $scope.artOrPro.ArtDescribes
                 }, function(response){});
+                
             }
             else{
                 var link = $scope.artOrPro.Video.substr($scope.artOrPro.Video.indexOf('src="') + 5, ($scope.artOrPro.Video.indexOf('" frameborder')) - ($scope.artOrPro.Video.indexOf('src="') + 5));
