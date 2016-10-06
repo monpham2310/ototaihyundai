@@ -26,8 +26,8 @@ class Indexcontroller extends CI_Controller {
             
     public function loadTemplate(){
         $meta = $this->input->get('meta');        
-        $filename = $this->Templatemodel->getTemplateOfView($meta);
-//        echo $filename;
+        $filename = $this->Templatemodel->getTemplateOfView($meta);        
+        
         if($filename !== null){
             $view = 'client/'.$filename->Filename;
             if($view !== 'client/')
@@ -38,8 +38,8 @@ class Indexcontroller extends CI_Controller {
             }
         }
         else{
-            $filename = $this->Templatemodel->getTempOfView($meta);
-  //          echo $filename;
+            $filename = $this->Templatemodel->getTempOfView($meta);            
+
             if($filename !== null){
                 $view = 'client/'.$filename->Filename;
                 if($view !== 'client/')

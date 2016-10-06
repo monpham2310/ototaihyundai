@@ -71,7 +71,7 @@ class Templatemodel extends CI_Model {
                                     from categories a inner join templates b on a.TempId = b.TempID 
                                     where CatMeta = "'.$meta.'";');
         if($result->num_rows() > 0){
-            $row = $result->result();            
+            $row = $result->result();
             return $row[0];
         }
         else{

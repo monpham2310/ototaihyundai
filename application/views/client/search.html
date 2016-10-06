@@ -17,25 +17,18 @@
         </header>
         <div class="page-content">
             <div class="col-lg-12">
-<!--
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <img ng-src="{{item.Image}}" alt="{{item.ArtName}}">                    
-                </div>
-                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
--->
-                     <ul class="item-list">
-                        <li ng-repeat="art in $root.searchResult track by $index">                            
-                            <a class="row" ng-href="{{art.Alias}}">
-                                <div class="col-md-4">
-                                    <img class="img-responsive" ng-src="{{art.Image}}" title="{{art.Name}}" alt="{{art.Name}}" ng-if="art.Image !== '' && art.Image !== null">                                 
-                                </div>
-                                <div class="col-md-8">                                               
-                                    <span class="cat-name" ng-bind="art.Name"></span>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>                    
-<!--                </div>-->
+                 <ul class="item-list">
+                    <li ng-repeat="art in $root.searchResult track by $index">                            
+                        <a class="row" ng-href="{{art.Alias}}">
+                            <div class="col-md-4">
+                                <img class="img-responsive" ng-src="{{art.Image}}" title="{{art.Name}}" alt="{{art.Name}}" ng-if="art.Image !== '' && art.Image !== null">                                 
+                            </div>
+                            <div class="col-md-8">                                               
+                                <span class="cat-name" ng-bind="art.Name"></span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>                    
             </div>
         </div>
     </section>

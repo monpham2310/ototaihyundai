@@ -26,7 +26,10 @@ angular.module('ototaihyundaiApp').controller('contactCtrl', function($scope, $r
                     baseService.showToast2(message, 'danger', title);
                 }
             }, function(err){
-                
+                var message = 'Oops!Thư của bạn gửi đi thất bại.Chúng tôi rất tiếc,xin vui lòng thử lại!';
+                var title = 'Thông báo';
+                baseService.showToast2(message, 'danger', title);
+                console.log(err);
             });   
         },
         setCenter: function(lat, lng){
@@ -35,4 +38,5 @@ angular.module('ototaihyundaiApp').controller('contactCtrl', function($scope, $r
             console.log(lat, lng);
         }
     };
+    $('#main').css({display:'none'});
 });

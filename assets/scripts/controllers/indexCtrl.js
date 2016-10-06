@@ -42,7 +42,8 @@ angular.module('ototaihyundaiApp').controller('indexCtrl', function($scope, $sce
         var getSlides = baseService.URL_HOST + baseService.module.getSlides; 
         var param = {type: 'client'};
         baseService.POST(getSlides, param).then(function(response){            
-             $rootScope.slideShow = response;                      
+             $rootScope.slideShow = response;
+            console.log($rootScope.slideShow);
         }, function(err){
             console.log(err.message);
         });
@@ -105,12 +106,7 @@ angular.module('ototaihyundaiApp').controller('indexCtrl', function($scope, $sce
         $rootScope.coordinate.lat = avgLat / count;
         $rootScope.coordinate.lng = avgLng / count;        
     };
-    function getHeaderAndInform(){        
-//        var controller = baseService.URL_HOST + baseService.module.getInformation;  
-//        var param = {type: 'client'};
-//        baseService.POST(controller, param).then(function(response){
-//            $rootScope.widgets.information = response[0];
-//        });      
+    function getHeader(){              
         var controller = baseService.URL_HOST + baseService.module.getHeader;          
         baseService.GET(controller).then(function(response){
             $rootScope.widgets.header = response[0];
@@ -165,13 +161,13 @@ angular.module('ototaihyundaiApp').controller('indexCtrl', function($scope, $sce
     }; 
     baseService.GET(baseService.URL_HOST + baseService.module.addNewVisitor);    
     $rootScope.getAllNavigates();
-//    getSlider();    
+    getSlider();    
     
     //$rootScope.visitorStatistic();
     //$rootScope.getSidebarCategory($rootScope.dataType.product);
 //    $rootScope.getContactUser();
 //    $rootScope.getMapList();
-    getHeaderAndInform();
+    getHeader();
     $rootScope.getWidgets();
     $scope.sidebarRight = function($el){
         $el.removeClass('not-visible');
@@ -190,4 +186,5 @@ angular.module('ototaihyundaiApp').controller('indexCtrl', function($scope, $sce
             console.log(lat, lng);
         }
     }
+    $('#main').css({display:'block'});
 });

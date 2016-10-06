@@ -3,5 +3,6 @@ angular.module('ototaihyundaiApp').controller('searchCtrl', function($scope, $ro
     $scope.numOfPage = 5;        
     $scope.trustAsHtml = $sce.trustAsHtml;    
     $rootScope.pageTitle = 'Tìm kiếm' + ' | ' + $rootScope.searchText;            
-    //$rootScope.search(); 
+    //$rootScope.search();
+    $('#main').css({display:'none'});
 });

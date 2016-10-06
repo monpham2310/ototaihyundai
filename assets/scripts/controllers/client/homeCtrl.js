@@ -20,4 +20,5 @@ angular.module('ototaihyundaiApp').controller('homeCtrl', function($scope, $root
         value = value.substr(0, lastspace);
         return value + (tail || ' …');
     }
+    $('#main').css({display:'block'});
 });

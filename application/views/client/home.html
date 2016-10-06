@@ -2,7 +2,8 @@
     <div class="row home-widget-row" ng-repeat="widget in $root.listWidgets track by $index" ng-if="widget.Area === 'body'">
         <h3 class="home-widget-title" ng-bind="widget.Title"></h3>
         <div ng-if="widget.Method === 'wd_allProduct'">
-            <div class="primary-widget">            
+            <div class="primary-widget"></div>
+            <div class="row">            
                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 product" dir-paginate="item in widget.data | itemsPerPage: widget.Config track by $index" pagination-id="paginationProduct">
                     <a ng-href="{{item.ArtMeta}}">
                         <div class="thumbnail">
@@ -11,18 +12,21 @@
                                 <div class="home-video" ng-bind-html="trustAsHtml(item.Video)" ng-if="item.Video !== '' && item.Video !== null"></div>
                                 <div class="caption">
                                     <h5 ng-bind="item.ArtName"></h5>                             
-                                    <span class="price" ng-if="item.Price === '0'">Giá cả: Liên hệ</span>                            
-                                    <span class="price" ng-if="item.Price !== '0'">Giá cả: {{item.Price}}</span>                            
+                                    <span class="price" ng-if="item.Price === '0'">Giá cả: Liên hệ</span>
+                                    <span class="price" ng-if="item.Price !== '0'">Giá cả: {{item.Price}}</span>
                                 </div>
                             </div>
                         </div>
                     </a>
                 </div>            
             </div> 
-            <dir-pagination-controls pagination-id="paginationProduct" max-size="5"></dir-pagination-controls>
+            <div class="row center">
+                <dir-pagination-controls pagination-id="paginationProduct" max-size="5"></dir-pagination-controls>
+            </div>
         </div> 
         <div ng-if="widget.Method === 'wd_allArticle'">
-            <div class="primary-widget">            
+            <div class="primary-widget"></div>
+            <div class="row">
                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 product" dir-paginate="item in widget.data | itemsPerPage: widget.Config track by $index" pagination-id="paginationArticle">
                     <a ng-href="{{item.ArtMeta}}">
                         <div class="thumbnail">
@@ -39,7 +43,9 @@
                     </a>
                 </div>            
             </div> 
-            <dir-pagination-controls pagination-id="paginationArticle" max-size="5"></dir-pagination-controls>
+            <div class="row center">
+                <dir-pagination-controls pagination-id="paginationArticle" max-size="5"></dir-pagination-controls>
+            </div>
         </div>        
         <div ng-if="widget.Method === 'wd_featurePro' || widget.Method === 'wd_newProduct'">
             <div class="primary-widget">
@@ -80,12 +86,16 @@
             </div>
         </div>
         <div ng-if="widget.Method === 'wd_featureArt' || widget.Method === 'wd_newArticle'">
-            <ul>
+            <ul class="item-list">                
                 <li ng-repeat="art in widget.data track by $index">                            
-                    <a ng-href="{{art.ArtMeta}}">
-                        <img class="img-responsive" ng-src="{{art.Image}}" title="{{art.ArtName}}" alt="{{art.ArtName}}" ng-if="art.Image !== '' && art.Image !== null">
-                        <span class="home-video" ng-bind-html="trustAsHtml(art.Video)" ng-if="art.Video !== '' && art.Video !== null"></span>                       
-                        <span class="cat-name" ng-bind="art.ArtName"></span>
+                    <a class="row" ng-href="{{art.ArtMeta}}">
+                        <div class="col-md-4">
+                            <img class="img-responsive" ng-src="{{art.Image}}" title="{{art.ArtName}}" alt="{{art.ArtName}}" ng-if="art.Image !== '' && art.Image !== null">   
+                            <span class="home-video" ng-bind-html="trustAsHtml(art.Video)" ng-if="art.Video !== '' && art.Video !== null"></span>                              
+                        </div>
+                        <div class="col-md-8">                                               
+                            <span class="cat-name" ng-bind="art.ArtName"></span>
+                        </div>
                     </a>
                 </li>
             </ul> 

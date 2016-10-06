@@ -73,7 +73,7 @@
             </div>
         </div>
         <div class="header-image-wrap">
-            <img ng-src="{{$root.widget.headers.Banner}}" class="header-image" width="1360" height="213" alt="Ô tô Hyundai">
+            <img ng-src="{{$root.widgets.header.Banner}}" class="header-image" width="1360" height="213" alt="Ô tô Hyundai">
         </div>
         <div class="bottom-header-wrapper clearfix">
             <div class="bottom-arrow-wrap">
@@ -357,8 +357,11 @@
             <div class="col-lg-3" ng-repeat="item in $root.listWidgets track by $index" ng-if="item.Area === 'footer'">
                 <h3 class="footer-widget-title" ng-bind="item.Title"></h3>
                 <div class="primary-widget"></div>
-                <div class="xo10-accordion-list-holder" compile-html="item.data" ng-if="item.Method === 'wd_productCategories' || item.Method === 'wd_articleCategories'">
+                <div class="xo10-accordion-list-holder" compile-html="item.data" ng-if="item.Method === 'wd_articleCategories'">
 
+                </div>
+                <div class="xo10-accordion-list-holder wd_procate" compile-html="item.data" ng-if="item.Method === 'wd_productCategories'">
+                    
                 </div>
                 <ul ng-if="item.Method === 'wd_featureArt' || item.Method === 'wd_featurePro' || item.Method === 'wd_newArticle' || item.Method === 'wd_newProduct'">
                     <li ng-repeat="art in item.data track by $index">
@@ -449,8 +452,8 @@
     <script src="assets/js/angular-pagination.js"></script>
     <script src="assets/js/ui-bootstrap-tpls-0.10.0.js"></script>
     <script src="assets/js/angular-scroll-animate.js"></script>
-    <!--    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAFZ6zqV38ZAz55p6ERqc0cIq0-1FdstXM"></script> -->
-    <script src="http://maps.google.com/maps/api/js?v3.exp"></script>
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyACbt4X9CNets1tNTrOn35osR9hu3VIUcY"></script> 
+<!--    <script src="http://maps.google.com/maps/api/js?v3.exp"></script>-->
 
     <script src="assets/scripts/configs/client/app.js"></script>
     <script src="assets/scripts/configs/client/config.js"></script>
@@ -470,7 +473,7 @@
         $(function () {
             window.fbAsyncInit = function () {
                 FB.init({
-                    appId: '476481575889860',
+                    appId: '315918122108897',
                     status: true,
                     cookie: true,
                     xfbml: true
