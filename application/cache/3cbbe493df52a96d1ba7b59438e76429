@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+a:2:{s:6:"expire";i:1475814356;s:7:"headers";a:0:{}}ENDCI---><!DOCTYPE html>
 <html lang="vi">
 
 <head>
@@ -23,7 +23,7 @@
         ga('send', 'pageview');
     </script>
     <title>Ô tô Hyundai đại lý phân phối xe tải</title>
-    <base href="<?php echo base_url(); ?>">
+    <base href="http://localhost:9090/ototaihyundai/">
     <meta name="description" content="Đại lý phân phối xe tải hyundai, hino, veam, đóng thùng xe tải, bán xe tải trả góp. SĐT 0911615134. Email: thien92@gmail.com" />
     <meta name="robots" content="noodp" />
     <meta name="keywords" content="xe tải hyundai, hino, veam, dongfeng" />
@@ -34,19 +34,19 @@
     <meta property="og:description" content="Đại lý phân phối xe tải hyundai, hino, veam, đóng thùng xe tải, bán xe tải trả góp. SĐT 0911615134. Email: thien92@gmail.com" />
     <meta property="og:url" content="http://ototaihyundai.net/" />
     <meta property="og:site_name" content="Ô tô Hyundai" />
-    <meta property="og:image" content="<?php echo base_url(); ?>assets/client/img/cropped-huynhdai.png" />
+    <meta property="og:image" content="http://localhost:9090/ototaihyundai/assets/client/img/cropped-huynhdai.png" />
     <meta property="og:image:width" content="512" />
     <meta property="og:image:height" content="512" />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:description" content="Đại lý phân phối xe tải hyundai, hino, veam, đóng thùng xe tải, bán xe tải trả góp. SĐT 0911615134. Email: thien92@gmail.com" />
     <meta name="twitter:title" content="Ô tô Hyundai đại lý phân phối xe tải" />
-    <meta name="twitter:image" content="<?php echo base_url(); ?>assets/client/img/cropped-huynhdai.png" />
-    <link rel="stylesheet" href="assets/client/css/style.min.css">
+    <meta name="twitter:image" content="http://localhost:9090/ototaihyundai/assets/client/img/cropped-huynhdai.png" />
+    <link rel="stylesheet" href="assets/client/css/style.css">
     <link rel="stylesheet" id="font-awesome-css" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css?ver=4.5.0" type="text/css" media="all">
-    <link rel="stylesheet" href="assets/client/css/huge_slideshow.min.css">
+    <link rel="stylesheet" href="assets/client/css/huge_slideshow.css">
     <link rel="stylesheet" href="assets/includes/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/client/css/mystyle.min.css">
-    <link rel="icon" href="<?php echo base_url(); ?>assets/client/img/cropped-huynhdai-32x32.png" sizes="32x32">
+    <link rel="stylesheet" href="assets/client/css/mystyle.css">
+    <link rel="icon" href="http://localhost:9090/ototaihyundai/assets/client/img/cropped-huynhdai-32x32.png" sizes="32x32">
 </head>
 
 <body ng-controller="indexCtrl">
@@ -409,7 +409,7 @@
     <script src="assets/js/angular-map.min.js"></script>
     <script src="assets/js/angular-pagination.js"></script>
     <script src="assets/js/ui-bootstrap-tpls-0.10.0.js"></script>
-<!--    <script src="assets/js/angular-scroll-animate.js"></script>-->
+    <script src="assets/js/angular-scroll-animate.js"></script>
     <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyACbt4X9CNets1tNTrOn35osR9hu3VIUcY"></script> 
 <!--    <script src="http://maps.google.com/maps/api/js?v3.exp"></script>-->
 
@@ -425,7 +425,7 @@
     <script src="assets/scripts/controllers/client/searchCtrl.js"></script>
     <script src="assets/scripts/controllers/client/galleryCtrl.js"></script>
 
-    <script type="application/javascript" src="assets/client/js/huge_slideshow.min.js"></script>
+    <script type="application/javascript" src="assets/client/js/huge_slideshow.js"></script>
     <script type="application/javascript" src="assets/includes/bootstrap/js/bootstrap.min.js"></script>
     <script>
         $(function () {

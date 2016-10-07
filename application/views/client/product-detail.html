@@ -4,10 +4,10 @@
             <img id="img" class="img-responsive title" src="{{artOrPro.Image}}" alt="{{artOrPro.ArtName}}" title="{{artOrPro.ArtName}}">
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <h1 class="product_title entry-title">{{artOrPro.ArtName}}</h1>
+            <h1 class="product_title entry-title" ng-bind="artOrPro.ArtName"></h1>
             <div class="description">
                 <p>Giá cả: {{artOrPro.Price}}</p>
-                <span ng-bind-html="trustAsHtml(artOrPro.Content)"></span>
+                <span ng-bind-html="trustAsHtml(artOrPro.ArtDescribes)"></span>
             </div>
         </div>
     </div>
@@ -21,10 +21,10 @@
             </ul>
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="home">
-                    <span ng-bind-html="artOrPro.ArtDescribes" class="tcomment"></span>
+                    <span ng-bind-html="trustAsHtml(artOrPro.Content)" class="tcomment"></span>
                 </div>
                 <div role="tabpanel" class="tab-pane" id="profile">
-                    <span ng-bind-html="artOrPro.Estimate" class="tcomment"></span>
+                    <span ng-bind-html="trustAsHtml(artOrPro.Estimate)" class="tcomment"></span>
                 </div>
             </div>
         </div>

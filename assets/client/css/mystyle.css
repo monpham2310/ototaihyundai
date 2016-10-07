@@ -125,6 +125,7 @@ h1.entry-title, h2.entry-title {
 .row{
     margin-left: 0px;
     margin-right: 0px;
+    margin-top: 20px;
 }
 .product-tab-detail{
     margin-top: 10px;

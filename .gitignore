@@ -1,2 +1,2 @@
 # ignore a single file
-database.php
+*database*.php

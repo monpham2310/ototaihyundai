@@ -111,30 +111,7 @@ angular.module('ototaihyundaiApp').controller('indexCtrl', function($scope, $sce
         baseService.GET(controller).then(function(response){
             $rootScope.widgets.header = response[0];
         });    
-    };
-    
-    $rootScope.visitorStatistic = function(){
-        var controller = baseService.URL_HOST + baseService.module.visitorStatistic;
-        baseService.GET(controller).then(function(response){
-            if(response.message !== undefined){
-                console.log(response.message);
-            }
-            else{
-                $scope.visitorCount = response;
-                $scope.visitorCount[0].Number = ($scope.visitorCount[0].Number === null)? 0: $scope.visitorCount[0].Number;
-                $scope.visitorCount[1].Number = ($scope.visitorCount[1].Number === null)? 0: $scope.visitorCount[1].Number;
-                $scope.visitorCount[2].Number = ($scope.visitorCount[2].Number === null)? 0: $scope.visitorCount[2].Number;
-                $scope.visitorCount[3].Number = ($scope.visitorCount[3].Number === null)? 0: $scope.visitorCount[3].Number;
-                $scope.visitorCount[4].Number = ($scope.visitorCount[4].Number === null)? 0: $scope.visitorCount[4].Number;
-            }
-        });
-    };
-    $rootScope.getSidebarCategory = function(type){
-        var controller = baseService.URL_HOST + baseService.module.getNestableCate + '/' + type;
-        baseService.GET(controller).then(function(response){
-            $rootScope.sidebarCategory = response; 
-        });
-    };    
+    };      
     $rootScope.getResources = function(type){
         var controller = baseService.URL_HOST + baseService.module.getResources; 
         var param = {type: 'client', resourceCate: type};
@@ -161,12 +138,9 @@ angular.module('ototaihyundaiApp').controller('indexCtrl', function($scope, $sce
     }; 
     baseService.GET(baseService.URL_HOST + baseService.module.addNewVisitor);    
     $rootScope.getAllNavigates();
-    getSlider();    
-    
-    //$rootScope.visitorStatistic();
-    //$rootScope.getSidebarCategory($rootScope.dataType.product);
-//    $rootScope.getContactUser();
-//    $rootScope.getMapList();
+    /*getSlider();    */    
+    /*$rootScope.getContactUser();*/
+    /*$rootScope.getMapList();*/
     getHeader();
     $rootScope.getWidgets();
     $scope.sidebarRight = function($el){
@@ -187,4 +161,7 @@ angular.module('ototaihyundaiApp').controller('indexCtrl', function($scope, $sce
         }
     }
     $('#main').css({display:'block'});
+});
+angular.module('ototaihyundaiApp').controller('404Ctrl', function($scope, $rootScope, baseService){
+    
 });

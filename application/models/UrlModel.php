@@ -12,7 +12,9 @@ class Urlmodel extends CI_Model{
                                    union
                                    select ArtMeta as Url from articles
                                    union
-                                   select NavMeta as Url from navigates;');
+                                   select NavMeta as Url from navigates
+                                   union
+                                   select Meta as Url from templates;');
         return $query->result_array();
     }
 }

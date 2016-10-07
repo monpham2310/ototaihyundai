@@ -1,4 +1,5 @@
 RewriteEngine On
+php_value zlib.output_compression off
 RewriteCond $1 !^(index\.php|resources|robots\.txt)
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

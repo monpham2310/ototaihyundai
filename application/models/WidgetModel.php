@@ -58,7 +58,47 @@ class Widgetmodel extends CI_Model {
         $this->showNestableCate($result, $sidebarCategory);
         return $sidebarCategory;
     }
+    
+    function wd_visitorStatistic($data){
+        $query = $this->Visitormodel->visitorStatistic();
+        $arr = explode(',', $data);
+        $view = '';
+        for($i = 0; $i < count($arr); $i++){
+            if($arr[$i] === 'total')
+                $view .= '<p>
+                            <img src="assets/includes/upload/images/icons/mvctotal.png" class="img-statistic"> Tổng lượt: '.$query[4]['Number'].'
+                          </p>';
+            else if($arr[$i] === 'today')
+                $view .= '<p>
+                            <img src="assets/includes/upload/images/icons/mvctoday.png" class="img-statistic"> Hôm nay: '.$query[0]['Number'].'</span>
+                         </p>';
+            else if($arr[$i] === 'yesterday')
+                $view .= '<p>
+                            <img src="assets/includes/upload/images/icons/mvcyesterday.png" class="img-statistic"> Hôm qua: '.$query[1]['Number'].'</span>
+                         </p>';
+            else if($arr[$i] === 'month')
+                $view .= '<p>
+                            <img src="assets/includes/upload/images/icons/mvconline.png" class="img-statistic"> Tháng: '.$query[2]['Number'].'</span>
+                         </p>';
+            else if($arr[$i] === 'year')
+                $view .= '<p>
+                            <img src="assets/includes/upload/images/icons/mvcvisit.png" class="img-statistic"> Năm: '.$query[3]['Number'].'</span>
+                         </p>';
+        }
+        return $view;
+    }
         
+    function wd_fanPage($data){                
+        $result = '<div class="fb-page" data-href="'.$data.'" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+                            <div class="fb-xfbml-parse-ignore">
+                                <blockquote cite="'.$data.'">
+                                    <a href="'.$data.'"></a>
+                                </blockquote>
+                            </div>
+                        </div>';
+        return $result;
+    }
+    
     public function getAllWidgets($data){         
         if($data['type'] === 'admin'){
             $result = $this->db->query('select ID,Title,Describes,Area,Status,Position,CateID,Config,Content,Method,Type
@@ -107,7 +147,10 @@ class Widgetmodel extends CI_Model {
                             $result[$i]['data'] = $this->Mapmodel->getMapList();
                         }
                         if($result[$i]['Method'] === 'wd_visitorStatistic'){
-                            $result[$i]['data'] = $this->Visitormodel->visitorStatistic();
+                            $result[$i]['data'] = $this->wd_visitorStatistic($result[$i]['Content']);
+                        }
+                        if($result[$i]['Method'] === 'wd_fanPage'){
+                            $result[$i]['data'] = $this->wd_fanPage($result[$i]['Content']);
                         }
                     }
                 }
