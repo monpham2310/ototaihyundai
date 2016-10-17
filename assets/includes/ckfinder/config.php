@@ -61,7 +61,7 @@ Examples:
 
 ATTENTION: The trailing slash is required.
 */
-$baseUrl = "http://" . $_SERVER['HTTP_HOST'] . '/ototaihyundai' . '/' . 'assets/includes/upload/'; 
+$baseUrl = "http://" . $_SERVER['HTTP_HOST'] . '/ototaihyundai' . '/assets/includes/upload/'; 
 
 /*
 $baseDir : the path to the local directory (in the server) which points to the

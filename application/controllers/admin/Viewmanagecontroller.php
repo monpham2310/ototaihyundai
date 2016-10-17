@@ -10,7 +10,6 @@ class Viewmanagecontroller extends CI_Controller {
     }
     
     public function index(){
-        $this->output->cache(60); //60 minutes
         $check_session = $this->phpsession->get(null, 'ototaihyundai_user');
         if($check_session !== null)
             $this->load->view('admin/index.html');                

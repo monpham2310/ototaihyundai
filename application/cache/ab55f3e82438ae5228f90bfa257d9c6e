@@ -1,9 +1,10 @@
-a:2:{s:6:"expire";i:1475842216;s:7:"headers";a:0:{}}ENDCI---><!DOCTYPE html>
+a:2:{s:6:"expire";i:1475923428;s:7:"headers";a:0:{}}ENDCI---><!DOCTYPE html>
 <html lang="vi">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="alternate" href="http://localhost:9090/ototaihyundai/" hreflang="vi" />
     <link rel="profile" href="http://gmpg.org/xfn/11">
     <link rel="pingback" href="http://ototaihyundai.net/xmlrpc.php">
     <script>
@@ -24,10 +25,11 @@ a:2:{s:6:"expire";i:1475842216;s:7:"headers";a:0:{}}ENDCI---><!DOCTYPE html>
     </script>
     <title>Ô tô Hyundai đại lý phân phối xe tải</title>
     <base href="http://localhost:9090/ototaihyundai/">
+    <meta name="google-site-verification" content="YCQsCzEUvYdzZjDBMgvljqodd6U1WUvS9oFk17V3alg" />
     <meta name="description" content="Đại lý phân phối xe tải hyundai, hino, veam, đóng thùng xe tải, bán xe tải trả góp. SĐT 0911615134. Email: thien92@gmail.com" />
     <meta name="robots" content="noodp" />
-    <meta name="keywords" content="xe tải hyundai, hino, veam, dongfeng" />
-    <link rel="canonical" href="http://ototaihyundai.net/" />
+    <meta name="keywords" content="xe tải hyundai, hino, veam, dongfeng" />    
+    <link rel="canonical" href="http://ototaihyundai.net/" />        
     <meta property="og:locale" content="vi_VN" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Ô tô Hyundai đại lý phân phối xe tải" />
@@ -42,7 +44,7 @@ a:2:{s:6:"expire";i:1475842216;s:7:"headers";a:0:{}}ENDCI---><!DOCTYPE html>
     <meta name="twitter:title" content="Ô tô Hyundai đại lý phân phối xe tải" />
     <meta name="twitter:image" content="http://localhost:9090/ototaihyundai/assets/client/img/cropped-huynhdai.png" />
     <link rel="stylesheet" href="assets/client/css/style.min.css">
-    <link rel="stylesheet" id="font-awesome-css" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css?ver=4.5.0" type="text/css" media="all">
+    <link href="assets/admin/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/client/css/huge_slideshow.min.css">
     <link rel="stylesheet" href="assets/includes/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/client/css/mystyle.min.css">
@@ -51,6 +53,15 @@ a:2:{s:6:"expire";i:1475842216;s:7:"headers";a:0:{}}ENDCI---><!DOCTYPE html>
 
 <body ng-controller="indexCtrl">
     <div id="fb-root"></div>
+    <script>
+        (function(d, s, id) {          
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.4&appId=315918122108897";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
     <header id="masthead" class="site-header" role="banner">
         <div class="top-header-wrapper clearfix">
             <div class="tg-container">
@@ -109,7 +120,7 @@ a:2:{s:6:"expire";i:1475842216;s:7:"headers";a:0:{}}ENDCI---><!DOCTYPE html>
         <div class="home-slider-wrapper">
             <aside id="huge_it_widget-2" class="widget widget_huge_it_widget">
                 <div class="huge_it_slideshow_image_wrap_1" style="width: 1310px; height: 481.618px;">
-                    <div id="huge_it_loading_image_1" class="nodisplay" style="display: none;"> <img src="http://ototaihyundai.net/assets/includes/upload/images/plugins/slider-image/Front_images/loading/loading1.gif" alt="" width="100" height="100" style=" margin: 0px auto;"> </div>
+                    <div id="huge_it_loading_image_1" class="nodisplay" style="display: none;"> </div>
                     <div class="huge_it_slideshow_image_wrap1_1" style="display: block;">
                         <div class="huge_it_slideshow_dots_container_1">
                             <div class="huge_it_slideshow_dots_thumbnails_1">
@@ -391,8 +402,12 @@ a:2:{s:6:"expire";i:1475842216;s:7:"headers";a:0:{}}ENDCI---><!DOCTYPE html>
                         <marker ng-repeat="marker in item.data track by $index" position="{{marker.Lattitude}}, {{marker.Longitude}}"></marker>
                     </ng-map>
                 </div>
-                <div class="xo10-accordion-list-holder" ng-if="item.Method === 'wd_fanPage'" ng-bind-html="trustAsHtml(item.data)">
-
+                <div class="xo10-accordion-list-holder" ng-if="item.Method === 'wd_fanPage'">
+                    <div class="fb-page" data-href="{{item.data}}" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+                        <div class="fb-xfbml-parse-ignore">
+                            <blockquote cite="{{item.data}}"><a ng-href="{{item.data}}"></a></blockquote>
+                        </div>
+                    </div> 
                 </div>
             </div>
         </div>
@@ -429,21 +444,6 @@ a:2:{s:6:"expire";i:1475842216;s:7:"headers";a:0:{}}ENDCI---><!DOCTYPE html>
     <script type="application/javascript" src="assets/includes/bootstrap/js/bootstrap.min.js"></script>
     <script>
         $(function () {
-            window.fbAsyncInit = function () {
-                FB.init({
-                    appId: '315918122108897',
-                    status: true,
-                    cookie: true,
-                    xfbml: true
-                });
-            };            
-            (function () {
-                var e = document.createElement('script');
-                e.async = true;
-                e.src = document.location.protocol +
-                    '//connect.facebook.net/en_US/all.js';
-                document.getElementById('fb-root').appendChild(e);
-            }());
             $('.search-icon').click(function(){
                 $('.search-box').css({display:'block', width: '80%', visibility: 'inherit', opacity:10});
             });

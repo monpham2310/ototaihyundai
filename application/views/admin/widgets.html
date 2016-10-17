@@ -77,7 +77,7 @@
                                             </div>
                                         </div>
                                     </form>
-                                    <form id="form-{{item.ID}}" class="panel panel-default panel-body margin-bottom-0 none-display" name="frmWidget{{item.ID}}" role="form" ng-submit="event.updateForm(item, true)" novalidate ng-if="item.Method === 'wd_featureArt'">
+                                    <form id="form-{{item.ID}}" class="panel panel-default panel-body margin-bottom-0 none-display" name="frmWidget{{item.ID}}" role="form" ng-submit="event.updateForm(item, true)" novalidate ng-if="item.Method === 'wd_featureArt' || item.Method === 'wd_newArticle'">
                                         <div class="form-group" ng-class="{ 'has-error' : frmWidget{{item.ID}}.txtTitle.$invalid && frmWidget{{item.ID}}.txtTitle.$touched && frmWidget{{item.ID}}.txtTitle.$error.required }">
                                             <label>Tiêu đề&nbsp;<span class="text-danger">(*)</span></label>
                                             <input class="form-control" type="text" name="txtTitle" placeholder="Nhập tiêu đề" ng-model="item.Title" required />
@@ -129,7 +129,7 @@
                                             </div>
                                         </div>
                                     </form>
-                                    <form id="form-{{item.ID}}" class="panel panel-default panel-body margin-bottom-0 none-display" name="frmWidget{{item.ID}}" role="form" ng-submit="event.updateForm(item, true)" novalidate ng-if="item.Method === 'wd_featurePro'">
+                                    <form id="form-{{item.ID}}" class="panel panel-default panel-body margin-bottom-0 none-display" name="frmWidget{{item.ID}}" role="form" ng-submit="event.updateForm(item, true)" novalidate ng-if="item.Method === 'wd_featurePro' || item.Method === 'wd_newProduct'">
                                         <div class="form-group" ng-class="{ 'has-error' : frmWidget{{item.ID}}.txtTitle.$invalid && frmWidget{{item.ID}}.txtTitle.$touched && frmWidget{{item.ID}}.txtTitle.$error.required }">
                                             <label>Tiêu đề&nbsp;<span class="text-danger">(*)</span></label>
                                             <input class="form-control" type="text" name="txtTitle" placeholder="Nhập tiêu đề" ng-model="item.Title" required />
@@ -472,7 +472,7 @@
                                                     </div>
                                                 </div>
                                             </form>
-                                            <form id="form-{{item.ID}}" class="panel panel-default panel-body margin-bottom-0 none-display" name="frmWidget{{item.ID}}" role="form" ng-submit="event.updateForm(item, true)" novalidate ng-if="item.Method === 'wd_featureArt'">
+                                            <form id="form-{{item.ID}}" class="panel panel-default panel-body margin-bottom-0 none-display" name="frmWidget{{item.ID}}" role="form" ng-submit="event.updateForm(item, true)" novalidate ng-if="item.Method === 'wd_featureArt' || item.Method === 'wd_newArticle'">
                                                 <div class="form-group" ng-class="{ 'has-error' : frmWidget{{item.ID}}.txtTitle.$invalid && frmWidget{{item.ID}}.txtTitle.$touched && frmWidget{{item.ID}}.txtTitle.$error.required }">
                                                     <label>Tiêu đề&nbsp;<span class="text-danger">(*)</span></label>
                                                     <input class="form-control" type="text" name="txtTitle" placeholder="Nhập tiêu đề" ng-model="item.Title" required />
@@ -524,7 +524,7 @@
                                                     </div>
                                                 </div>
                                             </form>
-                                            <form id="form-{{item.ID}}" class="panel panel-default panel-body margin-bottom-0 none-display" name="frmWidget{{item.ID}}" role="form" ng-submit="event.updateForm(item, true)" novalidate ng-if="item.Method === 'wd_featurePro'">
+                                            <form id="form-{{item.ID}}" class="panel panel-default panel-body margin-bottom-0 none-display" name="frmWidget{{item.ID}}" role="form" ng-submit="event.updateForm(item, true)" novalidate ng-if="item.Method === 'wd_featurePro' || item.Method === 'wd_newProduct'">
                                                 <div class="form-group" ng-class="{ 'has-error' : frmWidget{{item.ID}}.txtTitle.$invalid && frmWidget{{item.ID}}.txtTitle.$touched && frmWidget{{item.ID}}.txtTitle.$error.required }">
                                                     <label>Tiêu đề&nbsp;<span class="text-danger">(*)</span></label>
                                                     <input class="form-control" type="text" name="txtTitle" placeholder="Nhập tiêu đề" ng-model="item.Title" required />
@@ -830,7 +830,7 @@
                                                     </div>
                                                 </div>
                                             </form>
-                                            <form id="form-{{item.ID}}" class="panel panel-default panel-body margin-bottom-0 none-display" name="frmWidget{{item.ID}}" role="form" ng-submit="event.updateForm(item, true)" novalidate ng-if="item.Method === 'wd_featureArt'">
+                                            <form id="form-{{item.ID}}" class="panel panel-default panel-body margin-bottom-0 none-display" name="frmWidget{{item.ID}}" role="form" ng-submit="event.updateForm(item, true)" novalidate ng-if="item.Method === 'wd_featureArt' || item.Method === 'wd_newArticle'">
                                                 <div class="form-group" ng-class="{ 'has-error' : frmWidget{{item.ID}}.txtTitle.$invalid && frmWidget{{item.ID}}.txtTitle.$touched && frmWidget{{item.ID}}.txtTitle.$error.required }">
                                                     <label>Tiêu đề&nbsp;<span class="text-danger">(*)</span></label>
                                                     <input class="form-control" type="text" name="txtTitle" placeholder="Nhập tiêu đề" ng-model="item.Title" required />
@@ -882,7 +882,7 @@
                                                     </div>
                                                 </div>
                                             </form>
-                                            <form id="form-{{item.ID}}" class="panel panel-default panel-body margin-bottom-0 none-display" name="frmWidget{{item.ID}}" role="form" ng-submit="event.updateForm(item, true)" novalidate ng-if="item.Method === 'wd_featurePro'">
+                                            <form id="form-{{item.ID}}" class="panel panel-default panel-body margin-bottom-0 none-display" name="frmWidget{{item.ID}}" role="form" ng-submit="event.updateForm(item, true)" novalidate ng-if="item.Method === 'wd_featurePro' || item.Method === 'wd_newProduct'">
                                                 <div class="form-group" ng-class="{ 'has-error' : frmWidget{{item.ID}}.txtTitle.$invalid && frmWidget{{item.ID}}.txtTitle.$touched && frmWidget{{item.ID}}.txtTitle.$error.required }">
                                                     <label>Tiêu đề&nbsp;<span class="text-danger">(*)</span></label>
                                                     <input class="form-control" type="text" name="txtTitle" placeholder="Nhập tiêu đề" ng-model="item.Title" required />
@@ -1188,7 +1188,7 @@
                                                     </div>
                                                 </div>
                                             </form>
-                                            <form id="form-{{item.ID}}" class="panel panel-default panel-body margin-bottom-0 none-display" name="frmWidget{{item.ID}}" role="form" ng-submit="event.updateForm(item, true)" novalidate ng-if="item.Method === 'wd_featureArt'">
+                                            <form id="form-{{item.ID}}" class="panel panel-default panel-body margin-bottom-0 none-display" name="frmWidget{{item.ID}}" role="form" ng-submit="event.updateForm(item, true)" novalidate ng-if="item.Method === 'wd_featureArt' || item.Method === 'wd_newArticle'">
                                                 <div class="form-group" ng-class="{ 'has-error' : frmWidget{{item.ID}}.txtTitle.$invalid && frmWidget{{item.ID}}.txtTitle.$touched && frmWidget{{item.ID}}.txtTitle.$error.required }">
                                                     <label>Tiêu đề&nbsp;<span class="text-danger">(*)</span></label>
                                                     <input class="form-control" type="text" name="txtTitle" placeholder="Nhập tiêu đề" ng-model="item.Title" required />
@@ -1240,7 +1240,7 @@
                                                     </div>
                                                 </div>
                                             </form>
-                                            <form id="form-{{item.ID}}" class="panel panel-default panel-body margin-bottom-0 none-display" name="frmWidget{{item.ID}}" role="form" ng-submit="event.updateForm(item, true)" novalidate ng-if="item.Method === 'wd_featurePro'">
+                                            <form id="form-{{item.ID}}" class="panel panel-default panel-body margin-bottom-0 none-display" name="frmWidget{{item.ID}}" role="form" ng-submit="event.updateForm(item, true)" novalidate ng-if="item.Method === 'wd_featurePro' || item.Method === 'wd_newProduct'">
                                                 <div class="form-group" ng-class="{ 'has-error' : frmWidget{{item.ID}}.txtTitle.$invalid && frmWidget{{item.ID}}.txtTitle.$touched && frmWidget{{item.ID}}.txtTitle.$error.required }">
                                                     <label>Tiêu đề&nbsp;<span class="text-danger">(*)</span></label>
                                                     <input class="form-control" type="text" name="txtTitle" placeholder="Nhập tiêu đề" ng-model="item.Title" required />

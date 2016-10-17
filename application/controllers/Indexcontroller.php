@@ -5,8 +5,7 @@ class Indexcontroller extends CI_Controller {
 	    
     public function __construct(){   
         parent::__construct();
-        $this->load->helper('url');  
-        $this->load->library('phpsession');
+        $this->load->helper('url');          
         $this->load->model('Templatemodel');
         $this->load->model('Urlmodel');
     }
@@ -26,8 +25,7 @@ class Indexcontroller extends CI_Controller {
         $this->load->view('client/'.$view.'.html');        
     }
             
-    public function loadTemplate(){
-        
+    public function loadTemplate(){        
         $meta = $this->input->get('meta');        
         $filename = $this->Templatemodel->getTemplateOfView($meta);        
         
@@ -67,7 +65,8 @@ class Indexcontroller extends CI_Controller {
                     $this->load->view('client/404.html'); 
                 }
             }
-        }        
+        }      
+        
     }
     
     public function sitemap(){ 

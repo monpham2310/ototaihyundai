@@ -1,11 +1,10 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class phpsession {
+class Phpsession {
     var $_flash = array();
     
     // constructor
-    public function __construct() {
-   //     parent::__construct();
+    function Phpsession() {
         session_start();
         $this->flashinit();
     }
