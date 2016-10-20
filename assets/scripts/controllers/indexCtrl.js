@@ -1,6 +1,6 @@
 angular.module('ototaihyundaiApp').controller('indexCtrl', function($scope, $sce, $rootScope, $window, $location, baseService){
     $rootScope.pageTitle = baseService.WebsiteName;
-    $rootScope.slideShow = [];
+    $rootScope.slideShow = '';
     $rootScope.navigates = '';
     $rootScope.widgets = {
         information: {},
@@ -42,8 +42,7 @@ angular.module('ototaihyundaiApp').controller('indexCtrl', function($scope, $sce
         var getSlides = baseService.URL_HOST + baseService.module.getSlides; 
         var param = {type: 'client'};
         baseService.POST(getSlides, param).then(function(response){            
-             $rootScope.slideShow = response;
-            console.log($rootScope.slideShow);
+            $rootScope.slideShow = response;            
         }, function(err){
             console.log(err.message);
         });
@@ -138,7 +137,7 @@ angular.module('ototaihyundaiApp').controller('indexCtrl', function($scope, $sce
     }; 
     baseService.GET(baseService.URL_HOST + baseService.module.addNewVisitor);    
     $rootScope.getAllNavigates();
-    /*getSlider();    */    
+    getSlider();
     /*$rootScope.getContactUser();*/
     /*$rootScope.getMapList();*/
     getHeader();

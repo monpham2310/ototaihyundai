@@ -86,6 +86,14 @@ class Indexcontroller extends CI_Controller {
         echo $json;
     }
     
+    public function checkKey(){
+		$keyDefault = 'ED3-67A-EO2';
+		$request = $this->input->get('key');
+		if($request === $keyDefault)
+			echo $request;
+		else
+			echo 'invalid';
+    }
 }
 
 ?>
