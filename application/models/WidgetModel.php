@@ -147,9 +147,9 @@ class Widgetmodel extends CI_Model {
                         if($result[$i]['Method'] === 'wd_visitorStatistic'){
                             $result[$i]['data'] = $this->wd_visitorStatistic($result[$i]['Content']);
                         }
-                        if($result[$i]['Method'] === 'wd_fanPage'){
-                            $result[$i]['data'] = $this->wd_fanPage($result[$i]['Content']);
-                        }
+//                        if($result[$i]['Method'] === 'wd_fanPage'){
+//                            $result[$i]['data'] = $this->wd_fanPage($result[$i]['Content']);
+//                        }
                     }
                 }
             }            

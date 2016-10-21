@@ -114,8 +114,14 @@
                 <marker ng-repeat="marker in widget.data track by $index" position="{{marker.Lattitude}}, {{marker.Longitude}}"></marker>
             </ng-map>
         </div> 
-        <div class="xo10-accordion-list-holder" ng-if="widget.Method === 'wd_fanPage'" ng-bind-html="trustAsHtml(widget.data)">
-            
+        <div class="xo10-accordion-list-holder" ng-if="widget.Method === 'wd_fanPage'">
+            <div class="fb-page" data-href="{{item.Content}}" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-height="300">
+                <div class="fb-xfbml-parse-ignore">
+                    <blockquote cite="{{item.Content}}">
+                        <a ng-href="{{item.Content}}"></a>
+                    </blockquote>
+                </div>
+            </div>
         </div>  
     </div>    
 </div>
