@@ -1,21 +1,25 @@
 <div ng-controller="templateCtrl">
     <h3 ng-bind="sitemap.CatName"></h3>
     <div class="primary-widget">
-        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 product" dir-paginate="item in itemList | itemsPerPage: 8 track by $index" pagination-id="filterItems">
-            <a ng-href="{{item.ArtMeta}}">
-                <div class="thumbnail">
-                    <div class="thumbnail-item">
-                        <img class="img-responsive img-item-cate" ng-src="{{item.Image}}" alt="{{item.ArtName}}" ng-if="item.Image !== '' && item.Image !== null" />                     
-                        <div ng-bind-html="trustAsHtml(item.Video)" ng-if="item.Video !== '' && item.Video !== null"></div>
-                        <div class="caption">
-                            <h5 ng-bind="item.ArtName"></h5>
-                            <span class="price" ng-if="item.Price === '0'">Giá cả: Liên hệ</span>
-                            <span class="price" ng-if="item.Price !== '0'">Giá cả: {{item.Price}}</span>
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 product" dir-paginate="item in itemList | itemsPerPage: 12 track by $index" pagination-id="fitlerItemsOfCatePro">
+                <a ng-href="{{item.ArtMeta}}">
+                    <div class="thumbnail">
+                        <div class="thumbnail-item">
+                            <img class="img-responsive img-item-cate" ng-src="{{item.Image}}" alt="{{item.ArtName}}" ng-if="item.Image !== '' && item.Image !== null" />                     
+                            <div ng-bind-html="trustAsHtml(item.Video)" ng-if="item.Video !== '' && item.Video !== null"></div>
+                            <div class="caption">
+                                <h5 ng-bind="item.ArtName"></h5>
+                                <span class="price" ng-if="item.Price === '0'">Giá cả: Liên hệ</span>
+                                <span class="price" ng-if="item.Price !== '0'">Giá cả: {{item.Price}}</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </a>
+                </a>
+            </div>
         </div>
-        <dir-pagination-controls class="center" pagination-id="fitlerItems" max-size="5" boundary-links="false"></dir-pagination-controls>
+        <div class="row center">
+            <dir-pagination-controls class="center" pagination-id="fitlerItemsOfCatePro" max-size="5" boundary-links="false"></dir-pagination-controls>
+        </div>
     </div>
 </div>

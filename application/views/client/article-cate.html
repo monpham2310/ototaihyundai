@@ -2,26 +2,30 @@
     <div class="row">
         <h3 class="home-widget-title" ng-bind="sitemap.CatName"></h3>
         <div class="primary-widget"></div>
-        <div class="col-lg-12 post" dir-paginate="item in itemList | itemsPerPage: 8 track by $index" pagination-id="filterItems">
-            <h2 class="entry-title">
-                <a ng-href="{{item.ArtMeta}}" title="{{item.ArtName}}" ng-bind="item.ArtName"></a>
-            </h2>
-            <div class="row">
-                <div class="col-lg-4">
-                    <img class="img-responsive img-item-cate" ng-src="{{item.Image}}" alt="{{item.ArtName}}" ng-if="item.Image !== '' && item.Image !== null" />                     
-                    <div ng-bind-html="trustAsHtml(item.Video)" ng-if="item.Video !== '' && item.Video !== null"></div>        
+        <div class="row">
+            <div class="col-lg-12 post" dir-paginate="item in itemList | itemsPerPage: 12 track by $index" pagination-id="fitlerItemsOfCateArt">
+                <h2 class="entry-title">
+                    <a ng-href="{{item.ArtMeta}}" title="{{item.ArtName}}" ng-bind="item.ArtName"></a>
+                </h2>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <img class="img-responsive img-item-cate" ng-src="{{item.Image}}" alt="{{item.ArtName}}" ng-if="item.Image !== '' && item.Image !== null" />                     
+                        <div ng-bind-html="trustAsHtml(item.Video)" ng-if="item.Video !== '' && item.Video !== null"></div>        
+                    </div>
+                    <div class="col-lg-8">
+                        <div ng-bind-html="trustAsHtml(item.ArtDescribes)">
+                        </div>        
+                    </div>
                 </div>
-                <div class="col-lg-8">
-                    <div ng-bind-html="trustAsHtml(item.ArtDescribes)">
-                    </div>        
+                <div class="row below-entry-meta">
+                    <span class="byline"><span class="author vcard"><i class="fa fa-user"></i><a class="url fn n" href="#" title="Hòa Phúc Thiện">Posted By: {{item.Username}}</a></span></span>
+                    <span class="comments"><a href="#"><i class="fa fa-eye"></i>{{item.ViewCount}}</a></span>
                 </div>
+                <a class="more-link" title="" ng-href="{{item.ArtMeta}}"><span>Chi tiết</span></a>
             </div>
-            <div class="row below-entry-meta">
-                <span class="byline"><span class="author vcard"><i class="fa fa-user"></i><a class="url fn n" href="#" title="Hòa Phúc Thiện">Posted By: {{item.Username}}</a></span></span>
-                <span class="comments"><a href="#"><i class="fa fa-eye"></i>{{item.ViewCount}}</a></span>
-            </div>
-            <a class="more-link" title="" ng-href="{{item.ArtMeta}}"><span>Chi tiết</span></a>
         </div>
-        <dir-pagination-controls class="center" pagination-id="fitlerItems" max-size="5" boundary-links="false"></dir-pagination-controls>
+        <div class="row center">
+            <dir-pagination-controls class="center" pagination-id="fitlerItemsOfCateArt" max-size="5" boundary-links="false"></dir-pagination-controls>
+        </div>
     </div>
 </div>
