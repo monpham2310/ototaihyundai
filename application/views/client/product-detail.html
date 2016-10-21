@@ -6,7 +6,8 @@
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <h1 class="product_title entry-title" ng-bind="artOrPro.ArtName"></h1>
             <div class="description">
-                <p>Giá cả: {{artOrPro.Price}}</p>
+                <p ng-if="artOrPro.Price !== '0'">Giá cả: {{artOrPro.Price}}</p>
+                <p ng-if="artOrPro.Price === '0'">Giá cả: Liên hệ</p>
                 <span ng-bind-html="trustAsHtml(artOrPro.ArtDescribes)"></span>
             </div>
         </div>

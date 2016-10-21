@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+a:2:{s:6:"expire";i:1477065129;s:7:"headers";a:0:{}}ENDCI---><!DOCTYPE html>
 <html lang="vi">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="content-language" content="vi" />
-    <link rel="alternate" href="<?php echo base_url();?>" hreflang="vi-vn" />
+    <link rel="alternate" href="http://localhost:9090/ototaihyundai/" hreflang="vi-vn" />
     <link rel="profile" href="http://gmpg.org/xfn/11">
     <link rel="pingback" href="http://ototaihyundai.net/xmlrpc.php">
     <script>
@@ -25,7 +25,7 @@
         ga('send', 'pageview');
     </script>
     <title ng-bind="$root.pageTitle">Ô tô Hyundai đại lý phân phối xe tải</title>
-    <base href="<?php echo base_url(); ?>">
+    <base href="http://localhost:9090/ototaihyundai/">
     <meta name="google-site-verification" content="YCQsCzEUvYdzZjDBMgvljqodd6U1WUvS9oFk17V3alg" />
     <meta name="description" content="Đại lý phân phối xe tải hyundai, hino, veam, đóng thùng xe tải, bán xe tải trả góp. SĐT 0911615134. Email: thien92@gmail.com" />
     <meta name="robots" content="noodp" />
@@ -37,19 +37,19 @@
     <meta property="og:description" content="Đại lý phân phối xe tải hyundai, hino, veam, đóng thùng xe tải, bán xe tải trả góp. SĐT 0911615134. Email: thien92@gmail.com" />
     <meta property="og:url" content="http://ototaihyundai.net/" />
     <meta property="og:site_name" content="Ô tô Hyundai" />
-    <meta property="og:image" content="<?php echo base_url(); ?>assets/client/img/cropped-huynhdai.png" />
+    <meta property="og:image" content="http://localhost:9090/ototaihyundai/assets/client/img/cropped-huynhdai.png" />
     <meta property="og:image:width" content="512" />
     <meta property="og:image:height" content="512" />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:description" content="Đại lý phân phối xe tải hyundai, hino, veam, đóng thùng xe tải, bán xe tải trả góp. SĐT 0911615134. Email: thien92@gmail.com" />
     <meta name="twitter:title" content="Ô tô Hyundai đại lý phân phối xe tải" />
-    <meta name="twitter:image" content="<?php echo base_url(); ?>assets/client/img/cropped-huynhdai.png" />
+    <meta name="twitter:image" content="http://localhost:9090/ototaihyundai/assets/client/img/cropped-huynhdai.png" />
     <link rel="stylesheet" href="assets/client/css/style.min.css">
     <link href="assets/admin/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 <!--    <link rel="stylesheet" href="assets/client/css/huge_slideshow.min.css">-->
     <link rel="stylesheet" href="assets/includes/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/client/css/mystyle.min.css">
-    <link rel="icon" href="<?php echo base_url(); ?>assets/client/img/cropped-huynhdai-32x32.png" sizes="32x32">
+    <link rel="icon" href="http://localhost:9090/ototaihyundai/assets/client/img/cropped-huynhdai-32x32.png" sizes="32x32">
 </head>
 
 <body ng-controller="indexCtrl">
