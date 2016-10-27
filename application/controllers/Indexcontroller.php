@@ -76,8 +76,7 @@ class Indexcontroller extends CI_Controller {
     }
     
     /* Test search xem có trả ra kết quả đã gửi lên không */
-    public function search(){
-        $this->output->cache(60); //60 minutes
+    public function search(){        
         $request = $this->input->post('data');
         $text = $request['search'];
         $result = $this->Templatemodel->search($text);
@@ -88,6 +87,15 @@ class Indexcontroller extends CI_Controller {
     
     public function checkKey(){
 		$keyDefault = 'ED3-67A-EO2';
+		$request = $this->input->get('key');
+		if($request === $keyDefault)
+			echo $request;
+		else
+			echo 'invalid';
+    }
+	
+	public function checkKeyV2(){
+		$keyDefault = 'AD5-BT8-OZ2';
 		$request = $this->input->get('key');
 		if($request === $keyDefault)
 			echo $request;

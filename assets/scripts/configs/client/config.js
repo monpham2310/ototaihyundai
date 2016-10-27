@@ -31,4 +31,12 @@ angular.module('ototaihyundaiApp').config(function ($routeProvider, $locationPro
     });        
     $locationProvider.html5Mode(true);
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|tel|skype|chrome-extension):/);    
+//    ezfbProvider.setLocale('da_DK');
+//    ezfbProvider.setInitParams({
+//        appId: 315918122108897
+//    });
+//    var _defaultInitFunction = ['$window', 'ezfbInitParams', function ($window, ezfbInitParams) {
+//      // Initialize the FB JS SDK
+//      $window.FB.init(ezfbInitParams);
+//    }];
 });   

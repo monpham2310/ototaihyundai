@@ -18,7 +18,7 @@
         <div class="page-content">
             <div class="col-lg-12">
                  <ul class="item-list">
-                    <li ng-repeat="art in $root.searchResult track by $index">                            
+                    <li dir-paginate="art in $root.searchResult | itemsPerPage: 10 track by $index" pagination-id="paginationSearchItems">                            
                         <a class="row" ng-href="{{art.Alias}}">
                             <div class="col-md-4">
                                 <img class="img-responsive" ng-src="{{art.Image}}" title="{{art.Name}}" alt="{{art.Name}}" ng-if="art.Image !== '' && art.Image !== null">                                 
@@ -29,6 +29,9 @@
                         </a>
                     </li>
                 </ul>                    
+            </div>
+            <div class="col-lg-12">
+                <dir-pagination-controls pagination-id="paginationSearchItems" max-size="5" boundary-links="false"></dir-pagination-controls>
             </div>
         </div>
     </section>
