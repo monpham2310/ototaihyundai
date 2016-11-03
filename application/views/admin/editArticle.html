@@ -82,7 +82,7 @@
                         <div class="row wrapper wrapper-content my-wrapper animated fadeInLeft" style="z-index: 0;">
                             <div class="ibox float-e-margins">
                                 <div class="ibox-title">
-                                    <h5>Danh mục<span class="text-danger">&nbsp;(*)</span></h5>
+                                    <h5>Danh mục</h5>
                                     <div class="ibox-tools">
                                         <a class="collapse-link">
                                             <i class="fa fa-chevron-up"></i>
@@ -90,22 +90,21 @@
                                     </div>
                                 </div>
                                 <div class="ibox-content">  
-                                        <div class="form-group">
-                                            <div class="input-group">
-                                                <input type="text" placeholder="Tìm kiếm" class="input-sm form-control" ng-model="searchCate" /> 
-                                                <span class="input-group-btn">
-                                                <button type="button" class="btn btn-sm btn-primary"><i class="fa fa-search"></i></button> </span>
-                                            </div>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <input type="text" placeholder="Tìm kiếm" class="input-sm form-control" ng-model="searchCate" /> 
+                                            <span class="input-group-btn">
+                                            <button type="button" class="btn btn-sm btn-primary"><i class="fa fa-search"></i></button> </span>
                                         </div>
-                                        <div class="form-group" ng-class="{'has-error': Form.cates.$invalid && Form.cates.$error.required }">                  
-                                            <div class="radio" dir-paginate="cate in $root.categories | itemsPerPage: 5 | filter: searchCate" pagination-id="catePagination">
-                                              <label>
-                                                <input type="radio" name="cates" ng-model="selectedArt.CatId" value="{{cate.CatID}}" required />
-                                                {{cate.CatName}}
-                                              </label>                                          
-                                            </div>
-                                            <p class="text-danger" ng-show="Form.cates.$invalid && Form.cates.$error.required">Vui lòng chọn danh mục.</p> 
-                                        </div>                                    
+                                    </div>
+                                    <div class="form-group">                  
+                                        <div class="radio" dir-paginate="cate in $root.categories | itemsPerPage: 5 | filter: searchCate" pagination-id="catePagination">
+                                          <label>
+                                            <input type="radio" name="cates" ng-model="selectedArt.CatId" value="{{cate.CatID}}" />
+                                            {{cate.CatName}}
+                                          </label>                                          
+                                        </div>                                            
+                                    </div>                                    
                                     <div class="modal-footer no-border">
                                         <dir-pagination-controls class="right" pagination-id="catePagination" max-size="3"></dir-pagination-controls> 
                                     </div>                                     

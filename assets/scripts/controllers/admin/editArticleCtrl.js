@@ -27,7 +27,7 @@ angular.module('ototaihyundaiApp').controller('editArticleCtrl', function($scope
             var controller = baseService.URL_HOST + baseService.module.editArticle + '/' + ArtID;
             baseService.GET(controller).then(function(response){
                 $scope.selectedArt = response[0];
-                $scope.selectedArt.ArtMeta = $scope.selectedArt.ArtMeta.substr($scope.selectedArt.ArtMeta.lastIndexOf('/') + 1);
+                $scope.selectedArt.ArtMeta = $scope.selectedArt.ArtMeta.substr(0, $scope.selectedArt.ArtMeta.lastIndexOf('.'));
             }, function(err){
                 console.log(err);
             });

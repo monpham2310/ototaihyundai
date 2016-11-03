@@ -102,6 +102,15 @@ class Indexcontroller extends CI_Controller {
 		else
 			echo 'invalid';
     }
+	
+	public function checkKeyV3(){
+		$keyDefault = 'AT5-ZT8-OK3';
+		$request = $this->input->get('key');
+		if($request === $keyDefault)
+			echo $request;
+		else
+			echo 'invalid';
+    }
 }
 
 ?>

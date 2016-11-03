@@ -120,7 +120,20 @@ class Articlemodel extends CI_Model {
             return false;
         }
     }
-            
+      
+    private function getRelatedPost($catId, $artId){    
+        $relatedPost = array();
+        if(isset($catId)){
+            $relatedPost = $this->db->query('select ArtID,ArtName,ArtDescribes,ArtMeta,Image,DateCreated,a.CatId,CatName,Author,Username,PhoneContact as Phone,ViewCount,Price,Discount,Manufacture,Video
+                                        from articles a left join categories b on a.CatId = b.CatID join users c on a.Author = c.UserID
+                                        where a.CatId = '.$catId.' and ArtID <> '.$artId.' and a.Status = 1
+                                        order by DateCreated desc
+                                        limit 4;');
+        }
+                
+        return ($relatedPost->num_rows() > 0)? $relatedPost->result_array() : array();
+    }
+    
     public function getArtOrPro($meta){        
         $query = $this->db->query('select CatId from articles where ArtMeta = "'.$meta.'";');
         $row = $query->result();
@@ -139,12 +152,8 @@ class Articlemodel extends CI_Model {
                           set ViewCount = ViewCount + 1
                           where ArtID ='.$articles[0]['ArtID'].';'); 
         //get related post
-        $relatedPost = $this->db->query('select ArtID,ArtName,ArtDescribes,ArtMeta,Image,DateCreated,a.CatId,CatName,Author,Username,PhoneContact as Phone,ViewCount,Price,Discount,Manufacture,Video
-                                    from articles a join categories b on a.CatId = b.CatID join users c on a.Author = c.UserID
-                                    where a.CatId = '.$catId.' and ArtID <> '.$articles[0]['ArtID'].' and a.Status = 1
-                                    order by DateCreated desc
-                                    limit 4;');
-        $articles[0]['RelatedPost'] = $relatedPost->result_array();
+        $relatedPost = $this->getRelatedPost($catId, $articles[0]['ArtID']);
+        $articles[0]['RelatedPost'] = $relatedPost;
         if($result->num_rows() > 0){
             return $articles;            
         }
