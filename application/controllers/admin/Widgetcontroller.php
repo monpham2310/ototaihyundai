@@ -16,6 +16,12 @@ class Widgetcontroller extends CI_Controller {
         $result = $this->Widgetmodel->getAllWidgets($request);
         echo json_encode($result);
     }
+    
+    public function getWidgets(){
+        $request = $this->input->post('data');
+        $result = $this->Widgetmodel->getWidgets($request);
+        echo json_encode($result);
+    }
             
     public function getHeader(){
         $result = $this->Widgetmodel->getHeader();

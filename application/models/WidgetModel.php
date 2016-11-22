@@ -147,14 +147,66 @@ class Widgetmodel extends CI_Model {
                         if($result[$i]['Method'] === 'wd_visitorStatistic'){
                             $result[$i]['data'] = $this->wd_visitorStatistic($result[$i]['Content']);
                         }
-//                        if($result[$i]['Method'] === 'wd_fanPage'){
-//                            $result[$i]['data'] = $this->wd_fanPage($result[$i]['Content']);
-//                        }
+                        if($result[$i]['Method'] === 'wd_fanPage'){
+                            $result[$i]['data'] = $this->wd_fanPage($result[$i]['Content']);
+                        }
                     }
                 }
             }            
             return $result;
         }        
+    }
+    
+    public function getWidgets($data){           
+        $result = $this->db->query('select ID,Title,Describes,Area,a.Status,Position,CateID,CatMeta,Config,Content,Method,a.Type
+                                from widgets a left join categories b on a.CateID = b.CatID
+                                where a.Status = 1 and Area = "'.$data['Area'].'"
+                                order by Position;');
+        $result = $result->result_array();
+        $count = count($result);
+        if($count > 0){
+            for($i = 0; $i < $count; $i++){
+                if($result[$i]['Type'] === 1)
+                    $result[$i]['data'] = $this->Articlemodel->getArtForCate($result[$i]['CateID'], $result[$i]['Config']);
+                else{
+                    if($result[$i]['Method'] === 'wd_productCategories'){                            
+                        $result[$i]['data'] = $this->getNestableCate($data['type'], 2);
+                    }
+                    if($result[$i]['Method'] === 'wd_articleCategories'){
+                        $result[$i]['data'] = $this->getNestableCate($data['type'], 1);
+                    }
+                    if($result[$i]['Method'] === 'wd_allProduct'){
+                        $result[$i]['data'] = $this->Articlemodel->getAllArtOrPro(2);
+                    }
+                    if($result[$i]['Method'] === 'wd_allArticle'){
+                        $result[$i]['data'] = $this->Articlemodel->getAllArtOrPro(1);
+                    }
+                    if($result[$i]['Method'] === 'wd_featureArt'){
+                        $result[$i]['data'] = $this->Articlemodel->getFeatureArtOrPro(1, $result[$i]['Config']);
+                    }
+                    if($result[$i]['Method'] === 'wd_featurePro'){
+                        $result[$i]['data'] = $this->Articlemodel->getFeatureArtOrPro(2, $result[$i]['Config']);
+                    }
+                    if($result[$i]['Method'] === 'wd_newProduct'){
+                        $result[$i]['data'] = $this->Articlemodel->getNewArtOrPro(2, $result[$i]['Config']);
+                    }
+                    if($result[$i]['Method'] === 'wd_newArticle'){
+                        $result[$i]['data'] = $this->Articlemodel->getNewArtOrPro(1, $result[$i]['Config']);
+                    }
+                    if($result[$i]['Method'] === 'wd_markerList'){
+                        $result[$i]['data'] = $this->Mapmodel->getMapList();
+                    }
+                    if($result[$i]['Method'] === 'wd_visitorStatistic'){
+                        $result[$i]['data'] = $this->wd_visitorStatistic($result[$i]['Content']);
+                    }
+                    if($result[$i]['Method'] === 'wd_fanPage'){
+                        $result[$i]['data'] = $this->wd_fanPage($result[$i]['Content']);
+                    }
+                }
+            }
+        }            
+        return $result;
+                
     }
     
     public function updateHeader($data){

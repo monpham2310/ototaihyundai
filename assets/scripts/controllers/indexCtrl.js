@@ -3,36 +3,21 @@ angular.module('ototaihyundaiApp').controller('indexCtrl', function($scope, $sce
     $rootScope.slideShow = '';
     $rootScope.navigates = '';
     $rootScope.widgets = {
-        information: {},
         header: {}
     };
-    $rootScope.listWidgets = [];    
-    $rootScope.proCateOnHome = '';
-    $rootScope.cateOnHome = '';
+    $rootScope.listBodyWidgets = [];    
+    $rootScope.listSidebarWidgets = [];    
+    $rootScope.listFooterWidgets = [];    
     $rootScope.services = [];
-    $rootScope.newProducts = [];
-    $rootScope.newArticles = [];
     $rootScope.mapList = [];
     $rootScope.coordinate = {
         lat: 0,
         lng: 0
     };
-    $rootScope.sidebarCategory = '';
-    $rootScope.sidebar = {
-        featuredArticles: [],
-        video: []
-    };
-    $rootScope.resourceCates = [];
-    $rootScope.photoGallery = '';
-    $rootScope.dataType = {
-        article: 1,
-        product: 2
-    };
     $rootScope.resourceType = {
         image: 1,
         video: 2
     }
-    $scope.visitorCount = [];
     $rootScope.searchText = '';
     $rootScope.contacts = [];     
     $scope.myInterval = 4000;
@@ -66,10 +51,15 @@ angular.module('ototaihyundaiApp').controller('indexCtrl', function($scope, $sce
         });
     };
     $rootScope.getWidgets = function(area){
-        var controller = baseService.URL_HOST + baseService.module.getAllWidgets;  
-        var param = {type: 'client'};
-        baseService.POST(controller, param).then(function(response){    
-            $rootScope.listWidgets = response;
+        var controller = baseService.URL_HOST + baseService.module.getWidgets;  
+        var param = {Area: area};
+        baseService.POST(controller, param).then(function(response){  
+            if(area === 'body')
+                $rootScope.listBodyWidgets = response;
+            if(area === 'sidebar')
+                $rootScope.listSidebarWidgets = response;
+            if(area === 'footer')
+                $rootScope.listFooterWidgets = response;
         });
     };
     $rootScope.getMapList = function(){        
@@ -141,7 +131,9 @@ angular.module('ototaihyundaiApp').controller('indexCtrl', function($scope, $sce
     /*$rootScope.getContactUser();*/
     /*$rootScope.getMapList();*/
     getHeader();
-    $rootScope.getWidgets();
+    $rootScope.getWidgets('body');
+    $rootScope.getWidgets('sidebar');
+    $rootScope.getWidgets('footer');
     $scope.sidebarRight = function($el){
         $el.removeClass('not-visible');
         $el.addClass('animated fadeInRight');

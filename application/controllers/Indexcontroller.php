@@ -75,6 +75,11 @@ class Indexcontroller extends CI_Controller {
         $this->load->view('sitemap_view.php',$data);
     }
     
+    public function robots(){ 
+        $this->output->cache(60); //60 minutes
+        $this->load->view('robots.txt');
+    }
+    
     /* Test search xem có trả ra kết quả đã gửi lên không */
     public function search(){        
         $request = $this->input->post('data');

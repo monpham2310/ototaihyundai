@@ -20,7 +20,7 @@ class Templatemodel extends CI_Model {
     public function getPages($data){
         $result = $this->db->query('select TempID,TempName,Meta
                                     from templates
-                                    where Type = "'.$data['type'].'"
+                                    where Type = "'.$data['type'].'" and Status = 1
                                     order by TempID desc;');
         return ($result->num_rows() > 0)? $result->result_array() : array();
     }

@@ -130,13 +130,6 @@ class Articlemodel extends CI_Model {
                                         order by DateCreated desc
                                         limit 4;');
         }
-        else{
-            $relatedPost = $this->db->query('select ArtID,ArtName,ArtDescribes,ArtMeta,Image,DateCreated,a.CatId,CatName,Author,Username,PhoneContact as Phone,ViewCount,Price,Discount,Manufacture,Video
-                                        from articles a left join categories b on a.CatId = b.CatID join users c on a.Author = c.UserID
-                                        where a.Type = 1 and a.CatId is NULL and ArtID <> '.$artId.' and a.Status = 1
-                                        order by DateCreated desc
-                                        limit 4;');
-        }
                 
         return ($relatedPost->num_rows() > 0)? $relatedPost->result_array() : array();
     }

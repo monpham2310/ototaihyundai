@@ -1,4 +1,4 @@
-a:2:{s:6:"expire";i:1478161494;s:7:"headers";a:0:{}}ENDCI---><!DOCTYPE html>
+a:2:{s:6:"expire";i:1479174986;s:7:"headers";a:0:{}}ENDCI---><!DOCTYPE html>
 <html lang="vi">
 
 <head>
@@ -116,7 +116,7 @@ a:2:{s:6:"expire";i:1478161494;s:7:"headers";a:0:{}}ENDCI---><!DOCTYPE html>
             <!-- child view -->
         </div>
         <div id="secondary">
-            <div id="rpwwt-recent-posts-widget-with-thumbnails-2" class="rpwwt-widget" ng-repeat="item in $root.listWidgets track by $index" ng-if="item.Area === 'sidebar'">
+            <div id="rpwwt-recent-posts-widget-with-thumbnails-2" class="rpwwt-widget" ng-repeat="item in $root.listSidebarWidgets track by $index">
                 <aside id="recent-posts-widget-with-thumbnails-2" class="widget recent-posts-widget-with-thumbnails">
                     <h3 class="widget-title title-block-wrap clearfix"><span class="block-title"><span ng-bind="item.Title"></span></span></h3>
                     <div class="xo10-accordion-list-holder" ng-bind-html="trustAsHtml(item.data)" ng-if="item.Method === 'wd_productCategories' || item.Method === 'wd_articleCategories'">
@@ -193,7 +193,7 @@ a:2:{s:6:"expire";i:1478161494;s:7:"headers";a:0:{}}ENDCI---><!DOCTYPE html>
     </div>
     <div class="main-footer">
         <div class="row footer-main">
-            <div class="col-lg-3" ng-repeat="item in $root.listWidgets track by $index" ng-if="item.Area === 'footer'">
+            <div class="col-lg-3" ng-repeat="item in $root.listFooterWidgets track by $index">
                 <h3 class="footer-widget-title" ng-bind="item.Title"></h3>
                 <div class="primary-widget"></div>
                 <div class="xo10-accordion-list-holder" ng-bind-html="trustAsHtml(item.data)" ng-if="item.Method === 'wd_articleCategories'">

@@ -1,5 +1,5 @@
 <div ng-controller="homeCtrl">
-    <div class="row home-widget-row" ng-repeat="widget in $root.listWidgets track by $index" ng-if="widget.Area === 'body'">
+    <div class="row home-widget-row" ng-repeat="widget in $root.listBodyWidgets track by $index">
         <h3 class="home-widget-title" ng-bind="widget.Title"></h3>
         <div ng-if="widget.Method === 'wd_allProduct'">
             <div class="primary-widget"></div>

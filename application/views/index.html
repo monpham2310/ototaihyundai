@@ -116,7 +116,7 @@
             <!-- child view -->
         </div>
         <div id="secondary">
-            <div id="rpwwt-recent-posts-widget-with-thumbnails-2" class="rpwwt-widget" ng-repeat="item in $root.listWidgets track by $index" ng-if="item.Area === 'sidebar'">
+            <div id="rpwwt-recent-posts-widget-with-thumbnails-2" class="rpwwt-widget" ng-repeat="item in $root.listSidebarWidgets track by $index">
                 <aside id="recent-posts-widget-with-thumbnails-2" class="widget recent-posts-widget-with-thumbnails">
                     <h3 class="widget-title title-block-wrap clearfix"><span class="block-title"><span ng-bind="item.Title"></span></span></h3>
                     <div class="xo10-accordion-list-holder" ng-bind-html="trustAsHtml(item.data)" ng-if="item.Method === 'wd_productCategories' || item.Method === 'wd_articleCategories'">
@@ -178,14 +178,8 @@
                             <marker ng-repeat="marker in item.data track by $index" position="{{marker.Lattitude}}, {{marker.Longitude}}"></marker>
                         </ng-map>
                     </div>
-                    <div class="xo10-accordion-list-holder" ng-if="item.Method === 'wd_fanPage'">
-                        <div class="fb-page" data-href="{{item.Content}}" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-height="300">
-                            <div class="fb-xfbml-parse-ignore">
-                                <blockquote cite="{{item.Content}}">
-                                    <a ng-href="{{item.Content}}"></a>
-                                </blockquote>
-                            </div>
-                        </div>
+                    <div class="xo10-accordion-list-holder" ng-if="item.Method === 'wd_fanPage'" ng-bind-html="trustAsHtml(item.data)">
+                        
                     </div>
                 </aside>
             </div>
@@ -193,7 +187,7 @@
     </div>
     <div class="main-footer">
         <div class="row footer-main">
-            <div class="col-lg-3" ng-repeat="item in $root.listWidgets track by $index" ng-if="item.Area === 'footer'">
+            <div class="col-lg-3" ng-repeat="item in $root.listFooterWidgets track by $index">
                 <h3 class="footer-widget-title" ng-bind="item.Title"></h3>
                 <div class="primary-widget"></div>
                 <div class="xo10-accordion-list-holder" ng-bind-html="trustAsHtml(item.data)" ng-if="item.Method === 'wd_articleCategories'">
@@ -251,14 +245,8 @@
                         <marker ng-repeat="marker in item.data track by $index" position="{{marker.Lattitude}}, {{marker.Longitude}}"></marker>
                     </ng-map>
                 </div>
-                <div class="xo10-accordion-list-holder" ng-if="item.Method === 'wd_fanPage'">
-                    <div class="fb-page" data-href="{{item.Content}}" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-height="300">
-                        <div class="fb-xfbml-parse-ignore">
-                            <blockquote cite="{{item.Content}}">
-                                <a ng-href="{{item.Content}}"></a>
-                            </blockquote>
-                        </div>
-                    </div>
+                <div class="xo10-accordion-list-holder" ng-if="item.Method === 'wd_fanPage'" ng-bind-html="trustAsHtml(item.data)">
+                    
                 </div>
             </div>
         </div>

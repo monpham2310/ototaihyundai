@@ -45,6 +45,7 @@ angular.module('ototaihyundaiApp').factory('baseService', function($http, $q, $w
             addWidget: 'admin/Widgetcontroller/addWidget',
             delWidget: 'admin/Widgetcontroller/delWidget',
             getAllWidgets: 'admin/Widgetcontroller/getAllWidgets',
+            getWidgets: 'admin/Widgetcontroller/getWidgets',
             sortableWidget: 'admin/Widgetcontroller/sortableWidget',
             getMapList: 'admin/Mapcontroller/getMapList',
             updateMarker: 'admin/Mapcontroller/updateMarker',

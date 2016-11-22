@@ -52,7 +52,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'Indexcontroller/index';
 $route['admin'] = 'admin/Viewmanagecontroller/index';
 $route['login'] = 'admin/Viewmanagecontroller/index';
-$route['sitemap.xml'] = 'Indexcontroller/sitemap';   
+$route['sitemap.xml'] = 'Indexcontroller/sitemap'; 
+$route['robots.txt'] = 'Indexcontroller/robots'; 
 
 $route['admin/([a-z A-Z 0-9 -]+)'] = 'admin/Viewmanagecontroller/index';
 $route['admin/([a-z A-Z 0-9 -]+)/([a-z 0-9 -]+)'] = 'admin/Viewmanagecontroller/index';

@@ -27,7 +27,8 @@ angular.module('ototaihyundaiApp').controller('editArticleCtrl', function($scope
             var controller = baseService.URL_HOST + baseService.module.editArticle + '/' + ArtID;
             baseService.GET(controller).then(function(response){
                 $scope.selectedArt = response[0];
-                $scope.selectedArt.ArtMeta = $scope.selectedArt.ArtMeta.substr(0, $scope.selectedArt.ArtMeta.lastIndexOf('.'));
+                if($rootScope.dataType === 2)
+                    $scope.selectedArt.ArtMeta = $scope.selectedArt.ArtMeta.substr($scope.selectedArt.ArtMeta.indexOf('/') + 1);
             }, function(err){
                 console.log(err);
             });
@@ -66,10 +67,10 @@ angular.module('ototaihyundaiApp').controller('editArticleCtrl', function($scope
                 if($scope.meta.indexOf('edit') !== -1){
                     var controller = baseService.URL_HOST + baseService.module.updateArt;
                     if($rootScope.dataType === 1){
-                        $scope.selectedArt.ArtMeta = $scope.selectedArt.ArtMeta + '.html';    
+                        $scope.selectedArt.ArtMeta = $scope.selectedArt.ArtMeta; //+ '.html';    
                     }
                     else{                        
-                        $scope.selectedArt.ArtMeta = 'san-pham' + '/' + $scope.selectedArt.ArtMeta + '.html';    
+                        $scope.selectedArt.ArtMeta = 'san-pham' + '/' + $scope.selectedArt.ArtMeta; //+ '.html';    
                     }
                     if ($scope.selectedArt.Username !== undefined)
                         delete $scope.selectedArt.Username;                      
