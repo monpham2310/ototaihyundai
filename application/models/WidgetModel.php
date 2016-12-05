@@ -89,11 +89,7 @@ class Widgetmodel extends CI_Model {
     }
         
     function wd_fanPage($data){                
-        $result = '<div class="fb-page" data-href="'.$data.'" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-height="300">
-                        <div class="fb-xfbml-parse-ignore">
-                            <blockquote cite="'.$data.'"><a ng-href="'.$data.'"></a></blockquote>
-                        </div>
-                    </div>';
+        $result = '<div class="fb-page" data-href="'.$data.'" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="false"><blockquote cite="'.$data.'" class="fb-xfbml-parse-ignore"><a href="'.$data.'">OTOTAIHYUNDAI</a></blockquote></div>';
         return $result;
     }
     
