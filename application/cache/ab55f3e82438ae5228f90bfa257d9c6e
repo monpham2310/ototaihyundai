@@ -1,4 +1,4 @@
-a:2:{s:6:"expire";i:1479174957;s:7:"headers";a:0:{}}ENDCI---><!DOCTYPE html>
+a:2:{s:6:"expire";i:1482557037;s:7:"headers";a:0:{}}ENDCI---><!DOCTYPE html>
 <html lang="vi">
 
 <head>
@@ -53,7 +53,17 @@ a:2:{s:6:"expire";i:1479174957;s:7:"headers";a:0:{}}ENDCI---><!DOCTYPE html>
 </head>
 
 <body ng-controller="indexCtrl">
-    <div id="fb-root"></div>    
+    <div id="fb-root"></div>       
+    <script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8"; //&appId=315918122108897
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
     <header id="masthead" class="site-header" role="banner">
         <div class="top-header-wrapper clearfix">
             <div class="tg-container">
@@ -178,14 +188,8 @@ a:2:{s:6:"expire";i:1479174957;s:7:"headers";a:0:{}}ENDCI---><!DOCTYPE html>
                             <marker ng-repeat="marker in item.data track by $index" position="{{marker.Lattitude}}, {{marker.Longitude}}"></marker>
                         </ng-map>
                     </div>
-                    <div class="xo10-accordion-list-holder" ng-if="item.Method === 'wd_fanPage'">
-                        <div class="fb-page" data-href="{{item.Content}}" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-height="300">
-                            <div class="fb-xfbml-parse-ignore">
-                                <blockquote cite="{{item.Content}}">
-                                    <a ng-href="{{item.Content}}"></a>
-                                </blockquote>
-                            </div>
-                        </div>
+                    <div class="xo10-accordion-list-holder" ng-if="item.Method === 'wd_fanPage'" ng-bind-html="trustAsHtml(item.data)">
+                        
                     </div>
                 </aside>
             </div>
@@ -252,29 +256,14 @@ a:2:{s:6:"expire";i:1479174957;s:7:"headers";a:0:{}}ENDCI---><!DOCTYPE html>
                     </ng-map>
                 </div>
                 <div class="xo10-accordion-list-holder" ng-if="item.Method === 'wd_fanPage'">
-                    <div class="fb-page" data-href="{{item.Content}}" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-height="300">
-                        <div class="fb-xfbml-parse-ignore">
-                            <blockquote cite="{{item.Content}}">
-                                <a ng-href="{{item.Content}}"></a>
-                            </blockquote>
-                        </div>
-                    </div>
+                    <div class="fb-page" data-href="https://www.facebook.com/thienhoaphuc/" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="false"><blockquote cite="https://www.facebook.com/thienhoaphuc/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/thienhoaphuc/">OTOTAIHYUNDAI</a></blockquote></div>
                 </div>
             </div>
         </div>
         <div class="row footer-main" style="background:#151515">
             Copyright @ ototaihyundai.net - Design by MaYoLi
         </div>
-    </div>
-    <script>
-        (function(d, s, id) {          
-          var js, fjs = d.getElementsByTagName(s)[0];
-          if (d.getElementById(id)) return;
-          js = d.createElement(s); js.id = id;
-          js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.4&appId=315918122108897";
-          fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-    </script>
+    </div>    
     <script src="assets/client/js/jQuery-2.1.4.min.js"></script>
     <script src="assets/js/angular.min.js"></script>
     <script src="assets/js/angular-route.min.js"></script>

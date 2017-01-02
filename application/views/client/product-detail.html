@@ -1,7 +1,7 @@
 <div ng-controller="articleCtrl">
     <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <img id="img" class="img-responsive title" src="{{artOrPro.Image}}" alt="{{artOrPro.ArtName}}" title="{{artOrPro.ArtName}}">
+            <img id="img" class="img-responsive title" ng-src="{{artOrPro.Image}}" alt="{{artOrPro.ArtName}}" title="{{artOrPro.ArtName}}">
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
             <h1 class="product_title entry-title" ng-bind="artOrPro.ArtName"></h1>

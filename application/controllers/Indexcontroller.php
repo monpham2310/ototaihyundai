@@ -11,17 +11,17 @@ class Indexcontroller extends CI_Controller {
     }
         
     public function index(){   
-        $this->output->cache(60); //60 minutes
+        $this->output->cache(240); //240 minutes
         $this->load->view('index'.'.html');
     }
                
     public function notfound(){
-        $this->output->cache(60); //60 minutes        
+        $this->output->cache(240); //240 minutes        
         $this->load->view('client/404.html');
     }
             
     public function loadView($view){ 
-        $this->output->cache(60); //60 minutes
+        $this->output->cache(240); //240 minutes
         $this->load->view('client/'.$view.'.html');        
     }
             
@@ -70,13 +70,13 @@ class Indexcontroller extends CI_Controller {
     }
     
     public function sitemap(){ 
-        $this->output->cache(60); //60 minutes
+        $this->output->cache(240); //240 minutes
         $data['urlsList'] = $this->Urlmodel->getURLS();
         $this->load->view('sitemap_view.php',$data);
     }
     
     public function robots(){ 
-        $this->output->cache(60); //60 minutes
+        $this->output->cache(240); //240 minutes
         $this->load->view('robots.txt');
     }
     
