@@ -11,72 +11,47 @@ class Indexcontroller extends CI_Controller {
     }
         
     public function index(){   
-        $this->output->cache(240); //240 minutes
+        $this->output->cache(180); //180 minutes
         $this->load->view('index'.'.html');
     }
                
     public function notfound(){
-        $this->output->cache(240); //240 minutes        
+        $this->output->cache(180); //180 minutes        
         $this->load->view('client/404.html');
     }
             
     public function loadView($view){ 
-        $this->output->cache(240); //240 minutes
+        $this->output->cache(180); //180 minutes
         $this->load->view('client/'.$view.'.html');        
     }
             
     public function loadTemplate(){        
         $meta = $this->input->get('meta');        
-        $filename = $this->Templatemodel->getTemplateOfView($meta);        
+        $filename = $this->Templatemodel->getTemplateOfLayout($meta);        
         
-        if($filename !== null){
-            $view = 'client/'.$filename->Filename;
-            if($view !== 'client/'){                
-                $this->load->view($view.'.html'); 
+        if(isset($filename)){            
+            if(isset($filename->Filename)){                    
+                $this->load->view('client/'.$filename->Filename.'.html'); 
             }
-            else{                
+            else{                 
+                //$this->load->view('client/home.html');                 
                 $this->load->view('client/404.html');                 
             }
         }
         else{
-            $filename = $this->Templatemodel->getTempOfView($meta);            
-
-            if($filename !== null){
-                $view = 'client/'.$filename->Filename;
-                if($view !== 'client/'){                    
-                    $this->load->view($view.'.html'); 
-                }
-                else{                    
-                    $this->load->view('client/404.html');                      
-                }
-            }
-            else{
-                $filename = $this->Templatemodel->getTempOfViewExtend($meta);
-                if($filename !== null){
-                    $view = 'client/'.$filename->Filename;
-                    if($view !== 'client/'){
-                        $this->load->view($view.'.html'); 
-                    }
-                    else{
-                        $this->load->view('client/404.html');  
-                    }
-                }
-                else{
-                    $this->load->view('client/404.html'); 
-                }
-            }
-        }      
-        
+            //$this->load->view('client/home.html');                 
+            $this->load->view('client/404.html');  
+        }     
     }
     
     public function sitemap(){ 
-        $this->output->cache(240); //240 minutes
+        $this->output->cache(180); //180 minutes
         $data['urlsList'] = $this->Urlmodel->getURLS();
         $this->load->view('sitemap_view.php',$data);
     }
     
     public function robots(){ 
-        $this->output->cache(240); //240 minutes
+        $this->output->cache(180); //180 minutes
         $this->load->view('robots.txt');
     }
     

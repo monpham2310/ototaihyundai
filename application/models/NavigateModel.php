@@ -11,12 +11,12 @@ class Navigatemodel extends CI_Model {
     public function getNavigates($type){
         $result = array();        
         if($type === 'admin'){            
-            $result = $this->db->query('select NavID,NavName,NavMeta,ParentId,Status,Position,Type,TempId
+            $result = $this->db->query('select NavID,NavName,NavMeta,ParentId,Status,Position,Type
                                         from navigates
                                         order by Position;');                        
         }
         else{
-            $result = $this->db->query('select NavID,NavName,NavMeta,ParentId,Status,Position,Type,TempId
+            $result = $this->db->query('select NavID,NavName,NavMeta,ParentId,Status,Position,Type
                                             from navigates
                                             where Status = 1
                                             order by Position;');
@@ -26,16 +26,15 @@ class Navigatemodel extends CI_Model {
         return array();
     }
     
-    public function addNavigate($name, $meta, $temp = 0, $type = 0){
-        $query = $this->db->query('select count(NavID) as result from navigates where ParentId = 0;');
+    public function addNavigate($name, $meta, $type = 0){
+        $query = $this->db->query('select max(NavID) as result from navigates where ParentId = 0;');
         $row = $query->result();
         $pos = $row[0];
         $param = array(            
             'NavName' => $name,
             'NavMeta' => $meta,            
             'Position' => (int)($pos->result) + 1,
-            'Type' => $type,
-            'TempId' => $temp
+            'Type' => $type            
         );
         $result = $this->db->insert('navigates', $param);        
         if($result !== null){

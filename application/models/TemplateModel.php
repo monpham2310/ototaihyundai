@@ -66,36 +66,18 @@ class Templatemodel extends CI_Model {
         }
     }
     
-    public function getTemplateOfView($meta){
+    public function getTemplateOfLayout($meta){
         $result = $this->db->query('select a.TempId,Filename 
                                     from categories a inner join templates b on a.TempId = b.TempID 
-                                    where CatMeta = "'.$meta.'";');
-        if($result->num_rows() > 0){
-            $row = $result->result();
-            return $row[0];
-        }
-        else{
-            return null;
-        }
-    }
-    
-    public function getTempOfView($meta){
-        $result = $this->db->query('select a.TempId,Filename 
+                                    where CatMeta = "'.$meta.'"
+                                    union all
+                                    select a.TempId,Filename 
                                     from articles a inner join templates b on a.TempId = b.TempID 
-                                    where ArtMeta = "'.$meta.'";');
-        if($result->num_rows() > 0){
-            $row = $result->result();            
-            return $row[0];
-        }
-        else{
-            return null;
-        }
-    }
-    
-    public function getTempOfViewExtend($meta){
-        $result = $this->db->query('select a.TempId,Filename 
-                                    from navigates a inner join templates b on a.TempId = b.TempID 
-                                    where NavMeta = "'.$meta.'";');
+                                    where ArtMeta = "'.$meta.'"                                                              
+                                    union all
+                                    select TempID,Filename
+                                    from templates
+                                    where Meta = "'.$meta.'";');
         if($result->num_rows() > 0){
             $row = $result->result();            
             return $row[0];

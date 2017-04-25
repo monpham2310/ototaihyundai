@@ -256,7 +256,8 @@
                     </ng-map>
                 </div>
                 <div class="xo10-accordion-list-holder" ng-if="item.Method === 'wd_fanPage'">
-                    <div class="fb-page" data-href="https://www.facebook.com/thienhoaphuc/" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="false"><blockquote cite="https://www.facebook.com/thienhoaphuc/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/thienhoaphuc/">OTOTAIHYUNDAI</a></blockquote></div>
+                    <div ng-bind-html="trustAsHtml(item.data)"></div>
+<!--                    <div class="fb-page" data-href="https://www.facebook.com/thienhoaphuc/" data-tabs="none" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="false"><blockquote cite="https://www.facebook.com/thienhoaphuc/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/thienhoaphuc/">OTOTAIHYUNDAI</a></blockquote></div>-->
                 </div>
             </div>
         </div>

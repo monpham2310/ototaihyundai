@@ -159,7 +159,7 @@ class Navigatecontroller extends CI_Controller {
             }
             else{
                 for($i = 0; $i < count($request); $i++){
-                    $this->Navigatemodel->addNavigate($request[$i]['TempName'], $request[$i]['Meta'], $request[$i]['TempID']);
+                    $this->Navigatemodel->addNavigate($request[$i]['TempName'], $request[$i]['Meta']);
                 } 
                 echo $json;
             }
@@ -176,14 +176,13 @@ class Navigatecontroller extends CI_Controller {
     public function addCustomNavigate(){        
         $request = $this->input->post('data');           
         $name = $request['NavName'];
-        $meta = $request['NavMeta'];
-        $temp = 0;
+        $meta = $request['NavMeta'];        
         $type = $request['Type'];
         
         //$session = $this->session->has_userdata('remember_me');        
         $session = $this->phpsession->get(null, 'ototaihyundai_user');
         if($session !== null){
-            $result = $this->Navigatemodel->addNavigate($name, $meta, $temp, $type);
+            $result = $this->Navigatemodel->addNavigate($name, $meta, $type);
             $json = json_encode($result);
             echo $json;
         }
